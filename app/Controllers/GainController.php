@@ -10,6 +10,7 @@ class GainController extends BaseController
     {
         $model = new TransactionModel();
         $data = $model->calculerGains();
+        $data['gains_par_operateur'] = $model->calculerGainsParOperateur();
 
         return view('gain/index', $data);
     }

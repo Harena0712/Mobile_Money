@@ -360,6 +360,7 @@ Afficher :
 
   - [x] gains internes
   - [x] gains inter-opérateurs
+  - [x] gains par opérateur
   - [x] total général
 
 

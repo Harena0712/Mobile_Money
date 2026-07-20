@@ -52,7 +52,7 @@
                     <?php foreach ($soldeClients as $compte) : ?>
                         <tr data-search="<?= esc($compte['id_client'] . ' ' . $compte['solde']) ?>">
                             <td>#<?= esc($compte['id_client']) ?></td>
-                            <td><span class="badge badge-navy"><?= esc($compte['solde']) ?></span></td>
+                            <td><span class="badge badge-navy"><?= number_format((float) $compte['solde'], 2, '.', ' ') ?> Ar</span></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

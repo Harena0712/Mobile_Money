@@ -229,6 +229,39 @@ class TransactionModel extends Model
         }
     }
 
+    public function calculerGainsParOperateur(): array
+    {
+        $db = $this->db;
+
+        $query = $db->table($this->table . ' t')
+            ->select('o.id AS id_operateur, o.libelle AS operateur')
+            ->select('SUM(t.frais) AS total_frais')
+            ->select('SUM(CASE WHEN t.id_type_operation = 2 THEN t.frais ELSE 0 END) AS total_frais_transfert')
+            ->select('SUM(CASE WHEN t.id_type_operation = 3 THEN t.frais ELSE 0 END) AS total_frais_retrait')
+            ->select('SUM(CASE WHEN t.id_type_operation = 1 THEN 1 ELSE 0 END) AS total_depots')
+            ->select('SUM(CASE WHEN t.id_type_operation = 2 THEN 1 ELSE 0 END) AS total_transferts')
+            ->select('SUM(CASE WHEN t.id_type_operation = 3 THEN 1 ELSE 0 END) AS total_retraits')
+            ->join('Client c', 'c.id = t.id_client_source', 'LEFT')
+            ->join('Prefixe p', 'p.id = c.id_prefixe', 'LEFT')
+            ->join('Operateur o', 'o.id = p.id_operateur', 'LEFT')
+            ->where('o.id IS NOT NULL')
+            ->groupBy('o.id, o.libelle')
+            ->get();
+
+        return array_map(function ($row) {
+            return [
+                'id_operateur' => $row['id_operateur'],
+                'operateur' => $row['operateur'],
+                'total_frais' => (float) ($row['total_frais'] ?? 0),
+                'total_frais_transfert' => (float) ($row['total_frais_transfert'] ?? 0),
+                'total_frais_retrait' => (float) ($row['total_frais_retrait'] ?? 0),
+                'total_depots' => (int) ($row['total_depots'] ?? 0),
+                'total_transferts' => (int) ($row['total_transferts'] ?? 0),
+                'total_retraits' => (int) ($row['total_retraits'] ?? 0),
+            ];
+        }, $query->getResultArray());
+    }
+
     public function listerHistorique(int $idClient): array
     {
         return $this->db->table($this->table . ' t')

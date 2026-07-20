@@ -25,8 +25,8 @@
                         <?php foreach ($baremeFrais as $bareme) : ?>
                             <tr>
                                 <td>#<?= esc($bareme['id']) ?></td>
-                                <td><?= esc($bareme['montant_min']) ?></td>
-                                <td><?= esc($bareme['montant_max']) ?></td>
+                                <td><?= number_format((float) $bareme['montant_min'], 2, '.', ' ') ?> Ar</td>
+                                <td><?= number_format((float) $bareme['montant_max'], 2, '.', ' ') ?> Ar</td>
                                 <td><span class="badge badge-orange"><?= esc($bareme['valeur']) ?></span></td>
                             </tr>
                         <?php endforeach; ?>
