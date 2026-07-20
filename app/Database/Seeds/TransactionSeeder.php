@@ -8,6 +8,10 @@ class TransactionSeeder extends Seeder
 {
     public function run()
     {
+        // $this->call('TypeOperationSeeder');
+        // $this->call('ClientSeeder');
+        // $this->call('StatutSeeder');
+
         $data = [
 
             [

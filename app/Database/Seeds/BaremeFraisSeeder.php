@@ -8,7 +8,8 @@ class BaremeFraisSeeder extends Seeder
 {
     public function run()
     {
-        $types = [2,3]; // Retrait et Transfert
+        $this->call('TypeOperationSeeder');
+        $types = [2,3];
 
         $baremes = [
             [100,1000,50],

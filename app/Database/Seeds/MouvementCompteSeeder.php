@@ -8,36 +8,33 @@ class MouvementCompteSeeder extends Seeder
 {
     public function run()
     {
-        $data = [
+        $this->call('TransactionSeeder');
 
-            // Dépôt
+        $data = [
             [
-                'transaction_id'=>1,
-                'client_id'=>1,
+                'id_transaction'=>1,
+                'id_client'=>1,
                 'montant'=>100000,
                 'sens'=>'CREDIT'
             ],
 
-            // Retrait
             [
-                'transaction_id'=>2,
-                'client_id'=>1,
+                'id_transaction'=>2,
+                'id_client'=>1,
                 'montant'=>20200,
                 'sens'=>'DEBIT'
             ],
 
-            // Transfert : débit
             [
-                'transaction_id'=>3,
-                'client_id'=>1,
+                'id_transaction'=>3,
+                'id_client'=>1,
                 'montant'=>30400,
                 'sens'=>'DEBIT'
             ],
 
-            // Transfert : crédit
             [
-                'transaction_id'=>3,
-                'client_id'=>2,
+                'id_transaction'=>3,
+                'id_client'=>2,
                 'montant'=>30000,
                 'sens'=>'CREDIT'
             ]
