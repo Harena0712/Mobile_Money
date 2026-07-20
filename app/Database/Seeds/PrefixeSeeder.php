@@ -23,11 +23,11 @@ class PrefixeSeeder extends Seeder
 
         $data = [];
         foreach ([
-            ['prefixe' => '033', 'actif' => 1, 'id_operateur' => 3],
-            ['prefixe' => '034', 'actif' => 1, 'id_operateur' => 2],
-            ['prefixe' => '038', 'actif' => 1, 'id_operateur' => 2],
-            ['prefixe' => '037', 'actif' => 1, 'id_operateur' => 1],
-            ['prefixe' => '032', 'actif' => 1, 'id_operateur' => 1],
+            ['prefixe' => '033', 'actif' => 1, 'id_operateur' => $operatorIds['Airtel'] ?? 0],
+            ['prefixe' => '034', 'actif' => 1, 'id_operateur' => $operatorIds['Yas'] ?? 0],
+            ['prefixe' => '038', 'actif' => 1, 'id_operateur' => $operatorIds['Yas'] ?? 0],
+            ['prefixe' => '037', 'actif' => 1, 'id_operateur' => $operatorIds['Orange'] ?? 0],
+            ['prefixe' => '032', 'actif' => 1, 'id_operateur' => $operatorIds['Orange'] ?? 0],
         ] as $prefix) {
             if (!in_array($prefix['prefixe'], $existingPrefixes, true)) {
                 $data[] = $prefix;

@@ -50,4 +50,9 @@ class CommissionOperateurModel extends Model {
     {
         return $this->update($id, $data);
     }
+
+    public function supprimerCommission(int $id): bool
+    {
+        return $this->delete($id);
+    }
 }

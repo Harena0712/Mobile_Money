@@ -15,6 +15,10 @@
 - [x] Page : `operateur/prefixes/liste` avec tout les fonctions de gestion des préfixes valables pour l’opérateur
 - [x] Page : `operateur/prefixes/create` avec tout les fonctions de gestion des préfixes valables pour l’opérateur
 - [x] Page : `operateur/prefixes/modif` avec tout les fonctions de gestion des préfixes valables pour l’opérateur
+- [x] Charger la liste des opérateurs dans les formulaires de création et de modification
+- [x] Enregistrer et modifier `id_operateur` avec le préfixe
+- [x] Corriger l'erreur `$operateurs` non défini dans `operateur/prefixes/modif.php`
+- [x] Afficher le libellé de l'opérateur dans la liste déroulante
 
 ### Création de types d'opérations (dépôt, retrait, transfert) avec des barèmes de frais par tranche de montant 
 - [x] Route `operateur/operationTypes::liste` : permet de récupérer la liste des types d'opérations
@@ -23,9 +27,8 @@
 - [x] Route `operateur/operationTypes/inserer::inserer()` : permet d’insérer un nouveau type d'opération
 - [x] Route `operateur/operationTypes/modif/id::modif(id)` : permet de modifier un type d'opération
 - [x] Route `operateur/operationTypes/update::update()` : permet de mettre à jour un type d'opération
-- [x] Route `operateur/operationTypes/delete/id::delete(id)` : permet de supprimer un type d'opération
-- [ ] Route `operateur/operationTypes/bareme/id::listeBareme(id)` : permet de liste les bareme de frais par tranche de montant pour un type d'opération 
-- [ ] Controller : `OperatorController` avec tout les fonctions de gestion des types d'opérations et de leurs barèmes
+- [x] Route `operateur/operationTypes/delete/id::delete(id)` : permet de supprimer un type d'opérationde montant pour un type d'opération 
+- [x] Controller : `OperatorController` avec tout les fonctions de gestion des types d'opérations et de leurs barèmes
 - [x] Page : `operateur/operationTypes/liste` avec tout les fonctions de gestion des types d'opérations et de leurs barèmes
 - [x] Page : `operateur/operationTypes/create` avec tout les fonctions de gestion des types d'opérations et de leurs barèmes
 - [x] Page : `operateur/operationTypes/modif` avec tout les fonctions de gestion des types d'opérations et de leurs barèmes
@@ -377,10 +380,12 @@ Afficher :
 ## Base de données
 
   - [x] Utiliser la table Transaction
-  - [x] Utiliser la table TransactionDestination
   - [x] Utiliser la table Client
   - [x] Utiliser la table Prefixe
   - [x] Utiliser la table Operateur
+  - [x] Utiliser la table CommissionOperateur
+  - [x] Corriger les `id_prefixe` des clients de test pour relier chaque client à son préfixe
+  - [x] Ajouter la commission Airtel → Yas (3 %)
 
 ---
 
@@ -388,14 +393,24 @@ Afficher :
 
 ### TransactionModel
 
-Fonction à ajouter :
+Fonctions ajoutées :
 
-calculerMontantsParOperateur()
+- [x] `listerCompensationsSortantes($idOperateurSource)`
+  - récupérer les transactions dont l'opérateur source est Airtel
+  - exclure les transactions dont l'opérateur destination est Airtel
+  - récupérer l'opérateur, la date et le type d'opération
+  - calculer le montant : `montant + (montant × pourcentage / 100)`
+  - regrouper les totaux par opérateur destination
 
-Pour :
+- [x] `listerCompensationsOperateurCourant()`
+  - lire l'opérateur courant depuis la session
+  - appeler la fonction de calcul pour garder le contrôleur propre
 
-  - [x] calculer les montants envoyés vers chaque opérateur
-  - [x] regrouper les résultats par opérateur
+### OperateurModel
+
+- [x] `chercherOperateurParLibelle($libelle)`
+- [x] `initialiserOperateurSession($libelle)`
+  - enregistrer Airtel dans `operateur_courant` et `id_operateur`
 
 ---
 
@@ -407,7 +422,7 @@ Pour :
 
   - [x] index()
 
-=> afficher les montants à envoyer
+=> appeler le modèle et afficher les montants à envoyer
 
 ---
 
@@ -428,7 +443,20 @@ Créer :
 Afficher :
 
   - [x] opérateur
-  - [x] montant total à envoyer
+  - [x] date
+  - [x] type d'opération
+  - [x] montant incluant la commission
+  - [x] total à envoyer pour chaque opérateur
+
+### Initialisation de l'opérateur
+
+- [x] À l'ouverture de `/`, Airtel est enregistré en session.
+
+### Vérifications et point restant
+
+- [x] Les données SQLite contiennent des transactions Airtel → Yas et la requête de compensation retourne bien des résultats (`30 900 Ar` pour une transaction de `30 000 Ar` avec 3 %).
+- [ ] Prévoir un repli sur Airtel lorsque `/compensation` est ouvert sans passer par `/`, car une session sans `operateur_courant` donne un résultat vide.
+- [ ] Empêcher les doublons dans `CommissionOperateur` lors de l'exécution répétée du seeder.
 
 
 

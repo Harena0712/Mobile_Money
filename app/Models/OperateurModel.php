@@ -26,6 +26,33 @@ class OperateurModel extends Model {
         return $this->find($id);
     }
 
+    public function chercherOperateurParLibelle(string $libelle): ?array
+    {
+        return $this->where('LOWER(libelle)', strtolower(trim($libelle)))->first();
+    }
+
+    /**
+     * Mémorise l'opérateur utilisé par l'espace opérateur.
+     */
+    public function initialiserOperateurSession(string $libelle): ?array
+    {
+        $operateur = $this->chercherOperateurParLibelle($libelle);
+
+        if ($operateur !== null) {
+            $operateurSession = [
+                'id' => (int) $operateur['id'],
+                'libelle' => $operateur['libelle'],
+            ];
+
+            session()->set([
+                'operateur_courant' => $operateurSession,
+                'id_operateur' => $operateurSession['id'],
+            ]);
+        }
+
+        return $operateur;
+    }
+
     public function ajouterOperateur(string $nom): int
     {
         $data = [

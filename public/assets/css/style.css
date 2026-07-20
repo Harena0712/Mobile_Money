@@ -1081,6 +1081,41 @@ select.form-control {
     flex-wrap: wrap;
 }
 
+.table-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+}
+
+.pagination-button {
+    min-width: 34px;
+    height: 34px;
+    padding: 0 10px;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    color: var(--gray-700);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.pagination-button:hover:not(:disabled),
+.pagination-button.active {
+    background: var(--navy-600);
+    border-color: var(--navy-600);
+    color: var(--white);
+}
+
+.pagination-button:disabled {
+    cursor: not-allowed;
+    opacity: .45;
+}
+
 /* Badges */
 .badge {
     display: inline-flex;

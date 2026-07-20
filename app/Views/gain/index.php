@@ -39,7 +39,7 @@
         </div>
         <div>
             <p class="stat-label">Total des dépôts</p>
-            <p class="stat-value"><?= number_format((float) $total_depots, 2, '.', ' ') ?> Ar</p>
+            <p class="stat-value"><?= number_format((float) $total_depots, 2, '.', ' ') ?> </p>
         </div>
     </div>
 
@@ -49,7 +49,7 @@
         </div>
         <div>
             <p class="stat-label">Total des transferts</p>
-            <p class="stat-value"><?= number_format((float) $total_transferts, 2, '.', ' ') ?> Ar</p>
+            <p class="stat-value"><?= number_format((float) $total_transferts, 2, '.', ' ') ?> </p>
         </div>
     </div>
 
@@ -59,7 +59,7 @@
         </div>
         <div>
             <p class="stat-label">Total des retraits</p>
-            <p class="stat-value"><?= number_format((float) $total_retraits, 2, '.', ' ') ?> Ar</p>
+            <p class="stat-value"><?= number_format((float) $total_retraits, 2, '.', ' ') ?> </p>
         </div>
     </div>
 
@@ -100,9 +100,9 @@
                             <td><?= number_format((float) $gain['total_frais'], 2, '.', ' ') ?> Ar</td>
                             <td><?= number_format((float) $gain['total_frais_transfert'], 2, '.', ' ') ?> Ar</td>
                             <td><?= number_format((float) $gain['total_frais_retrait'], 2, '.', ' ') ?> Ar</td>
-                            <td><?= number_format((float) $gain['total_depots'], 2, '.', ' ') ?> Ar</td>
-                            <td><?= number_format((float) $gain['total_transferts'], 2, '.', ' ') ?> Ar</td>
-                            <td><?= number_format((float) $gain['total_retraits'], 2, '.', ' ') ?> Ar</td>
+                            <td><?= number_format((float) $gain['total_depots'], 2, '.', ' ') ?></td>
+                            <td><?= number_format((float) $gain['total_transferts'], 2, '.', ' ') ?></td>
+                            <td><?= number_format((float) $gain['total_retraits'], 2, '.', ' ') ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

@@ -2715,3 +2715,78 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
 13 SYSTEMPATH/Boot.php(442): CodeIgniter\CLI\Console->run()
 14 SYSTEMPATH/Boot.php(166): CodeIgniter\Boot::runCommand()
 15 ROOTPATH/spark(87): CodeIgniter\Boot::bootSpark()
+CRITICAL - 2026-07-20 22:19:32 --> ErrorException: Undefined variable $operateurs
+[Method: GET, Route: operateur/prefixes/modif/1]
+in APPPATH/Views/operateur/prefixes/modif.php on line 19.
+ 1 APPPATH/Views/operateur/prefixes/modif.php(19): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/app/Views/operateur/prefixes/modif.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Prefixe.php(40): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\Prefixe->modif()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 22:21:12 --> ErrorException: Undefined variable $operateurs
+[Method: GET, Route: operateur/prefixes/modif/1]
+in APPPATH/Views/operateur/prefixes/modif.php on line 19.
+ 1 APPPATH/Views/operateur/prefixes/modif.php(19): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/app/Views/operateur/prefixes/modif.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Prefixe.php(40): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\Prefixe->modif()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 22:21:17 --> ErrorException: Undefined variable $operateurs
+[Method: GET, Route: operateur/prefixes/modif/2]
+in APPPATH/Views/operateur/prefixes/modif.php on line 19.
+ 1 APPPATH/Views/operateur/prefixes/modif.php(19): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/app/Views/operateur/prefixes/modif.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Prefixe.php(40): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\Prefixe->modif()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 22:21:31 --> ErrorException: Undefined variable $operateurs
+[Method: GET, Route: operateur/prefixes/modif/2]
+in APPPATH/Views/operateur/prefixes/modif.php on line 19.
+ 1 APPPATH/Views/operateur/prefixes/modif.php(19): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/app/Views/operateur/prefixes/modif.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Prefixe.php(40): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\Prefixe->modif()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 22:21:35 --> ErrorException: Undefined variable $operateurs
+[Method: GET, Route: operateur/prefixes/modif/2]
+in APPPATH/Views/operateur/prefixes/modif.php on line 19.
+ 1 APPPATH/Views/operateur/prefixes/modif.php(19): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/app/Views/operateur/prefixes/modif.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Prefixe.php(40): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\Prefixe->modif()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')

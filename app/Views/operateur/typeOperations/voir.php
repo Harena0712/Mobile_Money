@@ -5,7 +5,6 @@
 <div class="panel">
     <div class="panel-body">
         <div class="detail-list">
-            <div class="detail-item"><span>ID</span><span>#<?= esc($typeOperation['id']) ?></span></div>
             <div class="detail-item"><span>Libellé</span><span><?= esc($typeOperation['libelle']) ?></span></div>
         </div>
 
