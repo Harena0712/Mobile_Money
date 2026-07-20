@@ -1,9 +1,11 @@
 # VERSION 1
 ----
+
+
 # Mobile Money
 ## Coté Operateur
 ### Configuration des préfixes valable de l’opérateur
-- [x] Route `operateur/prefixes::liste` : permet de récupérer la liste des préfixes valables pour l’opérateur
+- [X] Route `operateur/prefixes::liste` : permet de récupérer la liste des préfixes valables pour l’opérateur
 - [x] Route `operateur/prefixes/inserer::inserer` : permet d’insérer un nouveau préfixe valable pour l’opérateur
 - [x] Route `operateur/prefixes/create::create` : permet de créer un nouveau préfixe valable pour l’opérateur
 - [x] Route `operateur/prefixes/modif/id::modif(id)` : permet de modifier un préfixe valable pour l’opérateur
@@ -1275,6 +1277,14 @@ Pour :
 ----
 
 
+
+
+
+
+
+
+
+---
 # VERSION 2
 
 
@@ -1398,6 +1408,12 @@ Pour :
 - [x] Utiliser la table Client
 - [x] Utiliser la table BaremeFrais
 - Utiliser la table CommissionOperateur
+- [X]Utiliser la table Transaction
+- [X]Utiliser la table TransactionDestination
+- [X]Utiliser la table MouvementCompte
+- [X]Utiliser la table Client
+- [X]Utiliser la table BaremeFrais
+- [X]Utiliser la table CommissionOperateur
 
 ---
 
@@ -1413,6 +1429,8 @@ Pour :
 
 - [x] rechercher tous les destinataires
 - [x] retourner la liste des clients
+- [X]rechercher tous les destinataires
+- [X]retourner la liste des clients
 
 ---
 
@@ -1426,6 +1444,8 @@ Pour :
 
 - [x] enregistrer un destinataire
 - [x] enregistrer le montant envoyé
+- [X]enregistrer un destinataire
+- [X]enregistrer le montant envoyé
 
 ---
 
@@ -1439,6 +1459,8 @@ Pour :
 
 - [x] créer une transaction
 - [x] retourner l'id de la transaction
+- [X]créer une transaction
+- [X]retourner l'id de la transaction
 
 ---
 
@@ -1451,6 +1473,7 @@ creerMouvementsDestinataires($idTransaction, $destinataires)
 Pour :
 
 - [x] créer un mouvement CREDIT pour chaque destinataire
+- [X]créer un mouvement CREDIT pour chaque destinataire
 
 ---
 
@@ -1488,6 +1511,34 @@ Ajouter :
 Sinon :
 
 - [x] afficher un message d'erreur
+- [X]index()
+
+Ajouter :
+
+- [X]possibilité d'ajouter plusieurs destinataires
+- [X]saisir un montant pour chaque destinataire
+
+---
+
+- [X]enregistrer()
+
+Ajouter :
+
+- [X]récupérer tous les destinataires
+- [X]vérifier que tous les destinataires existent
+- [X]vérifier que tous les destinataires sont actifs
+- [X]vérifier qu'il n'y a pas de doublons
+- [X]calculer le montant total
+- [X]calculer les frais
+- [X]vérifier le solde
+- [X]créer la transaction
+- [X]enregistrer les destinataires
+- [X]créer les mouvements DEBIT et CREDIT
+- [X]afficher un message de succès
+
+Sinon :
+
+- [X]afficher un message d'erreur
 
 ---
 
@@ -1501,14 +1552,14 @@ Aucune modification.
 
 Modifier :
 
-- [x] client/transfert.php
+- [X]client/transfert.php
 
 Ajouter :
 
-- [x] bouton "Ajouter un destinataire"
-- [x] plusieurs champs téléphone
-- [x] plusieurs champs montant
-- [x] bouton "Supprimer un destinataire" (optionnel)
+- [X]bouton "Ajouter un destinataire"
+- [X]plusieurs champs téléphone
+- [X]plusieurs champs montant
+- [X]bouton "Supprimer un destinataire" (optionnel)
 
 ---
 
@@ -1520,9 +1571,9 @@ destinatairesValides($destinataires)
 
 Pour :
 
-- [x] vérifier que tous les destinataires Airtel existent
-- [x] vérifier qu'ils sont actifs
-- [x] vérifier qu'il n'y a pas de doublons
+- [X]vérifier que tous les destinataires existent
+- [X]vérifier qu'ils sont actifs
+- [X]vérifier qu'il n'y a pas de doublons
 
 ---
 
@@ -1532,8 +1583,8 @@ calculerMontantTotal($destinataires)
 
 Pour :
 
-- [x] additionner tous les montants
-- [x] retourner le total
+- [X]additionner tous les montants
+- [X]retourner le total
 
 ---
 
@@ -1543,6 +1594,398 @@ ajouterDestination($idTransaction, $idClient, $montant)
 
 Pour :
 
-- [x] enregistrer chaque destinataire Airtel
-- [x] enregistrer le montant correspondant
+- [X]enregistrer chaque destinataire
+- [X]enregistrer le montant correspondant
 
+
+
+
+---
+
+
+# Côté opérateur V2
+
+# 1. Gestion des opérateurs
+
+## Base de données
+
+- [X]Utiliser la table Operateur
+
+---
+
+## Model
+
+### OperateurModel
+
+Fonctions à ajouter :
+
+listerOperateurs()
+
+Pour :
+
+- [X]récupérer tous les opérateurs
+
+---
+
+chercherOperateur($id)
+
+Pour :
+
+- [X]récupérer un opérateur
+
+---
+
+ajouterOperateur($nom)
+
+Pour :
+
+- [X]enregistrer un nouvel opérateur
+
+---
+
+modifierOperateur($id, $nom)
+
+Pour :
+
+- [X]modifier un opérateur
+
+---
+
+activerOperateur($id)
+
+Pour :
+
+- [X]activer un opérateur
+
+---
+
+desactiverOperateur($id)
+
+Pour :
+
+- [X]désactiver un opérateur
+
+---
+
+## Controller
+
+Créer : OperateurController
+
+Pour :
+
+- [X]index()
+
+=> afficher la liste des opérateurs
+
+---
+
+- [X]ajouter()
+
+=> afficher le formulaire
+
+---
+
+- [X]enregistrer()
+
+=> enregistrer un opérateur
+
+---
+
+- [X]modifier()
+
+=> modifier un opérateur
+
+---
+
+- [X]activer()
+
+=> activer un opérateur
+
+---
+
+- [X]desactiver()
+
+=> désactiver un opérateur
+
+---
+
+## Routes
+
+- [X]/operateur : GET
+
+=> liste
+
+---
+
+- [X]/operateur/ajouter : GET
+
+=> formulaire
+
+---
+
+- [X]/operateur/ajouter : POST
+
+=> enregistrement
+
+---
+
+- [X]/operateur/modifier : POST
+
+=> modification
+
+---
+
+- [X]/operateur/activer : POST
+
+=> activation
+
+---
+
+- [X]/operateur/desactiver : POST
+
+=> désactivation
+
+---
+
+## View
+
+Créer :
+
+- [X]operateur/index.php
+  - [X]liste des opérateurs
+  - [X]bouton Ajouter
+  - [X]bouton Modifier
+  - [X]bouton Activer
+  - [X]bouton Désactiver
+
+
+----
+
+# Côté opérateur
+
+# 2. Configuration des commissions inter-opérateurs
+
+## Base de données
+
+- [X]Utiliser la table CommissionOperateur
+
+---
+
+## Model
+
+### CommissionOperateurModel
+
+Fonctions à ajouter :
+
+listerCommissions()
+
+---
+
+chercherCommission($id)
+
+---
+
+ajouterCommission()
+
+---
+
+modifierCommission()
+
+---
+
+## Controller
+
+Créer : CommissionOperateurController
+
+Pour :
+
+- [X]index()
+
+=> afficher les commissions
+
+---
+
+- [X]ajouter()
+
+=> formulaire
+
+---
+
+- [X]enregistrer()
+
+=> enregistrer une commission
+
+---
+
+- [X]modifier()
+
+=> modifier une commission
+
+---
+
+## Routes
+
+- [X]/commission : GET
+
+=> liste
+
+---
+
+- [X]/commission/ajouter : GET
+
+=> formulaire
+
+---
+
+- [X]/commission/ajouter : POST
+
+=> enregistrement
+
+---
+
+- [X]/commission/modifier : POST
+
+=> modification
+
+---
+
+## View
+
+Créer :
+
+- [X]commission/index.php
+  - [X]liste des commissions
+
+- [X]commission/form.php
+  - [X]opérateur source
+  - [X]opérateur destination
+  - [X]pourcentage
+
+
+----
+
+
+# Côté opérateur
+
+# 3. Situation des gains
+
+## Base de données
+
+- [X]Utiliser la table Transaction
+- [X]Utiliser la table Client
+- [X]Utiliser la table Prefixe
+- [X]Utiliser la table Operateur
+- [X]Utiliser la table CommissionOperateur
+
+---
+
+## Model
+
+### TransactionModel
+
+Fonction à ajouter :
+
+calculerGains()
+
+Pour :
+
+- [X]calculer les frais des transactions internes
+- [X]calculer les commissions inter-opérateurs
+- [X]retourner les totaux
+
+---
+
+## Controller
+
+Créer : GainController
+
+Pour :
+
+- [X]index()
+
+=> afficher la situation des gains
+
+---
+
+## Routes
+
+- [X]/gain : GET
+
+=> afficher les gains
+
+---
+
+## View
+
+Créer :
+
+- [X]gain/index.php
+
+Afficher :
+
+- [X]gains internes
+- [X]gains inter-opérateurs
+- [X]total général
+
+
+----
+
+# Côté opérateur
+
+# 4. Situation des montants à envoyer aux autres opérateurs
+
+## Base de données
+
+- [X]Utiliser la table Transaction
+- [X]Utiliser la table TransactionDestination
+- [X]Utiliser la table Client
+- [X]Utiliser la table Prefixe
+- [X]Utiliser la table Operateur
+
+---
+
+## Model
+
+### TransactionModel
+
+Fonction à ajouter :
+
+calculerMontantsParOperateur()
+
+Pour :
+
+- [X]calculer les montants envoyés vers chaque opérateur
+- [X]regrouper les résultats par opérateur
+
+---
+
+## Controller
+
+Créer : CompensationController
+
+Pour :
+
+- [X]index()
+
+=> afficher les montants à envoyer
+
+---
+
+## Routes
+
+- [X]/compensation : GET
+
+=> afficher les montants
+
+---
+
+## View
+
+Créer :
+
+- [X]compensation/index.php
+
+Afficher :
+
+- [X]opérateur
+- [X]montant total à envoyer

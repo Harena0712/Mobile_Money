@@ -166,6 +166,7 @@ class TransactionModel extends Model
         ]);
     }
     
+
     public function calculerGains(): array
     {
         $db = $this->db;
@@ -278,11 +279,25 @@ class TransactionModel extends Model
             ->select('SUM(CASE WHEN t.id_type_operation = 1 THEN 1 ELSE 0 END) AS total_depots')
             ->select('SUM(CASE WHEN t.id_type_operation = 2 THEN 1 ELSE 0 END) AS total_transferts')
             ->select('SUM(CASE WHEN t.id_type_operation = 3 THEN 1 ELSE 0 END) AS total_retraits')
+
             ->join('Client c', 'c.id = t.id_client_source', 'LEFT')
-            ->join('Prefixe p', 'p.id = c.id_prefixe', 'LEFT')
-            ->join('Operateur o', 'o.id = p.id_operateur', 'LEFT')
+
+            ->join(
+                'Prefixe p',
+                'p.prefixe = SUBSTR(c.telephone, 1, 3)',
+                'LEFT'
+            )
+
+            ->join(
+                'Operateur o',
+                'o.id = p.id_operateur',
+                'LEFT'
+            )
+
             ->where('o.id IS NOT NULL')
+
             ->groupBy('o.id, o.libelle')
+
             ->get();
 
         return array_map(function ($row) {

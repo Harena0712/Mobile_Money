@@ -1485,7 +1485,85 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
 12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 13 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
-ERROR - 2026-07-20 16:46:44 --> Unable to prepare statement: no such column: cs.id_prefixe
+CRITICAL - 2026-07-20 15:05:44 --> ParseError: syntax error, unexpected token "public"
+[Method: GET, Route: operateur/situationFrais]
+in APPPATH/Models/TransactionModel.php on line 167.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 3 APPPATH/Controllers/SituationFrais.php(11): CodeIgniter\Autoloader\Autoloader->loadClass()
+ 4 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\SituationFrais->liste()
+ 5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:05:49 --> ParseError: syntax error, unexpected token "public"
+[Method: GET, Route: operateur/situationFrais]
+in APPPATH/Models/TransactionModel.php on line 167.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 3 APPPATH/Controllers/SituationFrais.php(11): CodeIgniter\Autoloader\Autoloader->loadClass()
+ 4 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\SituationFrais->liste()
+ 5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:05:52 --> ParseError: syntax error, unexpected token "public"
+[Method: GET, Route: gain]
+in APPPATH/Models/TransactionModel.php on line 167.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 3 APPPATH/Controllers/GainController.php(11): CodeIgniter\Autoloader\Autoloader->loadClass()
+ 4 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\GainController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:05:56 --> ParseError: syntax error, unexpected token "public"
+[Method: GET, Route: compensation]
+in APPPATH/Models/TransactionModel.php on line 167.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 3 APPPATH/Controllers/CompensationController.php(11): CodeIgniter\Autoloader\Autoloader->loadClass()
+ 4 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CompensationController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:06:15 --> ParseError: syntax error, unexpected token "public"
+[Method: GET, Route: compensation]
+in APPPATH/Models/TransactionModel.php on line 167.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 3 APPPATH/Controllers/CompensationController.php(11): CodeIgniter\Autoloader\Autoloader->loadClass()
+ 4 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CompensationController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:07:02 --> ParseError: syntax error, unexpected token "public"
+[Method: GET, Route: operateur/situationFrais]
+in APPPATH/Models/TransactionModel.php on line 167.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 3 APPPATH/Controllers/SituationFrais.php(11): CodeIgniter\Autoloader\Autoloader->loadClass()
+ 4 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\SituationFrais->liste()
+ 5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 15:08:45 --> Unable to prepare statement: 1, no such column: cs.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -1502,6 +1580,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 14 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 ERROR - 2026-07-20 16:46:44 --> Unable to prepare statement: no such column: c.id_prefixe
+14 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 15:08:45 --> Unable to prepare statement: 1, no such column: c.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -1517,6 +1597,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 13 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 16:46:44 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: no such column: c.id_prefixe
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:08:45 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such column: c.id_prefixe
 [Method: GET, Route: gain]
 in SYSTEMPATH/Database/BaseConnection.php on line 865.
  1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
@@ -1530,6 +1612,8 @@ in SYSTEMPATH/Database/BaseConnection.php on line 865.
  9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 10 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 16:46:44 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: no such column: c.id_prefixe
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:08:45 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such column: c.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 174.
  1 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
  2 SYSTEMPATH/Database/BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
@@ -1544,6 +1628,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 174.
 11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 12 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 16:46:44 --> [Caused by] SQLite3Exception: Unable to prepare statement: no such column: c.id_prefixe
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:08:45 --> [Caused by] Exception: Unable to prepare statement: 1, no such column: c.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -1574,6 +1660,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 13 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 ERROR - 2026-07-20 16:46:46 --> Unable to prepare statement: no such column: cs.id_prefixe
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 15:14:59 --> Unable to prepare statement: 1, no such column: cs.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -1590,6 +1678,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 14 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 ERROR - 2026-07-20 16:46:46 --> Unable to prepare statement: no such column: c.id_prefixe
+14 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 15:14:59 --> Unable to prepare statement: 1, no such column: c.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -1605,6 +1695,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 13 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 16:46:46 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: no such column: c.id_prefixe
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:14:59 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such column: c.id_prefixe
 [Method: GET, Route: gain]
 in SYSTEMPATH/Database/BaseConnection.php on line 865.
  1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
@@ -1618,6 +1710,8 @@ in SYSTEMPATH/Database/BaseConnection.php on line 865.
  9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 10 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 16:46:46 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: no such column: c.id_prefixe
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:14:59 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such column: c.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 174.
  1 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
  2 SYSTEMPATH/Database/BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
@@ -1632,6 +1726,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 174.
 11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 12 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 16:46:46 --> [Caused by] SQLite3Exception: Unable to prepare statement: no such column: c.id_prefixe
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:14:59 --> [Caused by] Exception: Unable to prepare statement: 1, no such column: c.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -1677,6 +1773,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 13 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 ERROR - 2026-07-20 16:46:54 --> Unable to prepare statement: no such column: cs.id_prefixe
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 15:15:05 --> Unable to prepare statement: 1, no such column: cs.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -1693,6 +1791,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 14 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 ERROR - 2026-07-20 16:46:54 --> Unable to prepare statement: no such column: c.id_prefixe
+14 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 15:15:05 --> Unable to prepare statement: 1, no such column: c.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -1708,6 +1808,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 13 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 16:46:54 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: no such column: c.id_prefixe
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:15:05 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such column: c.id_prefixe
 [Method: GET, Route: gain]
 in SYSTEMPATH/Database/BaseConnection.php on line 865.
  1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
@@ -1721,6 +1823,8 @@ in SYSTEMPATH/Database/BaseConnection.php on line 865.
  9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 10 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 16:46:54 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: no such column: c.id_prefixe
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:15:05 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such column: c.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 174.
  1 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
  2 SYSTEMPATH/Database/BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
@@ -1735,6 +1839,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 174.
 11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 12 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 16:46:54 --> [Caused by] SQLite3Exception: Unable to prepare statement: no such column: c.id_prefixe
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:15:05 --> [Caused by] Exception: Unable to prepare statement: 1, no such column: c.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -1750,6 +1856,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 13 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 ERROR - 2026-07-20 16:48:07 --> Unable to prepare statement: no such column: c.id_prefixe
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 15:15:07 --> Unable to prepare statement: 1, no such column: c.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -1765,6 +1873,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 13 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 ERROR - 2026-07-20 16:53:03 --> Unable to prepare statement: no such column: cs.id_prefixe
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 15:15:20 --> Unable to prepare statement: 1, no such column: c.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -1789,6 +1899,9 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  5 APPPATH/Models/TransactionModel.php(289): CodeIgniter\Database\BaseBuilder->get()
  6 APPPATH/Controllers/GainController.php(13): App\Models\TransactionModel->calculerGainsParOperateur()
  7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\GainController->index()
+ 5 APPPATH/Models/TransactionModel.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Controllers/CompensationController.php(12): App\Models\TransactionModel->calculerMontantsParOperateur()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CompensationController->index()
  8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
  9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
 10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
@@ -1823,6 +1936,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 174.
 11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 12 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 16:53:03 --> [Caused by] SQLite3Exception: Unable to prepare statement: no such column: c.id_prefixe
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 15:15:28 --> Unable to prepare statement: 1, no such column: c.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -1831,6 +1946,9 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  5 APPPATH/Models/TransactionModel.php(289): CodeIgniter\Database\BaseBuilder->get()
  6 APPPATH/Controllers/GainController.php(13): App\Models\TransactionModel->calculerGainsParOperateur()
  7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\GainController->index()
+ 5 APPPATH/Models/TransactionModel.php(255): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Controllers/CompensationController.php(12): App\Models\TransactionModel->calculerMontantsParOperateur()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\CompensationController->index()
  8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
  9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
 10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
@@ -1838,6 +1956,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 13 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 ERROR - 2026-07-20 16:53:05 --> Unable to prepare statement: no such column: cs.id_prefixe
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 15:19:07 --> Unable to prepare statement: 1, no such column: cs.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -1854,12 +1974,15 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 14 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 ERROR - 2026-07-20 16:53:05 --> Unable to prepare statement: no such column: c.id_prefixe
+14 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 15:19:07 --> Unable to prepare statement: 1, no such column: o.no
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
  3 SYSTEMPATH/Database/BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
  4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
  5 APPPATH/Models/TransactionModel.php(289): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/TransactionModel.php(300): CodeIgniter\Database\BaseBuilder->get()
  6 APPPATH/Controllers/GainController.php(13): App\Models\TransactionModel->calculerGainsParOperateur()
  7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\GainController->index()
  8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
@@ -1873,6 +1996,12 @@ CRITICAL - 2026-07-20 16:53:05 --> CodeIgniter\Database\Exceptions\DatabaseExcep
 in SYSTEMPATH/Database/BaseConnection.php on line 865.
  1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
  2 APPPATH/Models/TransactionModel.php(289): CodeIgniter\Database\BaseBuilder->get()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:19:07 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such column: o.no
+[Method: GET, Route: gain]
+in SYSTEMPATH/Database/BaseConnection.php on line 865.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Models/TransactionModel.php(300): CodeIgniter\Database\BaseBuilder->get()
  3 APPPATH/Controllers/GainController.php(13): App\Models\TransactionModel->calculerGainsParOperateur()
  4 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\GainController->index()
  5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
@@ -1882,11 +2011,14 @@ in SYSTEMPATH/Database/BaseConnection.php on line 865.
  9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 10 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 16:53:05 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: no such column: c.id_prefixe
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:19:07 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such column: o.no
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 174.
  1 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
  2 SYSTEMPATH/Database/BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
  3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
  4 APPPATH/Models/TransactionModel.php(289): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH/Models/TransactionModel.php(300): CodeIgniter\Database\BaseBuilder->get()
  5 APPPATH/Controllers/GainController.php(13): App\Models\TransactionModel->calculerGainsParOperateur()
  6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\GainController->index()
  7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
@@ -1896,12 +2028,15 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 174.
 11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 12 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 16:53:05 --> [Caused by] SQLite3Exception: Unable to prepare statement: no such column: c.id_prefixe
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:19:07 --> [Caused by] Exception: Unable to prepare statement: 1, no such column: o.no
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
  3 SYSTEMPATH/Database/BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
  4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
  5 APPPATH/Models/TransactionModel.php(289): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/TransactionModel.php(300): CodeIgniter\Database\BaseBuilder->get()
  6 APPPATH/Controllers/GainController.php(13): App\Models\TransactionModel->calculerGainsParOperateur()
  7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\GainController->index()
  8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
@@ -1911,6 +2046,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 13 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 ERROR - 2026-07-20 16:53:07 --> Unable to prepare statement: no such column: cs.id_prefixe
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 15:20:08 --> Unable to prepare statement: 1, no such column: cs.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -1927,12 +2064,15 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 14 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 ERROR - 2026-07-20 16:53:07 --> Unable to prepare statement: no such column: c.id_prefixe
+14 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 15:20:08 --> Unable to prepare statement: 1, no such column: o.no
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
  3 SYSTEMPATH/Database/BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
  4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
  5 APPPATH/Models/TransactionModel.php(289): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/TransactionModel.php(300): CodeIgniter\Database\BaseBuilder->get()
  6 APPPATH/Controllers/GainController.php(13): App\Models\TransactionModel->calculerGainsParOperateur()
  7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\GainController->index()
  8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
@@ -1946,6 +2086,12 @@ CRITICAL - 2026-07-20 16:53:07 --> CodeIgniter\Database\Exceptions\DatabaseExcep
 in SYSTEMPATH/Database/BaseConnection.php on line 865.
  1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
  2 APPPATH/Models/TransactionModel.php(289): CodeIgniter\Database\BaseBuilder->get()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:20:08 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such column: o.no
+[Method: GET, Route: gain]
+in SYSTEMPATH/Database/BaseConnection.php on line 865.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 APPPATH/Models/TransactionModel.php(300): CodeIgniter\Database\BaseBuilder->get()
  3 APPPATH/Controllers/GainController.php(13): App\Models\TransactionModel->calculerGainsParOperateur()
  4 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\GainController->index()
  5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
@@ -1955,11 +2101,14 @@ in SYSTEMPATH/Database/BaseConnection.php on line 865.
  9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 10 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 16:53:07 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: no such column: c.id_prefixe
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:20:08 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such column: o.no
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 174.
  1 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
  2 SYSTEMPATH/Database/BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
  3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
  4 APPPATH/Models/TransactionModel.php(289): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH/Models/TransactionModel.php(300): CodeIgniter\Database\BaseBuilder->get()
  5 APPPATH/Controllers/GainController.php(13): App\Models\TransactionModel->calculerGainsParOperateur()
  6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\GainController->index()
  7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
@@ -1969,12 +2118,15 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 174.
 11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 12 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 16:53:07 --> [Caused by] SQLite3Exception: Unable to prepare statement: no such column: c.id_prefixe
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:20:08 --> [Caused by] Exception: Unable to prepare statement: 1, no such column: o.no
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
  3 SYSTEMPATH/Database/BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery()
  4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
  5 APPPATH/Models/TransactionModel.php(289): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH/Models/TransactionModel.php(300): CodeIgniter\Database\BaseBuilder->get()
  6 APPPATH/Controllers/GainController.php(13): App\Models\TransactionModel->calculerGainsParOperateur()
  7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\GainController->index()
  8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
@@ -1999,6 +2151,8 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 13 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
 ERROR - 2026-07-20 16:53:32 --> Unable to prepare statement: no such column: c.id_prefixe
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+ERROR - 2026-07-20 15:20:44 --> Unable to prepare statement: 1, no such column: cs.id_prefixe
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
  1 SYSTEMPATH/Database/SQLite3/Connection.php(164): SQLite3->query()
  2 SYSTEMPATH/Database/BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute()
@@ -2120,3 +2274,13 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
 13 SYSTEMPATH/Boot.php(442): CodeIgniter\CLI\Console->run()
 14 SYSTEMPATH/Boot.php(166): CodeIgniter\Boot::runCommand()
 15 ROOTPATH/spark(87): CodeIgniter\Boot::bootSpark()
+ 5 APPPATH/Models/TransactionModel.php(214): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Models/TransactionModel.php(182): App\Models\TransactionModel->calculerCommissionsInterOperateurs()
+ 7 APPPATH/Controllers/GainController.php(12): App\Models\TransactionModel->calculerGains()
+ 8 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\GainController->index()
+ 9 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+10 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+14 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
