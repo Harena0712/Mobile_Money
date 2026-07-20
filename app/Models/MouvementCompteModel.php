@@ -78,6 +78,10 @@ class MouvementCompteModel extends Model
         $ids = [];
 
         foreach ($destinataires as $destinataire) {
+            if (! isset($destinataire['id_client'])) {
+                continue;
+            }
+
             $ids[] = $this->creerMouvementCredit(
                 $idTransaction,
                 (int) $destinataire['id_client'],
