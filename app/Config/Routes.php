@@ -18,7 +18,7 @@ $routes->get('operateur/typesOperation/create', 'TypeOperation::create');
 $routes->post('operateur/typesOperation/inserer', 'TypeOperation::inserer');
 $routes->get('operateur/typesOperation/modif/(:num)', 'TypeOperation::modif/$1');
 $routes->post('operateur/typesOperation/update', 'TypeOperation::update');
-$routes->get('operateur/typesOperation/delete/(:num)', 'TypeOoperateur/situationFraisperation::delete/$1');
+$routes->get('operateur/typesOperation/delete/(:num)', 'TypeOperation::delete/$1');
 
 $routes->get('operateur/situationFrais', 'SituationFrais::liste');
 
