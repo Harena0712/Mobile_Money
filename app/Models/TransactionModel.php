@@ -37,7 +37,7 @@ class TransactionModel extends Model
         return $this->where('id_type_operation', 3)->selectSum('frais')->first()['frais'];
     }
 
-}
+
     public function creerTransactionDepot(int $idClient, float $montant, float $frais = 0.0): int
     {
         $typeOpModel = new TypeOperationModel();
@@ -130,8 +130,8 @@ class TransactionModel extends Model
             ->join('TypeOperation', 'TypeOperation.id = t.id_type_operation')
             ->join('Statut', 'Statut.id = t.id_statut')
             ->groupStart()
-                ->where('t.id_client_source', $idClient)
-                ->orWhere('t.id_client_destination', $idClient)
+            ->where('t.id_client_source', $idClient)
+            ->orWhere('t.id_client_destination', $idClient)
             ->groupEnd()
             ->orderBy('t.date_transaction', 'DESC')
             ->get()

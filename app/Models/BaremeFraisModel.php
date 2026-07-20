@@ -29,7 +29,7 @@ class BaremeFraisModel extends Model
         unset($data['id']);
         return $this->update($id, $data);
     }
-}
+
     public function chercherFraisRetrait(float $montant): ?float
     {
         $typeOperationModel = new TypeOperationModel();

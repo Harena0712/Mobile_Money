@@ -26,7 +26,7 @@ class MouvementCompteModel extends Model
         $builder->groupBy('id_client');
         return $builder->get()->getResultArray();
     }
-}
+
     public function calculerSolde(int $idClient): float
     {
         $mouvements = $this->where('id_client', $idClient)->findAll();
