@@ -21,3 +21,6 @@ $routes->post('/client/depot', 'DepotController::enregistrer');
 
 $routes->get('/client/retrait', 'RetraitController::index');
 $routes->post('/client/retrait', 'RetraitController::enregistrer');
+
+$routes->get('/client/transfert', 'TransfertController::index');
+$routes->post('/client/transfert', 'TransfertController::enregistrer');

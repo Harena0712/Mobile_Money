@@ -39,4 +39,25 @@ class BaremeFraisModel extends Model
 
         return (float) $bareme['valeur'];
     }
+
+    public function chercherFraisTransfert(float $montant): ?float
+    {
+        $typeOperationModel = new TypeOperationModel();
+        $typeOperation = $typeOperationModel->where('libelle', 'TRANSFERT')->first();
+
+        if (! $typeOperation) {
+            throw new \Exception('Type opération TRANSFERT non trouvé.');
+        }
+
+        $bareme = $this->where('id_type_operation', $typeOperation['id'])
+            ->where('montant_min <=', $montant)
+            ->where('montant_max >=', $montant)
+            ->first();
+
+        if (! $bareme) {
+            return null;
+        }
+
+        return (float) $bareme['valeur'];
+    }
 }
