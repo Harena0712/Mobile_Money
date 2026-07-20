@@ -69,10 +69,10 @@ $nombreDestinataires = max(count($oldTelephones), count($oldMontants), 1);
 
         <div class="form-group">
             <label style="display:flex; align-items:center; gap:10px; font-weight:600;">
-                <input type="checkbox" name="inclure_frais_retrait" value="1" <?= old('inclure_frais_retrait') ? 'checked' : '' ?>>
+                <input type="checkbox" id="inclure_frais_retrait" name="inclure_frais_retrait" value="1" <?= old('inclure_frais_retrait') ? 'checked' : '' ?>>
                 Inclure les frais de retrait
             </label>
-            <p class="client-subtitle" style="margin:8px 0 0;">Si cette option est cochée, les frais de retrait seront ajoutés au montant total débité.</p>
+            <p class="client-subtitle" style="margin:8px 0 0;">Cette option est disponible uniquement pour les destinataires Airtel.</p>
         </div>
 
         <div class="form-actions">
@@ -93,6 +93,7 @@ $nombreDestinataires = max(count($oldTelephones), count($oldMontants), 1);
 document.addEventListener('DOMContentLoaded', function () {
     const list = document.getElementById('destinationsList');
     const addButton = document.getElementById('addDestination');
+    const inclureFraisRetrait = document.getElementById('inclure_frais_retrait');
 
     if (!list || !addButton) {
         return;
@@ -106,6 +107,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 button.disabled = rows.length === 1;
             }
         });
+    }
+
+    function updateFraisRetraitOption() {
+        if (!inclureFraisRetrait) {
+            return;
+        }
+
+        const telephones = Array.from(list.querySelectorAll('input[name="telephone_destinations[]"]'));
+        const contientExterne = telephones.some(function (input) {
+            const telephone = input.value.replace(/\D/g, '');
+            return telephone !== '' && !telephone.startsWith('037');
+        });
+
+        if (contientExterne) {
+            inclureFraisRetrait.checked = false;
+        }
+
+        inclureFraisRetrait.disabled = contientExterne;
     }
 
     function createRow() {
@@ -135,6 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
     addButton.addEventListener('click', function () {
         list.appendChild(createRow());
         updateRemoveButtons();
+        updateFraisRetraitOption();
         const rows = list.querySelectorAll('.destinataire-row');
         rows[rows.length - 1].querySelector('input')?.focus();
     });
@@ -148,9 +168,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         button.closest('.destinataire-row')?.remove();
         updateRemoveButtons();
+        updateFraisRetraitOption();
+    });
+
+    list.addEventListener('input', function (event) {
+        if (event.target.matches('input[name="telephone_destinations[]"]')) {
+            updateFraisRetraitOption();
+        }
     });
 
     updateRemoveButtons();
+    updateFraisRetraitOption();
 });
 </script>
 <?= $this->endSection() ?>
