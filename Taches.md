@@ -38,6 +38,392 @@
 
 
 
+# Côté opérateur V2
+
+# 1. Gestion des opérateurs
+
+## Base de données
+
+- Utiliser la table Operateur
+
+---
+
+## Model
+
+### OperateurModel
+
+Fonctions à ajouter :
+
+listerOperateurs()
+
+Pour :
+
+- récupérer tous les opérateurs
+
+---
+
+chercherOperateur($id)
+
+Pour :
+
+- récupérer un opérateur
+
+---
+
+ajouterOperateur($nom)
+
+Pour :
+
+- enregistrer un nouvel opérateur
+
+---
+
+modifierOperateur($id, $nom)
+
+Pour :
+
+- modifier un opérateur
+
+---
+
+activerOperateur($id)
+
+Pour :
+
+- activer un opérateur
+
+---
+
+desactiverOperateur($id)
+
+Pour :
+
+- désactiver un opérateur
+
+---
+
+## Controller
+
+Créer : OperateurController
+
+Pour :
+
+- index()
+
+=> afficher la liste des opérateurs
+
+---
+
+- ajouter()
+
+=> afficher le formulaire
+
+---
+
+- enregistrer()
+
+=> enregistrer un opérateur
+
+---
+
+- modifier()
+
+=> modifier un opérateur
+
+---
+
+- activer()
+
+=> activer un opérateur
+
+---
+
+- desactiver()
+
+=> désactiver un opérateur
+
+---
+
+## Routes
+
+- /operateur : GET
+
+=> liste
+
+---
+
+- /operateur/ajouter : GET
+
+=> formulaire
+
+---
+
+- /operateur/ajouter : POST
+
+=> enregistrement
+
+---
+
+- /operateur/modifier : POST
+
+=> modification
+
+---
+
+- /operateur/activer : POST
+
+=> activation
+
+---
+
+- /operateur/desactiver : POST
+
+=> désactivation
+
+---
+
+## View
+
+Créer :
+
+- Dnas operateur/operateurs/liste.php
+  - liste des opérateurs
+  - bouton Ajouter
+  - bouton Modifier
+  - bouton Activer
+  - bouton Désactiver
+
+
+----
+
+# Côté opérateur
+
+# 2. Configuration des commissions inter-opérateurs
+
+## Base de données
+
+- [x] Utiliser la table CommissionOperateur
+
+---
+
+## Model
+
+### CommissionOperateurModel
+
+Fonctions à ajouter :
+
+- [x] listerCommissions()
+
+---
+
+- [x] chercherCommission($id)
+
+---
+
+- [x] ajouterCommission()
+
+---
+
+- [x] modifierCommission()
+
+---
+
+## Controller
+
+Créer : CommissionOperateurController
+
+Pour :
+
+- [x] index()
+
+=> afficher les commissions
+
+---
+
+- [x] ajouter() 
+
+=> formulaire
+
+---
+
+- [x] enregistrer()
+
+=> enregistrer une commission
+
+---
+
+- [x] modifier()
+
+=> modifier une commission
+
+---
+
+## Routes
+
+- [x] /commission : GET
+
+=> liste
+
+---
+
+- [x] /commission/ajouter : GET
+
+=> formulaire
+
+---
+
+- [x] /commission/ajouter : POST
+
+=> enregistrement
+
+---
+
+- [x] /commission/modifier : POST
+
+=> modification
+
+---
+
+## View
+
+Créer :
+
+- [x] commission/index.php
+  - [x] liste des commissions
+
+- [x] commission/form.php
+  - [x] opérateur source
+  - [x] opérateur destination
+  - [x] pourcentage
+
+
+----
+
+
+# Côté opérateur
+
+# 3. Situation des gains
+
+## Base de données
+
+  - [ ] Utiliser la table Transaction
+  - [ ] Utiliser la table Client
+  - [ ] Utiliser la table Prefixe
+  - [ ] Utiliser la table Operateur
+  - [ ] Utiliser la table CommissionOperateur
+
+---
+
+## Model
+
+### TransactionModel
+
+Fonction à ajouter :
+
+calculerGains()
+
+Pour :
+
+  - [ ] calculer les frais des transactions internes
+  - [ ] calculer les commissions inter-opérateurs
+  - [ ] retourner les totaux
+
+---
+
+## Controller
+
+Créer : GainController
+
+Pour :
+
+  - [ ] index()
+
+=> afficher la situation des gains
+
+---
+
+## Routes
+
+  - [ ] /gain : GET
+
+=> afficher les gains
+
+---
+
+## View
+
+Créer :
+
+  - [ ] gain/index.php
+
+Afficher :
+
+  - [ ] gains internes
+  - [ ] gains inter-opérateurs
+  - [ ] total général
+
+
+----
+
+# Côté opérateur
+
+# 4. Situation des montants à envoyer aux autres opérateurs
+
+## Base de données
+
+  - [ ] Utiliser la table Transaction
+  - [ ] Utiliser la table TransactionDestination
+  - [ ] Utiliser la table Client
+  - [ ] Utiliser la table Prefixe
+  - [ ] Utiliser la table Operateur
+
+---
+
+## Model
+
+### TransactionModel
+
+Fonction à ajouter :
+
+calculerMontantsParOperateur()
+
+Pour :
+
+  - [ ] calculer les montants envoyés vers chaque opérateur
+  - [ ] regrouper les résultats par opérateur
+
+---
+
+## Controller
+
+Créer : CompensationController
+
+Pour :
+
+  - [ ] index()
+
+=> afficher les montants à envoyer
+
+---
+
+## Routes
+
+  - [ ] /compensation : GET
+
+=> afficher les montants
+
+---
+
+## View
+
+Créer :
+
+  - [ ] compensation/index.php
+
+Afficher :
+
+  - [ ] opérateur
+  - [ ] montant total à envoyer
 
 
 
