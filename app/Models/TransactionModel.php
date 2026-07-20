@@ -19,7 +19,8 @@ class TransactionModel extends Model
         'montant',
         'frais',
         'date_transaction',
-        'id_statut'
+        'id_statut',
+        'inclure_frais_retrait'
     ];
 
     public function getTotalFrais()
@@ -127,6 +128,13 @@ class TransactionModel extends Model
 
         $this->insert($data);
         return $this->insertID();
+    }
+
+    public function mettreAJourFraisRetrait(int $idTransaction, bool $inclureFraisRetrait): bool
+    {
+        return $this->update($idTransaction, [
+            'inclure_frais_retrait' => $inclureFraisRetrait ? 1 : 0,
+        ]);
     }
 
     public function listerHistorique(int $idClient): array
