@@ -32,6 +32,14 @@
             <input type="number" id="montant" name="montant" class="form-control" step="0.01" min="0.01" placeholder="0.00" value="<?= old('montant') ?>" required>
         </div>
 
+        <div class="form-group">
+            <label style="display:flex; align-items:center; gap:10px; font-weight:600;">
+                <input type="checkbox" name="inclure_frais_retrait" value="1" <?= old('inclure_frais_retrait') ? 'checked' : '' ?>>
+                Inclure les frais de retrait
+            </label>
+            <p class="client-subtitle" style="margin:8px 0 0;">Si cette option est cochée, les frais de retrait seront ajoutés au montant total débité.</p>
+        </div>
+
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Transférer</button>
         </div>
