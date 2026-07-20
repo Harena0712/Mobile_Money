@@ -18,4 +18,37 @@ class MouvementCompteModel extends Model
         'montant',
         'sens'
     ];
+
+    public function calculerSolde(int $idClient): float
+    {
+        $mouvements = $this->where('id_client', $idClient)->findAll();
+
+        $credit = 0.0;
+        $debit = 0.0;
+
+        foreach ($mouvements as $m) {
+            $montant = (float) ($m['montant'] ?? 0);
+            $sens = strtoupper(trim((string) ($m['sens'] ?? '')));
+            if ($sens === 'CREDIT') {
+                $credit += $montant;
+            } elseif ($sens === 'DEBIT') {
+                $debit += $montant;
+            }
+        }
+
+        return $credit - $debit;
+    }
+
+    public function creerMouvementCredit(int $idTransaction, int $idClient, float $montant): int
+    {
+        $data = [
+            'id_transaction' => $idTransaction,
+            'id_client' => $idClient,
+            'montant' => $montant,
+            'sens' => 'CREDIT',
+        ];
+
+        $this->insert($data);
+        return $this->insertID();
+    }
 }
