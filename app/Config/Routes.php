@@ -5,7 +5,8 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Prefixe::liste');
+$routes->get('/', 'AccueilController::index');
+$routes->get('operateur/prefixes', 'Prefixe::liste');
 $routes->get('operateur/prefixes/create', 'Prefixe::create');
 $routes->post('operateur/prefixes/inserer', 'Prefixe::inserer');
 $routes->get('operateur/prefixes/modif/(:num)', 'Prefixe::modif/$1');

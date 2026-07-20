@@ -14,7 +14,7 @@
 
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Insérer</button>
-            <a href="<?= site_url('/') ?>" class="btn btn-secondary">Annuler</a>
+            <a href="<?= site_url('operateur/prefixes') ?>" class="btn btn-secondary">Annuler</a>
         </div>
     </form>
 </div>
