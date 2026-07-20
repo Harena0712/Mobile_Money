@@ -32,6 +32,7 @@ class TransfertController extends BaseController
 
         $telephoneDestination = preg_replace('/[^0-9]/', '', (string) $this->request->getPost('telephone_destination'));
         $montant = (float) ($this->request->getPost('montant') ?? 0);
+        $inclureFraisRetrait = $this->request->getPost('inclure_frais_retrait') !== null;
 
         if ($telephoneDestination === '') {
             return redirect()->to('/transfert')->with('error', 'Veuillez saisir le téléphone du destinataire.');
@@ -61,13 +62,24 @@ class TransfertController extends BaseController
             }
 
             $baremeFraisModel = new BaremeFraisModel();
-            $frais = $baremeFraisModel->chercherFraisTransfert($montant);
+            $fraisTransfert = $baremeFraisModel->chercherFraisTransfert($montant);
 
-            if ($frais === null) {
+            if ($fraisTransfert === null) {
                 return redirect()->to('/transfert')->with('error', 'Aucun barème de frais trouvé pour ce montant.');
             }
 
-            $montantTotal = $montant + $frais;
+            $fraisRetrait = 0.0;
+
+            if ($inclureFraisRetrait) {
+                $fraisRetrait = $baremeFraisModel->chercherFraisRetrait($montant);
+
+                if ($fraisRetrait === null) {
+                    return redirect()->to('/transfert')->with('error', 'Aucun barème de frais de retrait trouvé pour ce montant.');
+                }
+            }
+
+            $montantTotal = $this->calculerMontantTotal($montant, $fraisTransfert, $fraisRetrait, $inclureFraisRetrait);
+            $fraisTransaction = $fraisTransfert + ($inclureFraisRetrait ? $fraisRetrait : 0);
 
             if (! $this->soldeSuffisant($idClientSource, $montantTotal)) {
                 return redirect()->to('/transfert')->with('error', 'Solde insuffisant pour effectuer ce transfert.');
@@ -81,8 +93,10 @@ class TransfertController extends BaseController
                 $idClientSource,
                 $idClientDestination,
                 $montant,
-                $frais
+                $fraisTransaction
             );
+
+            $transactionModel->mettreAJourFraisRetrait($idTransaction, $inclureFraisRetrait);
 
             $mouvementModel = new MouvementCompteModel();
             $mouvementModel->creerMouvementDebit($idTransaction, $idClientSource, $montantTotal);
@@ -94,7 +108,12 @@ class TransfertController extends BaseController
                 return redirect()->to('/transfert')->with('error', 'Une erreur est survenue lors du transfert.');
             }
 
-            $message = 'Transfert effectué avec succès. Frais : ' . number_format($frais, 2, '.', ' ') . ' AR.';
+            $message = 'Transfert effectué avec succès. Frais de transfert : '
+                . number_format($fraisTransfert, 2, '.', ' ') . ' AR.';
+
+            if ($inclureFraisRetrait) {
+                $message .= ' Frais de retrait inclus : ' . number_format($fraisRetrait, 2, '.', ' ') . ' AR.';
+            }
 
             return redirect()->to('/transfert')->with('success', $message);
         } catch (\Exception $e) {
@@ -110,6 +129,11 @@ class TransfertController extends BaseController
     protected function montantValide(float $montant): bool
     {
         return $montant > 0;
+    }
+
+    protected function calculerMontantTotal(float $montant, float $fraisTransfert, float $fraisRetrait, bool $inclure): float
+    {
+        return $montant + $fraisTransfert + ($inclure ? $fraisRetrait : 0);
     }
 
     protected function destinataireExiste(string $telephone): ?array
