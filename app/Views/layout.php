@@ -53,6 +53,16 @@
                     Types d'opérations
                 </a>
 
+                <a href="<?= site_url('commission') ?>"
+                    class="nav-link <?= strpos(current_url(), 'commission') !== false ? 'active' : '' ?>">
+                    <span class="nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 3v18M16 7a4 4 0 00-8 0c0 5 8 2 8 7a4 4 0 01-8 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    Commissions
+                </a>
+
                 <p class="nav-group-title">Suivi &amp; contrôle</p>
 
                 <a href="<?= site_url('operateur/situationFrais') ?>"

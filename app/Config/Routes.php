@@ -33,7 +33,9 @@ $routes->get('operateur/situationFrais', 'SituationFrais::liste');
 $routes->get('commission', 'CommissionOperateurController::index');
 $routes->get('commission/ajouter', 'CommissionOperateurController::ajouter');
 $routes->post('commission/ajouter', 'CommissionOperateurController::enregistrer');
+$routes->get('commission/modifier/(:num)', 'CommissionOperateurController::formulaireModification/$1');
 $routes->post('commission/modifier', 'CommissionOperateurController::modifier');
+$routes->post('commission/supprimer/(:num)', 'CommissionOperateurController::supprimer/$1');
 
 $routes->get('/gain', 'GainController::index');
 $routes->get('/compensation', 'CompensationController::index');

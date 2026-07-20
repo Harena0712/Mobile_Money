@@ -42,13 +42,13 @@
                             <td><span class="badge badge-navy"><?= esc($commission['operateur_destination']) ?></span></td>
                             <td><span class="badge badge-green"><?= esc($commission['pourcentage']) ?> %</span></td>
                             <td>
-                                <form action="<?= site_url('commission/modifier') ?>" method="post" class="row-actions" style="align-items:center;">
-                                    <input type="hidden" name="id" value="<?= esc($commission['id']) ?>">
-                                    <input type="hidden" name="id_operateur_source" value="<?= esc($commission['id_operateur_source']) ?>">
-                                    <input type="hidden" name="id_operateur_destination" value="<?= esc($commission['id_operateur_destination']) ?>">
-                                    <input type="text" name="pourcentage" value="<?= esc($commission['pourcentage']) ?>" class="form-control" style="max-width:100px;" required>
-                                    <button type="submit" class="btn btn-secondary btn-sm">Modifier</button>
-                                </form>
+                                <div class="row-actions" style="align-items:center;">
+                                    <a href="<?= site_url('commission/modifier/' . $commission['id']) ?>" class="btn btn-secondary btn-sm">Modifier</a>
+                                    <form action="<?= site_url('commission/supprimer/' . $commission['id']) ?>" method="post" onsubmit="return confirm('Supprimer cette commission ?');">
+                                        <?= csrf_field() ?>
+                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>

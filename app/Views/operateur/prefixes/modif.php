@@ -12,6 +12,19 @@
             <input type="text" name="prefixe" id="prefixe" class="form-control" value="<?= esc($prefixe['prefixe']) ?>" required>
         </div>
 
+        <div class="form-group">
+            <label for="id_operateur">Opérateur</label>
+            <select name="id_operateur" id="id_operateur" class="form-control" required>
+                <option value="">Selectionnez un operateur</option>
+                <?php foreach ($operateurs as $operateur) : ?>
+                    <option value="<?= esc($operateur['id']) ?>" <?= ($prefixe['id_operateur'] == $operateur['id']) ? 'selected' : '' ?>>
+                        <?= esc($operateur['libelle']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Modifier</button>
             <a href="<?= site_url('operateur/prefixes') ?>" class="btn btn-secondary">Annuler</a>

@@ -51,4 +51,30 @@ class CommissionOperateurController extends BaseController
         $commissionModel->modifierCommission($id, $data);
         return redirect()->to(site_url('commission'))->with('success', 'Commission modifiée.');
     }
+
+    public function formulaireModification(int $id)
+    {
+        $commissionModel = new CommissionOperateurModel();
+        $commission = $commissionModel->chercherCommission($id);
+
+        if ($commission === null) {
+            return redirect()->to(site_url('commission'))->with('error', 'Commission introuvable.');
+        }
+
+        return view('commission/form', [
+            'commission' => $commission,
+            'operateurs' => (new OperateurModel())->listerOperateurs(),
+        ]);
+    }
+
+    public function supprimer(int $id)
+    {
+        $commissionModel = new CommissionOperateurModel();
+
+        if (! $commissionModel->supprimerCommission($id)) {
+            return redirect()->to(site_url('commission'))->with('error', 'Impossible de supprimer cette commission.');
+        }
+
+        return redirect()->to(site_url('commission'))->with('success', 'Commission supprimée.');
+    }
 }
