@@ -164,6 +164,8 @@ class TransactionModel extends Model
         return $this->update($idTransaction, [
             'inclure_frais_retrait' => $inclureFraisRetrait ? 1 : 0,
         ]);
+    }
+    
     public function calculerGains(): array
     {
         $db = $this->db;
