@@ -7,7 +7,31 @@
         <input type="text" id="searchInput" class="form-control" placeholder="Rechercher un opérateur..." style="max-width:320px;">
     </div>
 
-    <?php if (!empty($compensations) && is_array($compensations)) : ?>
+    <?php if (!empty($transactions) && is_array($transactions)) : ?>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Opérateur</th>
+                        <th>Date</th>
+                        <th>Type d'opération</th>
+                        <th>Montant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($transactions as $transaction) : ?>
+                        <tr data-search="<?= esc($transaction['operateur'] . ' ' . $transaction['type_operation']) ?>">
+                            <td><?= esc($transaction['operateur']) ?></td>
+                            <td><?= esc($transaction['date_transaction']) ?></td>
+                            <td><?= esc($transaction['type_operation']) ?></td>
+                            <td><span class="badge badge-orange"><?= number_format((float) $transaction['montant'], 2, '.', ' ') ?> Ar</span></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 style="margin-top:24px;">Total à payer par opérateur</h3>
         <div class="table-wrap">
             <table class="data-table">
                 <thead>
@@ -17,10 +41,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($compensations as $compensation) : ?>
-                        <tr data-search="<?= esc($compensation['operateur']) ?>">
-                            <td><?= esc($compensation['operateur']) ?></td>
-                            <td><span class="badge badge-orange"><?= number_format((float) $compensation['total_montant'], 2, '.', ' ') ?> Ar</span></td>
+                    <?php foreach ($totaux_par_operateur as $total) : ?>
+                        <tr>
+                            <td><?= esc($total['operateur']) ?></td>
+                            <td><span class="badge badge-orange"><?= number_format((float) $total['montant'], 2, '.', ' ') ?> Ar</span></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

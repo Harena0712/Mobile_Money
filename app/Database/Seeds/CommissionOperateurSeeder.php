@@ -44,6 +44,14 @@ class CommissionOperateurSeeder extends Seeder
             ];
         }
 
+        if (!empty($operatorIds['Airtel']) && !empty($operatorIds['Yas'])) {
+            $data[] = [
+                'id_operateur_source' => $operatorIds['Airtel'],
+                'id_operateur_destination' => $operatorIds['Yas'],
+                'pourcentage' => 3.0,
+            ];
+        }
+
         if (!empty($data)) {
             $this->db->table('CommissionOperateur')->insertBatch($data);
         }
