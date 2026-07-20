@@ -4,8 +4,8 @@
 
 ## Base de données
 
-- Creer une table Client
-- Données de test
+- [x] Creer une table Client
+- [x] Données de test
 
 ## Model
 
@@ -16,9 +16,9 @@ chercherClientParTelephone($telephone)
 
 Pour :
 
-* rechercher le téléphone
-* retourner le client
-* retourner `null` s'il n'existe pas
+* [x] rechercher le téléphone
+* [x] retourner le client
+* [x] retourner `null` s'il n'existe pas
 
 
 ## Controller
@@ -27,39 +27,39 @@ Créer : ConnexionController
 
 
 Pour:
-- index()
+- [x] index()
 => Affiche le formulaire.
 
-- login()
+- [x] login()
 
 Pour :
-* récupérer le téléphone
-* verifier qu'il existe
-* verifier que le client est actif
-* créer la session
-* rediriger vers le tableau de bord
+* [x] récupérer le téléphone
+* [x] verifier qu'il existe
+* [x] verifier que le client est actif
+* [x] créer la session
+* [x] rediriger vers le tableau de bord
 
 Sinon :
 
-* afficher un message d'erreur
+* [x] afficher un message d'erreur
 
 
-- logout()
+- [x] logout()
 => Détruit la session.
 
 Redirection : Connexion
 
 
 ## Routes
-- /client/login: GET
+- [x] /client/login: GET
 => formulaire
 
 
-- /client/login: POST
+- [x] /client/login: POST
 => traitement
 
 
-- /client/logout: GET
+- [x] /client/logout: GET
 => deconnexion
 
 
@@ -68,10 +68,10 @@ Redirection : Connexion
 Creer :
 
 
-- client/login.php: 
-  * champ telephone
-  * bouton Connexion
-  * message d'erreur
+- [x] client/login.php: 
+  * [x] champ telephone
+  * [x] bouton Connexion
+  * [x] message d'erreur
 
 
 ## Fonctions
@@ -85,9 +85,9 @@ telephonePrefixe()
 clientActif()
 
 ### Créer la session
-- id_client
-- telephone
-- connecte
+- [x] id_client
+- [x] telephone
+- [x] connecte
 
 
 ### Détruire la session
@@ -101,8 +101,8 @@ Au logout.
 
 ## Base de données
 
-- Utiliser la table Client
-- Utiliser la table MouvementCompte
+- [x] Utiliser la table Client
+- [x] Utiliser la table MouvementCompte
 
 
 ## Model
@@ -115,11 +115,11 @@ calculerSolde($idClient)
 
 Pour :
 
-- récupérer tous les mouvements du client
-- additionner les montants CREDIT
-- additionner les montants DEBIT
-- calculer le solde
-- retourner le solde
+- [x] récupérer tous les mouvements du client
+- [x] additionner les montants CREDIT
+- [x] additionner les montants DEBIT
+- [x] calculer le solde
+- [x] retourner le solde
 
 
 ## Controller
@@ -128,21 +128,21 @@ Créer : SoldeController
 
 Pour :
 
-- index()
+- [x] index()
 
 => Afficher le solde du client.
 
 Pour :
 
-- vérifier que le client est connecté
-- récupérer l'id du client depuis la session
-- appeler calculerSolde($idClient)
-- envoyer le solde à la vue
+- [x] vérifier que le client est connecté
+- [x] récupérer l'id du client depuis la session
+- [x] appeler calculerSolde($idClient)
+- [x] envoyer le solde à la vue
 
 
 ## Routes
 
-- /client/solde : GET
+- [x] /client/solde : GET
 
 => afficher le solde
 
@@ -151,11 +151,11 @@ Pour :
 
 Créer :
 
-- client/solde.php :
-  - afficher le numéro de téléphone
-  - afficher le solde
-  - bouton Retour
-  - bouton Déconnexion
+- [x] client/solde.php :
+  - [x] afficher le numéro de téléphone
+  - [x] afficher le solde
+  - [x] bouton Retour
+  - [x] bouton Déconnexion
 
 
 ## Fonctions
@@ -166,8 +166,8 @@ clientConnecte()
 
 Pour :
 
-- vérifier que la session existe
-- rediriger vers la page de connexion si nécessaire
+- [x] vérifier que la session existe
+- [x] rediriger vers la page de connexion si nécessaire
 
 
 ### Calculer le solde
@@ -176,10 +176,10 @@ calculerSolde($idClient)
 
 Pour :
 
-- récupérer les mouvements du client
-- calculer le total des CREDIT
-- calculer le total des DEBIT
-- retourner le solde
+- [x] récupérer les mouvements du client
+- [x] calculer le total des CREDIT
+- [x] calculer le total des DEBIT
+- [x] retourner le solde
 
 
 
@@ -188,10 +188,10 @@ Pour :
 
 ## Base de données
 
-- Utiliser la table Transaction
-- Utiliser la table MouvementCompte
-- Utiliser la table TypeOperation
-- Utiliser la table Statut
+- [x] Utiliser la table Transaction
+- [x] Utiliser la table MouvementCompte
+- [x] Utiliser la table TypeOperation
+- [x] Utiliser la table Statut
 
 
 ## Model
@@ -204,11 +204,11 @@ creerTransactionDepot($idClient, $montant)
 
 Pour :
 
-- créer une transaction de type DEPOT
-- enregistrer le montant
-- enregistrer les frais
-- enregistrer le statut
-- retourner l'id de la transaction
+- [x] créer une transaction de type DEPOT
+- [x] enregistrer le montant
+- [x] enregistrer les frais
+- [x] enregistrer le statut
+- [x] retourner l'id de la transaction
 
 
 ### MouvementCompteModel
@@ -219,8 +219,8 @@ creerMouvementCredit($idTransaction, $idClient, $montant)
 
 Pour :
 
-- créer un mouvement CREDIT
-- associer le mouvement à la transaction
+- [x] créer un mouvement CREDIT
+- [x] associer le mouvement à la transaction
 
 
 ## Controller
@@ -229,36 +229,36 @@ Créer : DepotController
 
 Pour :
 
-- index()
+- [x] index()
 
 => Afficher le formulaire de dépôt.
 
 
-- enregistrer()
+- [x] enregistrer()
 
 Pour :
 
-- vérifier que le client est connecté
-- récupérer l'id du client depuis la session
-- récupérer le montant
-- vérifier que le montant est valide
-- créer la transaction
-- créer le mouvement CREDIT
-- afficher un message de succès
+- [x] vérifier que le client est connecté
+- [x] récupérer l'id du client depuis la session
+- [x] récupérer le montant
+- [x] vérifier que le montant est valide
+- [x] créer la transaction
+- [x] créer le mouvement CREDIT
+- [x] afficher un message de succès
 
 Sinon :
 
-- afficher un message d'erreur
+- [x] afficher un message d'erreur
 
 
 ## Routes
 
-- /client/depot : GET
+- [x] /client/depot : GET
 
 => formulaire
 
 
-- /client/depot : POST
+- [x] /client/depot : POST
 
 => traitement
 
@@ -267,12 +267,12 @@ Sinon :
 
 Créer :
 
-- client/depot.php :
-  - champ montant
-  - bouton Déposer
-  - message de succès
-  - message d'erreur
-  - bouton Retour
+- [x] client/depot.php :
+  - [x] champ montant
+  - [x] bouton Déposer
+  - [x] message de succès
+  - [x] message d'erreur
+  - [x] bouton Retour
 
 
 ## Fonctions
@@ -283,8 +283,8 @@ clientConnecte()
 
 Pour :
 
-- vérifier que la session existe
-- rediriger vers la page de connexion si nécessaire
+- [x] vérifier que la session existe
+- [x] rediriger vers la page de connexion si nécessaire
 
 
 ### Vérifier le montant
@@ -293,7 +293,7 @@ montantValide($montant)
 
 Pour :
 
-- vérifier que le montant est supérieur à 0
+- [x] vérifier que le montant est supérieur à 0
 
 
 ### Créer la transaction
@@ -302,10 +302,10 @@ creerTransactionDepot($idClient, $montant)
 
 Pour :
 
-- créer une transaction de type DEPOT
-- enregistrer le montant
-- enregistrer les frais à 0
-- enregistrer le statut SUCCES
+- [x] créer une transaction de type DEPOT
+- [x] enregistrer le montant
+- [x] enregistrer les frais à 0
+- [x] enregistrer le statut SUCCES
 
 
 ### Créer le mouvement
@@ -314,8 +314,8 @@ creerMouvementCredit($idTransaction, $idClient, $montant)
 
 Pour :
 
-- créer un mouvement CREDIT
-- enregistrer le montant
+- [x] créer un mouvement CREDIT
+- [x] enregistrer le montant
 
 
 ---
@@ -325,11 +325,11 @@ Pour :
 
 ## Base de données
 
-- Utiliser la table Transaction
-- Utiliser la table MouvementCompte
-- Utiliser la table TypeOperation
-- Utiliser la table BaremeFrais
-- Utiliser la table Statut
+- [x] Utiliser la table Transaction
+- [x] Utiliser la table MouvementCompte
+- [x] Utiliser la table TypeOperation
+- [x] Utiliser la table BaremeFrais
+- [x] Utiliser la table Statut
 
 
 ## Model
@@ -342,8 +342,8 @@ chercherFraisRetrait($montant)
 
 Pour :
 
-- rechercher le barème correspondant au montant
-- retourner le montant des frais
+- [x] rechercher le barème correspondant au montant
+- [x] retourner le montant des frais
 
 
 ### TransactionModel
@@ -354,11 +354,11 @@ creerTransactionRetrait($idClient, $montant, $frais)
 
 Pour :
 
-- créer une transaction de type RETRAIT
-- enregistrer le montant
-- enregistrer les frais
-- enregistrer le statut
-- retourner l'id de la transaction
+- [x] créer une transaction de type RETRAIT
+- [x] enregistrer le montant
+- [x] enregistrer les frais
+- [x] enregistrer le statut
+- [x] retourner l'id de la transaction
 
 
 ### MouvementCompteModel
@@ -369,8 +369,8 @@ creerMouvementDebit($idTransaction, $idClient, $montant)
 
 Pour :
 
-- créer un mouvement DEBIT
-- associer le mouvement à la transaction
+- [x] créer un mouvement DEBIT
+- [x] associer le mouvement à la transaction
 
 
 ## Controller
@@ -379,39 +379,39 @@ Créer : RetraitController
 
 Pour :
 
-- index()
+- [x] index()
 
 => Afficher le formulaire de retrait.
 
 
-- enregistrer()
+- [x] enregistrer()
 
 Pour :
 
-- vérifier que le client est connecté
-- récupérer l'id du client depuis la session
-- récupérer le montant
-- vérifier que le montant est valide
-- récupérer les frais
-- calculer le montant total à débiter
-- vérifier que le solde est suffisant
-- créer la transaction
-- créer le mouvement DEBIT
-- afficher un message de succès
+- [x] vérifier que le client est connecté
+- [x] récupérer l'id du client depuis la session
+- [x] récupérer le montant
+- [x] vérifier que le montant est valide
+- [x] récupérer les frais
+- [x] calculer le montant total à débiter
+- [x] vérifier que le solde est suffisant
+- [x] créer la transaction
+- [x] créer le mouvement DEBIT
+- [x] afficher un message de succès
 
 Sinon :
 
-- afficher un message d'erreur
+- [x] afficher un message d'erreur
 
 
 ## Routes
 
-- /client/retrait : GET
+- [x] /client/retrait : GET
 
 => formulaire
 
 
-- /client/retrait : POST
+- [x] /client/retrait : POST
 
 => traitement
 
@@ -420,13 +420,13 @@ Sinon :
 
 Créer :
 
-- client/retrait.php :
-  - champ montant
-  - affichage des frais (optionnel)
-  - bouton Retirer
-  - message de succès
-  - message d'erreur
-  - bouton Retour
+- [x] client/retrait.php :
+  - [x] champ montant
+  - [x] affichage des frais (optionnel)
+  - [x] bouton Retirer
+  - [x] message de succès
+  - [x] message d'erreur
+  - [x] bouton Retour
 
 
 ## Fonctions
@@ -437,8 +437,8 @@ clientConnecte()
 
 Pour :
 
-- vérifier que la session existe
-- rediriger vers la page de connexion si nécessaire
+- [x] vérifier que la session existe
+- [x] rediriger vers la page de connexion si nécessaire
 
 
 ### Vérifier le montant
@@ -447,7 +447,7 @@ montantValide($montant)
 
 Pour :
 
-- vérifier que le montant est supérieur à 0
+- [x] vérifier que le montant est supérieur à 0
 
 
 ### Récupérer les frais
@@ -456,8 +456,8 @@ chercherFraisRetrait($montant)
 
 Pour :
 
-- rechercher le barème correspondant
-- retourner les frais
+- [x] rechercher le barème correspondant
+- [x] retourner les frais
 
 
 ### Vérifier le solde
@@ -466,8 +466,8 @@ soldeSuffisant($idClient, $montantTotal)
 
 Pour :
 
-- calculer le solde du client
-- vérifier que le solde est supérieur ou égal au montant total
+- [x] calculer le solde du client
+- [x] vérifier que le solde est supérieur ou égal au montant total
 
 
 ### Créer la transaction
@@ -476,10 +476,10 @@ creerTransactionRetrait($idClient, $montant, $frais)
 
 Pour :
 
-- créer une transaction de type RETRAIT
-- enregistrer le montant
-- enregistrer les frais
-- enregistrer le statut VALIDEE
+- [x] créer une transaction de type RETRAIT
+- [x] enregistrer le montant
+- [x] enregistrer les frais
+- [x] enregistrer le statut VALIDEE
 
 
 ### Créer le mouvement
@@ -488,8 +488,8 @@ creerMouvementDebit($idTransaction, $idClient, $montantTotal)
 
 Pour :
 
-- créer un mouvement DEBIT
-- enregistrer le montant total (montant + frais)
+- [x] créer un mouvement DEBIT
+- [x] enregistrer le montant total (montant + frais)
 
 
 ---
@@ -498,12 +498,12 @@ Pour :
 
 ## Base de données
 
-- Utiliser la table Client
-- Utiliser la table Transaction
-- Utiliser la table MouvementCompte
-- Utiliser la table TypeOperation
-- Utiliser la table BaremeFrais
-- Utiliser la table Statut
+- [x] Utiliser la table Client
+- [x] Utiliser la table Transaction
+- [x] Utiliser la table MouvementCompte
+- [x] Utiliser la table TypeOperation
+- [x] Utiliser la table BaremeFrais
+- [x] Utiliser la table Statut
 
 ---
 
@@ -517,9 +517,9 @@ chercherClientParTelephone($telephone)
 
 Pour :
 
-- rechercher le destinataire
-- retourner le client
-- retourner `null` s'il n'existe pas
+- [x] rechercher le destinataire
+- [x] retourner le client
+- [x] retourner `null` s'il n'existe pas
 
 ---
 
@@ -531,8 +531,8 @@ chercherFraisTransfert($montant)
 
 Pour :
 
-- rechercher le barème correspondant au montant
-- retourner le montant des frais
+- [x] rechercher le barème correspondant au montant
+- [x] retourner le montant des frais
 
 ---
 
@@ -544,11 +544,11 @@ creerTransactionTransfert($idClientSource, $idClientDestination, $montant, $frai
 
 Pour :
 
-- créer une transaction de type TRANSFERT
-- enregistrer le montant
-- enregistrer les frais
-- enregistrer le statut
-- retourner l'id de la transaction
+- [x] créer une transaction de type TRANSFERT
+- [x] enregistrer le montant
+- [x] enregistrer les frais
+- [x] enregistrer le statut
+- [x] retourner l'id de la transaction
 
 ---
 
@@ -560,8 +560,8 @@ creerMouvementDebit($idTransaction, $idClient, $montant)
 
 Pour :
 
-- créer un mouvement DEBIT
-- associer le mouvement à la transaction
+- [x] créer un mouvement DEBIT
+- [x] associer le mouvement à la transaction
 
 ---
 
@@ -569,8 +569,8 @@ creerMouvementCredit($idTransaction, $idClient, $montant)
 
 Pour :
 
-- créer un mouvement CREDIT
-- associer le mouvement à la transaction
+- [x] créer un mouvement CREDIT
+- [x] associer le mouvement à la transaction
 
 ---
 
@@ -580,47 +580,47 @@ Créer : TransfertController
 
 Pour :
 
-- index()
+- [x] index()
 
 => Afficher le formulaire de transfert.
 
 ---
 
-- enregistrer()
+- [x] enregistrer()
 
 Pour :
 
-- vérifier que le client est connecté
-- récupérer l'id du client depuis la session
-- récupérer le téléphone du destinataire
-- récupérer le montant
-- vérifier que le montant est valide
-- vérifier que le destinataire existe
-- vérifier que le destinataire est actif
-- vérifier que le client ne s'envoie pas de l'argent à lui-même
-- récupérer les frais
-- calculer le montant total à débiter
-- vérifier que le solde est suffisant
-- créer la transaction
-- créer le mouvement DEBIT pour l'expéditeur
-- créer le mouvement CREDIT pour le destinataire
-- afficher un message de succès
+- [x] vérifier que le client est connecté
+- [x] récupérer l'id du client depuis la session
+- [x] récupérer le téléphone du destinataire
+- [x] récupérer le montant
+- [x] vérifier que le montant est valide
+- [x] vérifier que le destinataire existe
+- [x] vérifier que le destinataire est actif
+- [x] vérifier que le client ne s'envoie pas de l'argent à lui-même
+- [x] récupérer les frais
+- [x] calculer le montant total à débiter
+- [x] vérifier que le solde est suffisant
+- [x] créer la transaction
+- [x] créer le mouvement DEBIT pour l'expéditeur
+- [x] créer le mouvement CREDIT pour le destinataire
+- [x] afficher un message de succès
 
 Sinon :
 
-- afficher un message d'erreur
+- [x] afficher un message d'erreur
 
 ---
 
 ## Routes
 
-- /client/transfert : GET
+- [x] /client/transfert : GET
 
 => formulaire
 
 ---
 
-- /client/transfert : POST
+- [x] /client/transfert : POST
 
 => traitement
 
@@ -630,13 +630,13 @@ Sinon :
 
 Créer :
 
-- client/transfert.php :
-  - champ téléphone du destinataire
-  - champ montant
-  - bouton Transférer
-  - message de succès
-  - message d'erreur
-  - bouton Retour
+- [x] client/transfert.php :
+  - [x] champ téléphone du destinataire
+  - [x] champ montant
+  - [x] bouton Transférer
+  - [x] message de succès
+  - [x] message d'erreur
+  - [x] bouton Retour
 
 ---
 
@@ -648,8 +648,8 @@ clientConnecte()
 
 Pour :
 
-- vérifier que la session existe
-- rediriger vers la page de connexion si nécessaire
+- [x] vérifier que la session existe
+- [x] rediriger vers la page de connexion si nécessaire
 
 ---
 
@@ -659,7 +659,7 @@ montantValide($montant)
 
 Pour :
 
-- vérifier que le montant est supérieur à 0
+- [x] vérifier que le montant est supérieur à 0
 
 ---
 
@@ -669,9 +669,9 @@ destinataireExiste($telephone)
 
 Pour :
 
-- rechercher le client
-- retourner le client
-- retourner `null` s'il n'existe pas
+- [x] rechercher le client
+- [x] retourner le client
+- [x] retourner `null` s'il n'existe pas
 
 ---
 
@@ -681,7 +681,7 @@ clientActif($client)
 
 Pour :
 
-- vérifier que le client est actif
+- [x] vérifier que le client est actif
 
 ---
 
@@ -691,8 +691,8 @@ soldeSuffisant($idClient, $montantTotal)
 
 Pour :
 
-- calculer le solde du client
-- vérifier que le solde est supérieur ou égal au montant total
+- [x] calculer le solde du client
+- [x] vérifier que le solde est supérieur ou égal au montant total
 
 ---
 
@@ -702,8 +702,8 @@ chercherFraisTransfert($montant)
 
 Pour :
 
-- rechercher le barème correspondant
-- retourner les frais
+- [x] rechercher le barème correspondant
+- [x] retourner les frais
 
 ---
 
@@ -713,10 +713,10 @@ creerTransactionTransfert($idClientSource, $idClientDestination, $montant, $frai
 
 Pour :
 
-- créer une transaction de type TRANSFERT
-- enregistrer le montant
-- enregistrer les frais
-- enregistrer le statut VALIDEE
+- [x] créer une transaction de type TRANSFERT
+- [x] enregistrer le montant
+- [x] enregistrer les frais
+- [x] enregistrer le statut VALIDEE
 
 ---
 
@@ -726,8 +726,8 @@ creerMouvementDebit($idTransaction, $idClientSource, $montantTotal)
 
 Pour :
 
-- créer un mouvement DEBIT
-- enregistrer le montant total (montant + frais)
+- [x] créer un mouvement DEBIT
+- [x] enregistrer le montant total (montant + frais)
 
 ---
 
@@ -735,5 +735,104 @@ creerMouvementCredit($idTransaction, $idClientDestination, $montant)
 
 Pour :
 
-- créer un mouvement CREDIT
-- enregistrer le montant reçu
+- [x] créer un mouvement CREDIT
+- [x] enregistrer le montant reçu
+
+
+---
+
+
+# 6. Voir l'historique
+
+## Base de données
+
+- [x] Utiliser la table Transaction
+- [x] Utiliser la table TypeOperation
+- [x] Utiliser la table Statut
+
+---
+
+## Model
+
+### TransactionModel
+
+Fonction à ajouter :
+
+listerHistorique($idClient)
+
+Pour :
+
+- [x] récupérer toutes les transactions du client
+- [x] récupérer le type d'opération
+- [x] récupérer le statut
+- [x] trier les transactions par date décroissante
+- [x] retourner la liste des transactions
+
+---
+
+## Controller
+
+Créer : HistoriqueController
+
+Pour :
+
+- [x] index()
+
+=> Afficher l'historique des transactions.
+
+Pour :
+
+- [x] vérifier que le client est connecté
+- [x] récupérer l'id du client depuis la session
+- [x] appeler listerHistorique($idClient)
+- [x] envoyer la liste à la vue
+
+---
+
+## Routes
+
+- [x] /client/historique : GET
+
+=> afficher l'historique
+
+---
+
+## View
+
+Créer :
+
+- [x] client/historique.php :
+  - [x] afficher la liste des transactions
+  - [x] afficher la date
+  - [x] afficher le type d'opération
+  - [x] afficher le montant
+  - [x] afficher les frais
+  - [x] afficher le statut
+  - [x] bouton Retour
+  - [x] bouton Déconnexion
+
+---
+
+## Fonctions
+
+### Vérifier que le client est connecté
+
+clientConnecte()
+
+Pour :
+
+- [x] vérifier que la session existe
+- [x] rediriger vers la page de connexion si nécessaire
+
+---
+
+### Récupérer l'historique
+
+listerHistorique($idClient)
+
+Pour :
+
+- [x] récupérer les transactions où le client est l'expéditeur
+- [x] récupérer les transactions où le client est le destinataire
+- [x] trier les transactions par date décroissante
+- [x] retourner la liste des transactions

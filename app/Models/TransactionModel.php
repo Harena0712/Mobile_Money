@@ -106,4 +106,19 @@ class TransactionModel extends Model
         $this->insert($data);
         return $this->insertID();
     }
+
+    public function listerHistorique(int $idClient): array
+    {
+        return $this->db->table($this->table . ' t')
+            ->select('t.*, TypeOperation.libelle AS type_operation, Statut.libelle AS statut')
+            ->join('TypeOperation', 'TypeOperation.id = t.id_type_operation')
+            ->join('Statut', 'Statut.id = t.id_statut')
+            ->groupStart()
+                ->where('t.id_client_source', $idClient)
+                ->orWhere('t.id_client_destination', $idClient)
+            ->groupEnd()
+            ->orderBy('t.date_transaction', 'DESC')
+            ->get()
+            ->getResultArray();
+    }
 }
