@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= isset($title) ? esc($title) . ' · MoneyFlow' : 'MoneyFlow · Espace Opérateur' ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
 </head>
@@ -12,11 +13,11 @@
 
 <div class="app-shell">
 
-    <!-- ===== SIDEBAR ===== -->
+    <!-- ===== SIDEBAR OPÉRATEUR ===== -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-brand">
             <span class="brand-mark">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="2" y="5" width="20" height="14" rx="3" stroke="currentColor" stroke-width="1.8"/>
                     <path d="M2 9.5H22" stroke="currentColor" stroke-width="1.8"/>
                     <circle cx="17" cy="14.5" r="1.6" fill="currentColor"/>
@@ -30,7 +31,7 @@
         <nav class="sidebar-nav">
             <p class="nav-group-title">Opérations</p>
 
-            <a href="<?= site_url('operateur/prefixes') ?>"
+            <a href="<?= site_url('/') ?>"
                class="nav-link <?= strpos(current_url(), 'prefixes') !== false ? 'active' : '' ?>">
                 <span class="nav-icon">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h10M4 18h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>

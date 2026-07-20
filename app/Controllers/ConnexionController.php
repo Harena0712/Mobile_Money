@@ -22,25 +22,25 @@ class ConnexionController extends BaseController
         $telephone = trim($this->request->getPost('telephone'));
 
         if (empty($telephone)) {
-            return redirect()->to('/client/login')->with('error', 'Veuillez saisir votre téléphone.');
+            return redirect()->to('/login')->with('error', 'Veuillez saisir votre téléphone.');
         }
 
         $clientModel = new ClientModel();
         
         $telephone = preg_replace('/[^0-9]/', '', $telephone);
         if (! $clientModel->telephonePrefixe($telephone)) {
-            return redirect()->to('/client/login')->with('error', 'Préfixe téléphonique invalide.');
+            return redirect()->to('/login')->with('error', 'Préfixe téléphonique invalide.');
         }
 
 
         $client = $clientModel->chercherClientParTelephone($telephone);
 
         if (empty($client)) {
-            return redirect()->to('/client/login')->with('error', 'Téléphone non trouvé.');
+            return redirect()->to('/login')->with('error', 'Téléphone non trouvé.');
         }
 
         if ((int) ($client['actif'] ?? 0) !== 1) {
-            return redirect()->to('/client/login')->with('error', 'Client inactif.');
+            return redirect()->to('/login')->with('error', 'Client inactif.');
         }
 
         session()->set([
@@ -49,13 +49,13 @@ class ConnexionController extends BaseController
             'connecte' => true,
         ]);
 
-        return redirect()->to('/');
+        return redirect()->to('/solde');
     }
 
     public function logout()
     {
         session()->destroy();
 
-        return redirect()->to('/client/login');
+        return redirect()->to('/login');
     }
 }

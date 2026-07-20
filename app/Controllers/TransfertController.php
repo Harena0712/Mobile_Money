@@ -13,7 +13,7 @@ class TransfertController extends BaseController
     public function index()
     {
         if (! $this->clientConnecte()) {
-            return redirect()->to('/client/login');
+            return redirect()->to('/login');
         }
 
         $data = [
@@ -27,18 +27,18 @@ class TransfertController extends BaseController
     public function enregistrer()
     {
         if (! $this->clientConnecte()) {
-            return redirect()->to('/client/login');
+            return redirect()->to('/login');
         }
 
         $telephoneDestination = preg_replace('/[^0-9]/', '', (string) $this->request->getPost('telephone_destination'));
         $montant = (float) ($this->request->getPost('montant') ?? 0);
 
         if ($telephoneDestination === '') {
-            return redirect()->to('/client/transfert')->with('error', 'Veuillez saisir le téléphone du destinataire.');
+            return redirect()->to('/transfert')->with('error', 'Veuillez saisir le téléphone du destinataire.');
         }
 
         if (! $this->montantValide($montant)) {
-            return redirect()->to('/client/transfert')->with('error', 'Montant invalide. Le montant doit être supérieur à 0.');
+            return redirect()->to('/transfert')->with('error', 'Montant invalide. Le montant doit être supérieur à 0.');
         }
 
         $idClientSource = (int) session()->get('id_client');
@@ -47,30 +47,30 @@ class TransfertController extends BaseController
             $destinataire = $this->destinataireExiste($telephoneDestination);
 
             if ($destinataire === null) {
-                return redirect()->to('/client/transfert')->with('error', 'Destinataire introuvable.');
+                return redirect()->to('/transfert')->with('error', 'Destinataire introuvable.');
             }
 
             if (! $this->clientActif($destinataire)) {
-                return redirect()->to('/client/transfert')->with('error', 'Destinataire inactif.');
+                return redirect()->to('/transfert')->with('error', 'Destinataire inactif.');
             }
 
             $idClientDestination = (int) $destinataire['id'];
 
             if ($idClientDestination === $idClientSource) {
-                return redirect()->to('/client/transfert')->with('error', 'Vous ne pouvez pas transférer de l’argent à vous-même.');
+                return redirect()->to('/transfert')->with('error', 'Vous ne pouvez pas transférer de l’argent à vous-même.');
             }
 
             $baremeFraisModel = new BaremeFraisModel();
             $frais = $baremeFraisModel->chercherFraisTransfert($montant);
 
             if ($frais === null) {
-                return redirect()->to('/client/transfert')->with('error', 'Aucun barème de frais trouvé pour ce montant.');
+                return redirect()->to('/transfert')->with('error', 'Aucun barème de frais trouvé pour ce montant.');
             }
 
             $montantTotal = $montant + $frais;
 
             if (! $this->soldeSuffisant($idClientSource, $montantTotal)) {
-                return redirect()->to('/client/transfert')->with('error', 'Solde insuffisant pour effectuer ce transfert.');
+                return redirect()->to('/transfert')->with('error', 'Solde insuffisant pour effectuer ce transfert.');
             }
 
             $db = Database::connect();
@@ -91,14 +91,14 @@ class TransfertController extends BaseController
             $db->transComplete();
 
             if (! $db->transStatus()) {
-                return redirect()->to('/client/transfert')->with('error', 'Une erreur est survenue lors du transfert.');
+                return redirect()->to('/transfert')->with('error', 'Une erreur est survenue lors du transfert.');
             }
 
             $message = 'Transfert effectué avec succès. Frais : ' . number_format($frais, 2, '.', ' ') . ' AR.';
 
-            return redirect()->to('/client/transfert')->with('success', $message);
+            return redirect()->to('/transfert')->with('success', $message);
         } catch (\Exception $e) {
-            return redirect()->to('/client/transfert')->with('error', 'Une erreur est survenue lors du transfert.');
+            return redirect()->to('/transfert')->with('error', 'Une erreur est survenue lors du transfert.');
         }
     }
 

@@ -10,7 +10,7 @@ class DepotController extends BaseController
     public function index()
     {
         if (! session()->get('connecte')) {
-            return redirect()->to('/client/login');
+            return redirect()->to('/login');
         }
 
         $data = [
@@ -24,13 +24,13 @@ class DepotController extends BaseController
     public function enregistrer()
     {
         if (! session()->get('connecte')) {
-            return redirect()->to('/client/login');
+            return redirect()->to('/login');
         }
 
         $montant = (float) ($this->request->getPost('montant') ?? 0);
 
         if (! $this->montantValide($montant)) {
-            return redirect()->to('/client/depot')->with('error', 'Montant invalide. Le montant doit être supérieur à 0.');
+            return redirect()->to('/depot')->with('error', 'Montant invalide. Le montant doit être supérieur à 0.');
         }
 
         $idClient = (int) session()->get('id_client');
@@ -42,9 +42,9 @@ class DepotController extends BaseController
             $mouvementModel = new MouvementCompteModel();
             $mouvementModel->creerMouvementCredit($idTransaction, $idClient, $montant);
 
-            return redirect()->to('/client/depot')->with('success', 'Dépôt effectué avec succès !');
+            return redirect()->to('/depot')->with('success', 'Dépôt effectué avec succès !');
         } catch (\Exception $e) {
-            return redirect()->to('/client/depot')->with('error', 'Une erreur est survenue lors du dépôt.');
+            return redirect()->to('/depot')->with('error', 'Une erreur est survenue lors du dépôt.');
         }
     }
 

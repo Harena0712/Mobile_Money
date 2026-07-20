@@ -611,3 +611,18 @@ in APPPATH/Views/client/depot.php on line 25.
 10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 11 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
 ERROR - 2026-07-20 09:38:03 --> Erreur création dépôt: Statut VALIDEE non trouvé.
+CRITICAL - 2026-07-20 10:34:12 --> CodeIgniter\Exceptions\RuntimeException: View themes, no current section.
+[Method: GET, Route: /]
+in SYSTEMPATH/View/View.php on line 444.
+ 1 APPPATH/Views/client/login.php(28): CodeIgniter\View\View->endSection()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/app/Views/client/login.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/ConnexionController.php(17): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\ConnexionController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')

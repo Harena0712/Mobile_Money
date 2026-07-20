@@ -21,13 +21,13 @@ class Prefixe extends BaseController
             'prefixe' => $this->request->getPost('prefixe'),
         ];
         $model->insert($data);
-        return redirect()->to(site_url('operateur/prefixes'));
+        return redirect()->to(site_url('/'));
     }
 
     public function delete($id) {
         $model = new PrefixeModel();
         $model->delete($id);
-        return redirect()->to(site_url('operateur/prefixes'));
+        return redirect()->to(site_url('/'));
     }
 
     public function modif($id) {
@@ -43,6 +43,6 @@ class Prefixe extends BaseController
             'prefixe' => $this->request->getPost('prefixe'),
         ];
         $model->modifier($data);
-        return redirect()->to(site_url('operateur/prefixes'));
+        return redirect()->to(site_url('/'));
     }
 }

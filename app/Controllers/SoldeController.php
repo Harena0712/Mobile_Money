@@ -9,7 +9,7 @@ class SoldeController extends BaseController
     public function index()
     {
         if (! session()->get('connecte')) {
-            return redirect()->to('/client/login');
+            return redirect()->to('/login');
         }
 
         $idClient = (int) session()->get('id_client');
