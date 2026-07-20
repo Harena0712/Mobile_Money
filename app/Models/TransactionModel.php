@@ -21,4 +21,20 @@ class TransactionModel extends Model
         'date_transaction',
         'id_statut'
     ];
+
+    public function getTotalFrais()
+    {
+        return $this->selectSum('frais')->first()['frais'];
+    }
+
+    public function getTotalTransfert()
+    {
+        return $this->where('id_type_operation', 2)->selectSum('frais')->first()['frais'];
+    }
+
+    public function getTotalRetrait()
+    {
+        return $this->where('id_type_operation', 3)->selectSum('frais')->first()['frais'];
+    }
+
 }

@@ -18,4 +18,15 @@ class BaremeFraisModel extends Model
         'montant_max',
         'valeur'
     ];
+
+    public function getByIdTypeOperation($idTypeOperation)
+    {
+        return $this->where('id_type_operation', $idTypeOperation)->findAll();
+    }
+
+    public function modifier($data) {
+        $id = $data['id'];
+        unset($data['id']);
+        return $this->update($id, $data);
+    }
 }

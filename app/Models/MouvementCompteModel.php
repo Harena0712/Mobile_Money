@@ -18,4 +18,12 @@ class MouvementCompteModel extends Model
         'montant',
         'sens'
     ];
+
+    public function soldeClients() {
+        // somme le solde de tout les client, si DEBIT alors le montant est négatif, si CREDIT alors le montant est positif
+        $builder = $this->db->table('MouvementCompte');
+        $builder->select('id_client, SUM(CASE WHEN sens = "CREDIT" THEN montant ELSE -montant END) as solde');
+        $builder->groupBy('id_client');
+        return $builder->get()->getResultArray();
+    }
 }

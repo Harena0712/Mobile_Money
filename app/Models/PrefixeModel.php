@@ -15,4 +15,10 @@ class PrefixeModel extends Model {
         'prefixe',
         'actif'
     ];
+
+    public function modifier($data) {
+        $id = $data['id'];
+        unset($data['id']);
+        return $this->update($id, $data);
+    }
 }

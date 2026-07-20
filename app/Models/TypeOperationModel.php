@@ -16,4 +16,10 @@ class TypeOperationModel extends Model
         'libelle',
         'actif'
     ];
+
+    public function modifier($data) {
+        $id = $data['id'];
+        unset($data['id']);
+        return $this->update($id, $data);
+    }
 }
