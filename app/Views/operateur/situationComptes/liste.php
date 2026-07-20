@@ -3,6 +3,10 @@
 <?= $this->section('content') ?>
 
 <div class="panel">
+    <div class="table-toolbar" style="display:flex; gap:12px; align-items:center; margin-bottom:12px; flex-wrap:wrap;">
+        <input type="text" id="searchInput" class="form-control" placeholder="Rechercher un client..." style="max-width:280px;">
+    </div>
+
     <?php if (!empty($soldeClients) && is_array($soldeClients)) : ?>
         <div class="table-wrap">
             <table class="data-table">
@@ -14,7 +18,7 @@
                 </thead>
                 <tbody>
                     <?php foreach ($soldeClients as $compte) : ?>
-                        <tr>
+                        <tr data-search="<?= esc($compte['id_client'] . ' ' . $compte['solde']) ?>">
                             <td>#<?= esc($compte['id_client']) ?></td>
                             <td><span class="badge badge-navy"><?= esc($compte['solde']) ?></span></td>
                         </tr>
@@ -29,5 +33,25 @@
         </div>
     <?php endif; ?>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const rows = Array.from(document.querySelectorAll('.data-table tbody tr'));
+
+    if (!searchInput || rows.length === 0) {
+        return;
+    }
+
+    searchInput.addEventListener('input', function () {
+        const term = this.value.trim().toLowerCase();
+
+        rows.forEach(function (row) {
+            const haystack = (row.dataset.search || '').toLowerCase();
+            row.style.display = haystack.includes(term) ? '' : 'none';
+        });
+    });
+});
+</script>
 
 <?= $this->endSection() ?>

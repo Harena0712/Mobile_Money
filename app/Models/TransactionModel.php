@@ -24,17 +24,23 @@ class TransactionModel extends Model
 
     public function getTotalFrais()
     {
-        return $this->selectSum('frais')->first()['frais'];
+        $row = $this->selectSum('frais')->get()->getRowArray();
+
+        return (float) ($row['frais'] ?? 0);
     }
 
     public function getTotalTransfert()
     {
-        return $this->where('id_type_operation', 2)->selectSum('frais')->first()['frais'];
+        $row = $this->where('id_type_operation', 2)->selectSum('frais')->get()->getRowArray();
+
+        return (float) ($row['frais'] ?? 0);
     }
 
     public function getTotalRetrait()
     {
-        return $this->where('id_type_operation', 3)->selectSum('frais')->first()['frais'];
+        $row = $this->where('id_type_operation', 3)->selectSum('frais')->get()->getRowArray();
+
+        return (float) ($row['frais'] ?? 0);
     }
 
 

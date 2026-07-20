@@ -10,6 +10,10 @@
 </div>
 
 <div class="panel">
+    <div class="table-toolbar" style="display:flex; gap:12px; align-items:center; margin-bottom:12px; flex-wrap:wrap;">
+        <input type="text" id="searchInput" class="form-control" placeholder="Rechercher un préfixe..." style="max-width:280px;">
+    </div>
+
     <?php if (!empty($prefixes) && is_array($prefixes)) : ?>
         <div class="table-wrap">
             <table class="data-table">
@@ -22,7 +26,7 @@
                 </thead>
                 <tbody>
                     <?php foreach ($prefixes as $prefixe) : ?>
-                        <tr>
+                        <tr data-search="<?= esc($prefixe['id'] . ' ' . $prefixe['prefixe']) ?>">
                             <td>#<?= esc($prefixe['id']) ?></td>
                             <td><span class="badge badge-navy"><?= esc($prefixe['prefixe']) ?></span></td>
                             <td>
@@ -44,5 +48,25 @@
         </div>
     <?php endif; ?>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const rows = Array.from(document.querySelectorAll('.data-table tbody tr'));
+
+    if (!searchInput || rows.length === 0) {
+        return;
+    }
+
+    searchInput.addEventListener('input', function () {
+        const term = this.value.trim().toLowerCase();
+
+        rows.forEach(function (row) {
+            const haystack = (row.dataset.search || '').toLowerCase();
+            row.style.display = haystack.includes(term) ? '' : 'none';
+        });
+    });
+});
+</script>
 
 <?= $this->endSection() ?>

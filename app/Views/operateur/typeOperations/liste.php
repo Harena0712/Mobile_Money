@@ -10,6 +10,10 @@
 </div>
 
 <div class="panel">
+    <div class="table-toolbar" style="display:flex; gap:12px; align-items:center; margin-bottom:12px; flex-wrap:wrap;">
+        <input type="text" id="searchInput" class="form-control" placeholder="Rechercher un type d'opération..." style="max-width:320px;">
+    </div>
+
     <?php if (!empty($typeOperations) && is_array($typeOperations)) : ?>
         <div class="table-wrap">
             <table class="data-table">
@@ -22,7 +26,7 @@
                 </thead>
                 <tbody>
                     <?php foreach ($typeOperations as $typeOperation) : ?>
-                        <tr>
+                        <tr data-search="<?= esc($typeOperation['id'] . ' ' . $typeOperation['libelle']) ?>">
                             <td>#<?= esc($typeOperation['id']) ?></td>
                             <td><span class="badge badge-green"><?= esc($typeOperation['libelle']) ?></span></td>
                             <td>
@@ -46,5 +50,25 @@
         </div>
     <?php endif; ?>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const rows = Array.from(document.querySelectorAll('.data-table tbody tr'));
+
+    if (!searchInput || rows.length === 0) {
+        return;
+    }
+
+    searchInput.addEventListener('input', function () {
+        const term = this.value.trim().toLowerCase();
+
+        rows.forEach(function (row) {
+            const haystack = (row.dataset.search || '').toLowerCase();
+            row.style.display = haystack.includes(term) ? '' : 'none';
+        });
+    });
+});
+</script>
 
 <?= $this->endSection() ?>
