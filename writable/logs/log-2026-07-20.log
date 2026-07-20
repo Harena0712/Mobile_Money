@@ -1485,7 +1485,11 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 164.
 11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
 12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 13 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
+<<<<<<< Updated upstream
 CRITICAL - 2026-07-20 15:05:44 --> ParseError: syntax error, unexpected token "public"
+=======
+CRITICAL - 2026-07-20 15:46:13 --> ParseError: syntax error, unexpected token "public"
+>>>>>>> Stashed changes
 [Method: GET, Route: operateur/situationFrais]
 in APPPATH/Models/TransactionModel.php on line 167.
  1 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
@@ -1497,6 +1501,7 @@ in APPPATH/Models/TransactionModel.php on line 167.
  7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
  8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
  9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+<<<<<<< Updated upstream
 10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 15:05:49 --> ParseError: syntax error, unexpected token "public"
 [Method: GET, Route: operateur/situationFrais]
@@ -1512,6 +1517,10 @@ in APPPATH/Models/TransactionModel.php on line 167.
  9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 15:05:52 --> ParseError: syntax error, unexpected token "public"
+=======
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:46:16 --> ParseError: syntax error, unexpected token "public"
+>>>>>>> Stashed changes
 [Method: GET, Route: gain]
 in APPPATH/Models/TransactionModel.php on line 167.
  1 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
@@ -1523,8 +1532,26 @@ in APPPATH/Models/TransactionModel.php on line 167.
  7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
  8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
  9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+<<<<<<< Updated upstream
 10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 15:05:56 --> ParseError: syntax error, unexpected token "public"
+=======
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:46:18 --> ParseError: syntax error, unexpected token "public"
+[Method: GET, Route: gain]
+in APPPATH/Models/TransactionModel.php on line 167.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 3 APPPATH/Controllers/GainController.php(11): CodeIgniter\Autoloader\Autoloader->loadClass()
+ 4 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\GainController->index()
+ 5 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:46:20 --> ParseError: syntax error, unexpected token "public"
+>>>>>>> Stashed changes
 [Method: GET, Route: compensation]
 in APPPATH/Models/TransactionModel.php on line 167.
  1 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
@@ -1536,8 +1563,13 @@ in APPPATH/Models/TransactionModel.php on line 167.
  7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
  8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
  9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+<<<<<<< Updated upstream
 10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 15:06:15 --> ParseError: syntax error, unexpected token "public"
+=======
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 15:46:27 --> ParseError: syntax error, unexpected token "public"
+>>>>>>> Stashed changes
 [Method: GET, Route: compensation]
 in APPPATH/Models/TransactionModel.php on line 167.
  1 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
@@ -1549,6 +1581,7 @@ in APPPATH/Models/TransactionModel.php on line 167.
  7 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
  8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
  9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+<<<<<<< Updated upstream
 10 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
 CRITICAL - 2026-07-20 15:07:02 --> ParseError: syntax error, unexpected token "public"
 [Method: GET, Route: operateur/situationFrais]
@@ -2284,3 +2317,6 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
 12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
 13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 14 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+=======
+10 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
+>>>>>>> Stashed changes
