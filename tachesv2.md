@@ -5,9 +5,9 @@
 
 ## Base de données
 
-- Utiliser la table Transaction
-- Ajouter le champ inclure_frais_retrait
-- Utiliser la table BaremeFrais
+- [x] Utiliser la table Transaction
+- [x] Ajouter le champ inclure_frais_retrait
+- [x] Utiliser la table BaremeFrais
 - Utiliser la table CommissionOperateur
 
 ---
@@ -22,8 +22,8 @@ chercherFraisRetrait($montant)
 
 Pour :
 
-- rechercher le barème correspondant
-- retourner les frais de retrait
+- [x] rechercher le barème correspondant
+- [x] retourner les frais de retrait
 
 ---
 
@@ -35,7 +35,7 @@ mettreAJourFraisRetrait($idTransaction, $inclureFraisRetrait)
 
 Pour :
 
-- enregistrer le choix du client
+- [x] enregistrer le choix du client
 
 ---
 
@@ -45,22 +45,22 @@ Modifier : TransfertController
 
 Pour :
 
-- index()
+- [x] index()
 
 Ajouter :
 
-- une option "Inclure les frais de retrait"
+- [x] une option "Inclure les frais de retrait"
 
 ---
 
-- enregistrer()
+- [x] enregistrer()
 
 Ajouter :
 
-- récupérer le choix du client
-- calculer les frais de retrait
-- ajouter les frais au montant débité si l'option est cochée
-- enregistrer le choix dans la transaction
+- [x] récupérer le choix du client
+- [x] calculer les frais de retrait
+- [x] ajouter les frais au montant débité si l'option est cochée
+- [x] enregistrer le choix dans la transaction
 
 ---
 
@@ -74,11 +74,11 @@ Aucune modification.
 
 Modifier :
 
-- client/transfert.php
+- [x] client/transfert.php
 
 Ajouter :
 
-- case à cocher "Inclure les frais de retrait"
+- [x] case à cocher "Inclure les frais de retrait"
 - affichage du montant total à débiter (optionnel)
 
 ---
@@ -91,8 +91,8 @@ chercherFraisRetrait($montant)
 
 Pour :
 
-- rechercher le barème correspondant
-- retourner les frais
+- [x] rechercher le barème correspondant
+- [x] retourner les frais
 
 ---
 
@@ -102,8 +102,7 @@ calculerMontantTotal($montant, $fraisTransfert, $fraisRetrait, $inclure)
 
 Pour :
 
-- calculer le montant total à débiter
-- retourner le montant total
+- [x] calculer le montant total à débiter
+- [x] retourner le montant total
 
 ----
-
