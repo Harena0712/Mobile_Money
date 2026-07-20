@@ -48,4 +48,33 @@ class TransactionModel extends Model
         $this->insert($data);
         return $this->insertID();
     }
+
+    public function creerTransactionRetrait(int $idClient, float $montant, float $frais): int
+    {
+        $typeOpModel = new TypeOperationModel();
+        $typeOp = $typeOpModel->where('libelle', 'RETRAIT')->first();
+        if (! $typeOp) {
+            throw new \Exception('Type opération RETRAIT non trouvé.');
+        }
+
+        $statutModel = new StatutModel();
+        $statut = $statutModel->where('libelle', 'VALIDEE')->first()
+            ?? $statutModel->where('libelle', 'SUCCES')->first();
+        if (! $statut) {
+            throw new \Exception('Statut VALIDEE ou SUCCES non trouvé.');
+        }
+
+        $data = [
+            'id_type_operation' => $typeOp['id'],
+            'id_client_source' => $idClient,
+            'id_client_destination' => null,
+            'montant' => $montant,
+            'frais' => $frais,
+            'date_transaction' => date('Y-m-d H:i:s'),
+            'id_statut' => $statut['id'],
+        ];
+
+        $this->insert($data);
+        return $this->insertID();
+    }
 }

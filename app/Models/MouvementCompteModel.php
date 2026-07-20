@@ -51,4 +51,17 @@ class MouvementCompteModel extends Model
         $this->insert($data);
         return $this->insertID();
     }
+
+    public function creerMouvementDebit(int $idTransaction, int $idClient, float $montant): int
+    {
+        $data = [
+            'id_transaction' => $idTransaction,
+            'id_client' => $idClient,
+            'montant' => $montant,
+            'sens' => 'DEBIT',
+        ];
+
+        $this->insert($data);
+        return $this->insertID();
+    }
 }

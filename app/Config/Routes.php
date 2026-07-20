@@ -18,3 +18,6 @@ $routes->get('/client/solde', 'SoldeController::index');
 
 $routes->get('/client/depot', 'DepotController::index');
 $routes->post('/client/depot', 'DepotController::enregistrer');
+
+$routes->get('/client/retrait', 'RetraitController::index');
+$routes->post('/client/retrait', 'RetraitController::enregistrer');

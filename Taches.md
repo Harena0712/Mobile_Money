@@ -490,3 +490,250 @@ Pour :
 
 - créer un mouvement DEBIT
 - enregistrer le montant total (montant + frais)
+
+
+---
+
+# 5. Faire un transfert
+
+## Base de données
+
+- Utiliser la table Client
+- Utiliser la table Transaction
+- Utiliser la table MouvementCompte
+- Utiliser la table TypeOperation
+- Utiliser la table BaremeFrais
+- Utiliser la table Statut
+
+---
+
+## Model
+
+### ClientModel
+
+Fonction à ajouter :
+
+chercherClientParTelephone($telephone)
+
+Pour :
+
+- rechercher le destinataire
+- retourner le client
+- retourner `null` s'il n'existe pas
+
+---
+
+### BaremeFraisModel
+
+Fonction à ajouter :
+
+chercherFraisTransfert($montant)
+
+Pour :
+
+- rechercher le barème correspondant au montant
+- retourner le montant des frais
+
+---
+
+### TransactionModel
+
+Fonction à ajouter :
+
+creerTransactionTransfert($idClientSource, $idClientDestination, $montant, $frais)
+
+Pour :
+
+- créer une transaction de type TRANSFERT
+- enregistrer le montant
+- enregistrer les frais
+- enregistrer le statut
+- retourner l'id de la transaction
+
+---
+
+### MouvementCompteModel
+
+Fonctions à ajouter :
+
+creerMouvementDebit($idTransaction, $idClient, $montant)
+
+Pour :
+
+- créer un mouvement DEBIT
+- associer le mouvement à la transaction
+
+---
+
+creerMouvementCredit($idTransaction, $idClient, $montant)
+
+Pour :
+
+- créer un mouvement CREDIT
+- associer le mouvement à la transaction
+
+---
+
+## Controller
+
+Créer : TransfertController
+
+Pour :
+
+- index()
+
+=> Afficher le formulaire de transfert.
+
+---
+
+- enregistrer()
+
+Pour :
+
+- vérifier que le client est connecté
+- récupérer l'id du client depuis la session
+- récupérer le téléphone du destinataire
+- récupérer le montant
+- vérifier que le montant est valide
+- vérifier que le destinataire existe
+- vérifier que le destinataire est actif
+- vérifier que le client ne s'envoie pas de l'argent à lui-même
+- récupérer les frais
+- calculer le montant total à débiter
+- vérifier que le solde est suffisant
+- créer la transaction
+- créer le mouvement DEBIT pour l'expéditeur
+- créer le mouvement CREDIT pour le destinataire
+- afficher un message de succès
+
+Sinon :
+
+- afficher un message d'erreur
+
+---
+
+## Routes
+
+- /client/transfert : GET
+
+=> formulaire
+
+---
+
+- /client/transfert : POST
+
+=> traitement
+
+---
+
+## View
+
+Créer :
+
+- client/transfert.php :
+  - champ téléphone du destinataire
+  - champ montant
+  - bouton Transférer
+  - message de succès
+  - message d'erreur
+  - bouton Retour
+
+---
+
+## Fonctions
+
+### Vérifier que le client est connecté
+
+clientConnecte()
+
+Pour :
+
+- vérifier que la session existe
+- rediriger vers la page de connexion si nécessaire
+
+---
+
+### Vérifier le montant
+
+montantValide($montant)
+
+Pour :
+
+- vérifier que le montant est supérieur à 0
+
+---
+
+### Vérifier le destinataire
+
+destinataireExiste($telephone)
+
+Pour :
+
+- rechercher le client
+- retourner le client
+- retourner `null` s'il n'existe pas
+
+---
+
+### Vérifier que le destinataire est actif
+
+clientActif($client)
+
+Pour :
+
+- vérifier que le client est actif
+
+---
+
+### Vérifier le solde
+
+soldeSuffisant($idClient, $montantTotal)
+
+Pour :
+
+- calculer le solde du client
+- vérifier que le solde est supérieur ou égal au montant total
+
+---
+
+### Récupérer les frais
+
+chercherFraisTransfert($montant)
+
+Pour :
+
+- rechercher le barème correspondant
+- retourner les frais
+
+---
+
+### Créer la transaction
+
+creerTransactionTransfert($idClientSource, $idClientDestination, $montant, $frais)
+
+Pour :
+
+- créer une transaction de type TRANSFERT
+- enregistrer le montant
+- enregistrer les frais
+- enregistrer le statut VALIDEE
+
+---
+
+### Créer les mouvements
+
+creerMouvementDebit($idTransaction, $idClientSource, $montantTotal)
+
+Pour :
+
+- créer un mouvement DEBIT
+- enregistrer le montant total (montant + frais)
+
+---
+
+creerMouvementCredit($idTransaction, $idClientDestination, $montant)
+
+Pour :
+
+- créer un mouvement CREDIT
+- enregistrer le montant reçu
