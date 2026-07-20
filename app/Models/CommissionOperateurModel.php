@@ -32,6 +32,15 @@ class CommissionOperateurModel extends Model {
             ->first();
     }
 
+    public function getPourcentage(int $idOperateurSource, int $idOperateurDestination): ?float
+    {
+        $commission = $this->where('id_operateur_source', $idOperateurSource)
+            ->where('id_operateur_destination', $idOperateurDestination)
+            ->first();
+
+        return $commission ? (float) $commission['pourcentage'] : null;
+    }
+
     public function ajouterCommission(array $data): int
     {
         return (int) $this->insert($data, true);

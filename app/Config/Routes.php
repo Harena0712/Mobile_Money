@@ -34,6 +34,9 @@ $routes->get('commission/ajouter', 'CommissionOperateurController::ajouter');
 $routes->post('commission/ajouter', 'CommissionOperateurController::enregistrer');
 $routes->post('commission/modifier', 'CommissionOperateurController::modifier');
 
+$routes->get('/gain', 'GainController::index');
+$routes->get('/compensation', 'CompensationController::index');
+
 $routes->get('operateur/situationComptes', 'SituationComptes::liste');
 $routes->get('/login', 'ConnexionController::index');
 $routes->post('/login', 'ConnexionController::login');

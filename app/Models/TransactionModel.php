@@ -129,6 +129,106 @@ class TransactionModel extends Model
         return $this->insertID();
     }
 
+    public function calculerGains(): array
+    {
+        $db = $this->db;
+        $query = $db->table($this->table . ' t')
+            ->select('SUM(CASE WHEN t.id_type_operation IN (1, 2, 3) THEN t.frais ELSE 0 END) AS total_frais')
+            ->select('SUM(CASE WHEN t.id_type_operation = 2 THEN t.frais ELSE 0 END) AS total_frais_transfert')
+            ->select('SUM(CASE WHEN t.id_type_operation = 3 THEN t.frais ELSE 0 END) AS total_frais_retrait')
+            ->select('COUNT(CASE WHEN t.id_type_operation = 1 THEN 1 END) AS total_depots')
+            ->select('COUNT(CASE WHEN t.id_type_operation = 2 THEN 1 END) AS total_transferts')
+            ->select('COUNT(CASE WHEN t.id_type_operation = 3 THEN 1 END) AS total_retraits')
+            ->get();
+
+        $result = $query->getRowArray();
+        $commissions = $this->calculerCommissionsInterOperateurs();
+
+        return [
+            'total_frais' => (float) ($result['total_frais'] ?? 0),
+            'total_frais_transfert' => (float) ($result['total_frais_transfert'] ?? 0),
+            'total_frais_retrait' => (float) ($result['total_frais_retrait'] ?? 0),
+            'total_depots' => (int) ($result['total_depots'] ?? 0),
+            'total_transferts' => (int) ($result['total_transferts'] ?? 0),
+            'total_retraits' => (int) ($result['total_retraits'] ?? 0),
+            'total_commissions_interoperateurs' => $commissions,
+        ];
+    }
+
+    private function calculerCommissionsInterOperateurs(): float
+    {
+        $db = $this->db;
+
+        if (! method_exists($db, 'tableExists') || ! $db->tableExists('TransactionDestination')) {
+            return 0.0;
+        }
+
+        try {
+            $query = $db->table($this->table . ' t')
+                ->select('t.montant, os.id AS source_operateur_id, od.id AS destination_operateur_id')
+                ->join('TransactionDestination td', 'td.id_transaction = t.id')
+                ->join('Client cs', 'cs.id = t.id_client_source')
+                ->join('Prefixe ps', 'ps.id = cs.id_prefixe', 'LEFT')
+                ->join('Operateur os', 'os.id = ps.id_operateur', 'LEFT')
+                ->join('Client cd', 'cd.id = td.id_client')
+                ->join('Prefixe pd', 'pd.id = cd.id_prefixe', 'LEFT')
+                ->join('Operateur od', 'od.id = pd.id_operateur', 'LEFT')
+                ->where('t.id_type_operation', 2)
+                ->get();
+
+            $commissionModel = new \App\Models\CommissionOperateurModel();
+            $total = 0.0;
+
+            foreach ($query->getResultArray() as $row) {
+                if (empty($row['source_operateur_id']) || empty($row['destination_operateur_id'])) {
+                    continue;
+                }
+
+                $pourcentage = $commissionModel->getPourcentage((int) $row['source_operateur_id'], (int) $row['destination_operateur_id']);
+                if ($pourcentage === null) {
+                    continue;
+                }
+
+                $total += ((float) $row['montant']) * ($pourcentage / 100);
+            }
+
+            return $total;
+        } catch (\Exception $e) {
+            return 0.0;
+        }
+    }
+
+    public function calculerMontantsParOperateur(): array
+    {
+        $db = $this->db;
+
+        if (! method_exists($db, 'tableExists') || ! $db->tableExists('TransactionDestination')) {
+            return [];
+        }
+
+        try {
+            $query = $db->table($this->table . ' t')
+                ->select('o.id AS id_operateur, o.libelle AS operateur, SUM(td.montant) AS total_montant')
+                ->join('TransactionDestination td', 'td.id_transaction = t.id')
+                ->join('Client c', 'c.id = td.id_client')
+                ->join('Prefixe p', 'p.id = c.id_prefixe', 'LEFT')
+                ->join('Operateur o', 'o.id = p.id_operateur', 'LEFT')
+                ->where('t.id_type_operation', 2)
+                ->groupBy('o.id, o.libelle')
+                ->get();
+
+            return array_map(function ($row) {
+                return [
+                    'id_operateur' => $row['id_operateur'],
+                    'operateur' => $row['operateur'],
+                    'total_montant' => (float) $row['total_montant'],
+                ];
+            }, $query->getResultArray());
+        } catch (\Exception $e) {
+            return [];
+        }
+    }
+
     public function listerHistorique(int $idClient): array
     {
         return $this->db->table($this->table . ' t')

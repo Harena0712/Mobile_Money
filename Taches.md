@@ -306,11 +306,11 @@ Créer :
 
 ## Base de données
 
-  - [ ] Utiliser la table Transaction
-  - [ ] Utiliser la table Client
-  - [ ] Utiliser la table Prefixe
-  - [ ] Utiliser la table Operateur
-  - [ ] Utiliser la table CommissionOperateur
+  - [x] Utiliser la table Transaction
+  - [x] Utiliser la table Client
+  - [x] Utiliser la table Prefixe
+  - [x] Utiliser la table Operateur
+  - [x] Utiliser la table CommissionOperateur
 
 ---
 
@@ -324,9 +324,9 @@ calculerGains()
 
 Pour :
 
-  - [ ] calculer les frais des transactions internes
-  - [ ] calculer les commissions inter-opérateurs
-  - [ ] retourner les totaux
+  - [x] calculer les frais des transactions internes
+  - [x] calculer les commissions inter-opérateurs
+  - [x] retourner les totaux
 
 ---
 
@@ -336,7 +336,7 @@ Créer : GainController
 
 Pour :
 
-  - [ ] index()
+  - [x] index()
 
 => afficher la situation des gains
 
@@ -344,7 +344,7 @@ Pour :
 
 ## Routes
 
-  - [ ] /gain : GET
+  - [x] /gain : GET
 
 => afficher les gains
 
@@ -354,13 +354,13 @@ Pour :
 
 Créer :
 
-  - [ ] gain/index.php
+  - [x] gain/index.php
 
 Afficher :
 
-  - [ ] gains internes
-  - [ ] gains inter-opérateurs
-  - [ ] total général
+  - [x] gains internes
+  - [x] gains inter-opérateurs
+  - [x] total général
 
 
 ----
@@ -371,11 +371,11 @@ Afficher :
 
 ## Base de données
 
-  - [ ] Utiliser la table Transaction
-  - [ ] Utiliser la table TransactionDestination
-  - [ ] Utiliser la table Client
-  - [ ] Utiliser la table Prefixe
-  - [ ] Utiliser la table Operateur
+  - [x] Utiliser la table Transaction
+  - [x] Utiliser la table TransactionDestination
+  - [x] Utiliser la table Client
+  - [x] Utiliser la table Prefixe
+  - [x] Utiliser la table Operateur
 
 ---
 
@@ -389,8 +389,8 @@ calculerMontantsParOperateur()
 
 Pour :
 
-  - [ ] calculer les montants envoyés vers chaque opérateur
-  - [ ] regrouper les résultats par opérateur
+  - [x] calculer les montants envoyés vers chaque opérateur
+  - [x] regrouper les résultats par opérateur
 
 ---
 
@@ -400,7 +400,7 @@ Créer : CompensationController
 
 Pour :
 
-  - [ ] index()
+  - [x] index()
 
 => afficher les montants à envoyer
 
@@ -408,7 +408,7 @@ Pour :
 
 ## Routes
 
-  - [ ] /compensation : GET
+  - [x] /compensation : GET
 
 => afficher les montants
 
@@ -418,12 +418,12 @@ Pour :
 
 Créer :
 
-  - [ ] compensation/index.php
+  - [x] compensation/index.php
 
 Afficher :
 
-  - [ ] opérateur
-  - [ ] montant total à envoyer
+  - [x] opérateur
+  - [x] montant total à envoyer
 
 
 
