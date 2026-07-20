@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<?= $this->extend('layout') ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<?= $this->section('content') ?>
 
-<body>
+<div class="form-card">
     <form action="<?= site_url('operateur/prefixes/inserer') ?>" method="post">
         <?= csrf_field() ?>
-        <label for="prefixe">Préfixe :</label>
-        <input type="text" name="prefixe" id="prefixe" required>
-        <button type="submit">Inserer</button>
-    </form>
-</body>
 
-</html>
+        <div class="form-group">
+            <label for="prefixe">Préfixe</label>
+            <input type="text" name="prefixe" id="prefixe" class="form-control" placeholder="Ex : 034" required>
+            <p class="field-hint">Le préfixe identifie l'opérateur mobile money (ex : 034, 038...).</p>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Insérer</button>
+            <a href="<?= site_url('operateur/prefixes') ?>" class="btn btn-secondary">Annuler</a>
+        </div>
+    </form>
+</div>
+
+<?= $this->endSection() ?>

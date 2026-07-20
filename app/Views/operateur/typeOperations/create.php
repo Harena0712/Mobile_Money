@@ -1,123 +1,79 @@
-<!DOCTYPE html>
-<html lang="fr">
+<?= $this->extend('layout') ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter Type Opération</title>
+<?= $this->section('content') ?>
 
-    <style>
-        .ligne {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-
-        .ligne button {
-            margin-top: 10px;
-        }
-    </style>
-</head>
-
-<body>
-
+<div class="form-card" style="max-width: 720px;">
     <form action="<?= site_url('operateur/typesOperation/inserer') ?>" method="post">
-
         <?= csrf_field() ?>
 
-        <label for="libelle">Type d'opération :</label>
-        <input type="text" name="libelle" id="libelle" required>
-
-        <h3>Barèmes frais</h3>
-
-        <div id="baremes">
-
-            <div class="ligne">
-
-                <label>Montant minimum :</label>
-                <input type="number" name="baremes[0][montant_min]" required>
-
-                <label>Montant maximum :</label>
-                <input type="number" name="baremes[0][montant_max]" required>
-
-                <label>Valeur :</label>
-                <input type="number" name="baremes[0][valeur]" required>
-
-            </div>
-
+        <div class="form-group">
+            <label for="libelle">Type d'opération</label>
+            <input type="text" name="libelle" id="libelle" class="form-control" placeholder="Ex : Transfert, Retrait..." required>
         </div>
 
+        <div class="bareme-block">
+            <h3>Barèmes de frais</h3>
 
-        <button type="button" onclick="ajouterLigne()">
-            + Ajouter une tranche
-        </button>
+            <div id="baremes">
+                <div class="bareme-row">
+                    <div class="form-group">
+                        <label>Montant minimum</label>
+                        <input type="number" name="baremes[0][montant_min]" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Montant maximum</label>
+                        <input type="number" name="baremes[0][montant_max]" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Valeur</label>
+                        <input type="number" name="baremes[0][valeur]" class="form-control" required>
+                    </div>
+                </div>
+            </div>
 
-        <br><br>
+            <button type="button" class="add-row-btn" onclick="ajouterLigne()">+ Ajouter une tranche</button>
+        </div>
 
-        <button type="submit">
-            Ajouter
-        </button>
-
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <a href="<?= site_url('operateur/typesOperation') ?>" class="btn btn-secondary">Annuler</a>
+        </div>
     </form>
+</div>
 
+<?= $this->endSection() ?>
 
-    <script>
-        let index = 1;
+<?= $this->section('scripts') ?>
+<script>
+    let index = 1;
 
+    function ajouterLigne() {
+        const container = document.getElementById("baremes");
+        const div = document.createElement("div");
+        div.classList.add("bareme-row");
 
-        function ajouterLigne() {
+        div.innerHTML = `
+            <div class="form-group">
+                <label>Montant minimum</label>
+                <input type="number" name="baremes[${index}][montant_min]" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Montant maximum</label>
+                <input type="number" name="baremes[${index}][montant_max]" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Valeur</label>
+                <input type="number" name="baremes[${index}][valeur]" class="form-control" required>
+            </div>
+            <button type="button" class="btn btn-danger btn-sm" onclick="supprimerLigne(this)">Supprimer</button>
+        `;
 
-            let container = document.getElementById("baremes");
+        container.appendChild(div);
+        index++;
+    }
 
-
-            let div = document.createElement("div");
-
-            div.classList.add("ligne");
-
-
-            div.innerHTML = `
-
-        <label>Montant minimum :</label>
-        <input type="number" 
-               name="baremes[${index}][montant_min]" 
-               required>
-
-
-        <label>Montant maximum :</label>
-        <input type="number" 
-               name="baremes[${index}][montant_max]" 
-               required>
-
-
-        <label>Valeur :</label>
-        <input type="number" 
-               name="baremes[${index}][valeur]" 
-               required>
-
-
-        <button type="button" onclick="supprimerLigne(this)">
-            Supprimer
-        </button>
-
-    `;
-
-
-            container.appendChild(div);
-
-
-            index++;
-        }
-
-
-
-        function supprimerLigne(button) {
-
-            button.parentElement.remove();
-
-        }
-    </script>
-
-
-</body>
-
-</html>
+    function supprimerLigne(button) {
+        button.parentElement.remove();
+    }
+</script>
+<?= $this->endSection() ?>

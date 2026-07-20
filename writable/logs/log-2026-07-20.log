@@ -477,3 +477,15 @@ in APPPATH/Views/operateur/situationFrais/liste.php on line 34.
  8 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
  9 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 10 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-20 09:54:25 --> CodeIgniter\Router\Exceptions\RouterException: The namespace delimiter is a backslash (\), not a slash (/). Route handler: "\App\Controllers\TypeOoperateur/situationFraisperation::delete/$1"
+[Method: GET, Route: operateur/typesOperation/delete/4]
+in SYSTEMPATH/Router/Router.php on line 523.
+ 1 SYSTEMPATH/Router/Router.php(523): CodeIgniter\Router\Exceptions\RouterException::forInvalidControllerName()
+ 2 SYSTEMPATH/Router/Router.php(225): CodeIgniter\Router\Router->checkRoutes()
+ 3 SYSTEMPATH/CodeIgniter.php(829): CodeIgniter\Router\Router->handle()
+ 4 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 5 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 6 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 8 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 9 SYSTEMPATH/rewrite.php(44): require_once('/home/harena/Documents/ITU/S4/Système d’information/Mobile_Money/public/index.php')

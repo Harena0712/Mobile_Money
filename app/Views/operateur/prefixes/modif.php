@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<?= $this->extend('layout') ?>
+
+<?= $this->section('content') ?>
+
+<div class="form-card">
     <form action="<?= site_url('operateur/prefixes/update') ?>" method="post">
         <?= csrf_field() ?>
-        <label for="prefixe">Préfixe :</label>
-        <input type="text" name="prefixe" id="prefixe" value="<?= esc($prefixe['prefixe']) ?>" required>
         <input type="hidden" name="id" id="id" value="<?= esc($prefixe['id']) ?>" required>
-        <button type="submit">Modifier</button>
+
+        <div class="form-group">
+            <label for="prefixe">Préfixe</label>
+            <input type="text" name="prefixe" id="prefixe" class="form-control" value="<?= esc($prefixe['prefixe']) ?>" required>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Modifier</button>
+            <a href="<?= site_url('operateur/prefixes') ?>" class="btn btn-secondary">Annuler</a>
+        </div>
     </form>
-</body>
-</html>
+</div>
+
+<?= $this->endSection() ?>

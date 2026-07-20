@@ -1,37 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Situation des frais</h1>
-    <p>Total des transferts : <?= esc($totalTransfert) ?></p>
-    <p>Total des retraits : <?= esc($totalRetrait) ?></p>
-    <p>Total des frais : <?= esc($totalFrais) ?></p>
+<?= $this->extend('layout') ?>
 
+<?= $this->section('content') ?>
+
+<div class="stats-row">
+    <div class="stat-card">
+        <div class="stat-icon green">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 7l-9.2 9.2M17 7v6M17 7h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+            <p class="stat-label">Total des transferts</p>
+            <p class="stat-value"><?= esc($totalTransfert) ?></p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon orange">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 17l9.2-9.2M7 17v-6M7 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+            <p class="stat-label">Total des retraits</p>
+            <p class="stat-value"><?= esc($totalRetrait) ?></p>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon navy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 6.5c0-1.93-2.24-3.5-5-3.5s-5 1.57-5 3.5 2.24 3.5 5 3.5 5 1.57 5 3.5-2.24 3.5-5 3.5-5-1.57-5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+            <p class="stat-label">Total des frais</p>
+            <p class="stat-value"><?= esc($totalFrais) ?></p>
+        </div>
+    </div>
+</div>
+
+<div class="panel">
     <?php if (!empty($transactions) && is_array($transactions)) : ?>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Type d'opération</th>
-                    <th>Frais</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($transactions as $transaction) : ?>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead>
                     <tr>
-                        <td><?= esc($transaction['id']) ?></td>
-                        <td><?= esc($transaction['id_type_operation']) ?></td>
-                        <td><?= esc($transaction['frais']) ?></td>
+                        <th>ID</th>
+                        <th>Type d'opération</th>
+                        <th>Frais</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($transactions as $transaction) : ?>
+                        <tr>
+                            <td>#<?= esc($transaction['id']) ?></td>
+                            <td><?= esc($transaction['id_type_operation']) ?></td>
+                            <td><span class="badge badge-green"><?= esc($transaction['frais']) ?></span></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     <?php else : ?>
-        <p>Aucune transaction trouvée.</p>
+        <div class="empty-state">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <p>Aucune transaction trouvée.</p>
+        </div>
     <?php endif; ?>
-</body>
-</html>
+</div>
+
+<?= $this->endSection() ?>
