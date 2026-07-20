@@ -13,10 +13,10 @@ class CreateMouvementCompte extends Migration
                 'type' => 'INTEGER',
                 'auto_increment' => true,
             ],
-            'transaction_id' => [
+            'id_transaction' => [
                 'type' => 'INTEGER',
             ],
-            'client_id' => [
+            'id_client' => [
                 'type' => 'INTEGER',
             ],
             'montant' => [
@@ -32,7 +32,7 @@ class CreateMouvementCompte extends Migration
         $this->forge->addPrimaryKey('id');
 
         $this->forge->addForeignKey(
-            'transaction_id',
+            'id_transaction',
             'Transaction',
             'id',
             'CASCADE',
@@ -40,7 +40,7 @@ class CreateMouvementCompte extends Migration
         );
 
         $this->forge->addForeignKey(
-            'client_id',
+            'id_client',
             'Client',
             'id',
             'CASCADE',
