@@ -7,7 +7,8 @@ class Prefixe extends BaseController
 {
     public function liste() {
         $model = new PrefixeModel();
-        $data['prefixes'] = $model->findAll();
+        $data['prefixes'] = $model->listePrefixe();
+
         return view('operateur/prefixes/liste', $data);
     }
 
