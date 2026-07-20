@@ -65,6 +65,26 @@
                     Situation des frais
                 </a>
 
+                <a href="<?= site_url('/gain') ?>"
+                    class="nav-link <?= strpos(current_url(), '/gain') !== false ? 'active' : '' ?>">
+                    <span class="nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 19h16M7 15l5-5 5 5M12 4v11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    Gains
+                </a>
+
+                <a href="<?= site_url('/compensation') ?>"
+                    class="nav-link <?= strpos(current_url(), '/compensation') !== false ? 'active' : '' ?>">
+                    <span class="nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 6v12M8 10l4-4 4 4M8 14l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    Compensation
+                </a>
+
                 <a href="<?= site_url('operateur/situationComptes') ?>"
                     class="nav-link <?= strpos(current_url(), 'situationComptes') !== false ? 'active' : '' ?>">
                     <span class="nav-icon">

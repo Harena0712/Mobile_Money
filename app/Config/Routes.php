@@ -13,6 +13,13 @@ $routes->get('operateur/prefixes/modif/(:num)', 'Prefixe::modif/$1');
 $routes->post('operateur/prefixes/update', 'Prefixe::update');
 $routes->get('operateur/prefixes/delete/(:num)', 'Prefixe::delete/$1');
 
+$routes->get('operateur', 'OperateurController::index');
+$routes->get('operateur/ajouter', 'OperateurController::ajouter');
+$routes->post('operateur/ajouter', 'OperateurController::enregistrer');
+$routes->post('operateur/modifier', 'OperateurController::modifier');
+$routes->post('operateur/activer', 'OperateurController::activer');
+$routes->post('operateur/desactiver', 'OperateurController::desactiver');
+
 $routes->get('operateur/typesOperation', 'TypeOperation::liste');
 $routes->get('operateur/typesOperation/voir/(:num)', 'TypeOperation::voir/$1');
 $routes->get('operateur/typesOperation/create', 'TypeOperation::create');
@@ -22,6 +29,14 @@ $routes->post('operateur/typesOperation/update', 'TypeOperation::update');
 $routes->get('operateur/typesOperation/delete/(:num)', 'TypeOperation::delete/$1');
 
 $routes->get('operateur/situationFrais', 'SituationFrais::liste');
+
+$routes->get('commission', 'CommissionOperateurController::index');
+$routes->get('commission/ajouter', 'CommissionOperateurController::ajouter');
+$routes->post('commission/ajouter', 'CommissionOperateurController::enregistrer');
+$routes->post('commission/modifier', 'CommissionOperateurController::modifier');
+
+$routes->get('/gain', 'GainController::index');
+$routes->get('/compensation', 'CompensationController::index');
 
 $routes->get('operateur/situationComptes', 'SituationComptes::liste');
 $routes->get('/login', 'ConnexionController::index');
