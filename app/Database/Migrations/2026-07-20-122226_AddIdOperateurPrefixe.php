@@ -8,13 +8,13 @@ class AddIdOperateurPrefixe extends Migration
 {
     public function up()
     {
-        $this->forge->addColumn('Prefixe', [
-            'id_operateur' => ['type' => 'INTEGER', 'default' => 0],
-        ]);
+        // Redundant migration: the id_operateur column is already added by
+        // 2026-07-20-070345_AddPrefixeForeignKeys.php.
+        // Keep this migration as a no-op to preserve version history.
     }
 
     public function down()
     {
-        $this->forge->dropColumn('Prefixe', 'id_operateur');
+        // No operation: leaving existing id_operateur column intact.
     }
 }

@@ -2,6 +2,39 @@
 
 <?= $this->section('content') ?>
 
+<style>
+    .client-content {
+        max-width: 1200px !important;
+        width: 100% !important;
+        padding: 0 24px !important;
+    }
+
+    .client-card {
+        max-width: none;
+        width: 100%;
+    }
+
+    .table-wrap {
+        min-width: 0;
+        overflow-x: auto;
+    }
+
+    .data-table {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .table-toolbar {
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .table-toolbar .form-control {
+        min-width: 180px;
+        max-width: 320px;
+    }
+</style>
+
 <div class="client-card">
     <h1>Historique des transactions</h1>
     <p class="client-subtitle">L'ensemble de vos opérations récentes.</p>

@@ -165,6 +165,7 @@ class TransactionModel extends Model
             'inclure_frais_retrait' => $inclureFraisRetrait ? 1 : 0,
         ]);
     }
+    
 
     public function calculerGains(): array
     {
