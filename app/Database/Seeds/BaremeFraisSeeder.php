@@ -24,19 +24,26 @@ class BaremeFraisSeeder extends Seeder
             [1000001,2000000,3000]
         ];
 
-        foreach($types as $type){
+        $table = $this->db->table('BaremeFrais');
 
-            foreach($baremes as $b){
+        foreach ($types as $type) {
+            foreach ($baremes as $b) {
+                $exists = $table
+                    ->where('id_type_operation', $type)
+                    ->where('montant_min', $b[0])
+                    ->where('montant_max', $b[1])
+                    ->get()
+                    ->getRowArray();
 
-                $this->db->table('BaremeFrais')->insert([
-                    'id_type_operation'=>$type,
-                    'montant_min'=>$b[0],
-                    'montant_max'=>$b[1],
-                    'valeur'=>$b[2]
-                ]);
-
+                if (empty($exists)) {
+                    $table->insert([
+                        'id_type_operation' => $type,
+                        'montant_min' => $b[0],
+                        'montant_max' => $b[1],
+                        'valeur' => $b[2]
+                    ]);
+                }
             }
-
         }
     }
 }
