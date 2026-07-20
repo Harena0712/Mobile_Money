@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\BaremeFraisModel;
 use App\Models\ClientModel;
 use App\Models\MouvementCompteModel;
+use App\Models\PrefixeModel;
 use App\Models\TransactionDestinationModel;
 use App\Models\TransactionModel;
 use Config\Database;
@@ -51,13 +52,21 @@ class TransfertController extends BaseController
         $idClientSource = (int) session()->get('id_client');
 
         try {
+            $destinataires = $this->identifierOperateursDestinataires($destinataires);
             $telephones = array_column($destinataires, 'telephone');
 
             if (count($telephones) !== count(array_unique($telephones))) {
                 return redirect()->to('/transfert')->with('error', 'Un même destinataire ne peut pas être renseigné plusieurs fois.');
             }
 
-            $clients = $this->chercherDestinataires($telephones);
+            if ($inclureFraisRetrait && $this->contientDestinataireExterne($destinataires)) {
+                return redirect()->to('/transfert')->with('error', 'Les frais de retrait ne peuvent être inclus que pour des destinataires Airtel.');
+            }
+
+            $telephonesAirtel = array_column(array_filter($destinataires, static function ($destinataire) {
+                return (bool) $destinataire['est_airtel'];
+            }), 'telephone');
+            $clients = $this->chercherDestinataires($telephonesAirtel);
             $clientsParTelephone = [];
 
             foreach ($clients as $client) {
@@ -66,6 +75,10 @@ class TransfertController extends BaseController
 
             foreach ($destinataires as $index => $destinataire) {
                 $telephone = $destinataire['telephone'];
+
+                if (! $destinataire['est_airtel']) {
+                    continue;
+                }
 
                 if (! isset($clientsParTelephone[$telephone])) {
                     return redirect()->to('/transfert')->with('error', 'Destinataire introuvable à la ligne ' . ($index + 1) . '.');
@@ -127,6 +140,10 @@ class TransfertController extends BaseController
 
             $transactionDestinationModel = new TransactionDestinationModel();
             foreach ($destinataires as $destinataire) {
+                if (! isset($destinataire['id_client'])) {
+                    continue;
+                }
+
                 $transactionDestinationModel->ajouterDestination(
                     $idTransaction,
                     (int) $destinataire['id_client'],
@@ -188,6 +205,32 @@ class TransfertController extends BaseController
         }
 
         return $destinataires;
+    }
+
+    protected function identifierOperateursDestinataires(array $destinataires): array
+    {
+        $prefixeModel = new PrefixeModel();
+
+        foreach ($destinataires as $index => $destinataire) {
+            $operateur = $prefixeModel->chercherOperateurParTelephone($destinataire['telephone']);
+            $libelleOperateur = (string) ($operateur['operateur'] ?? '');
+
+            $destinataires[$index]['operateur'] = $libelleOperateur;
+            $destinataires[$index]['est_airtel'] = strtolower($libelleOperateur) === 'airtel';
+        }
+
+        return $destinataires;
+    }
+
+    protected function contientDestinataireExterne(array $destinataires): bool
+    {
+        foreach ($destinataires as $destinataire) {
+            if (! (bool) $destinataire['est_airtel']) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     protected function clientConnecte(): bool
