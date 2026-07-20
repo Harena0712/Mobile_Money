@@ -1076,3 +1076,31 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
 13 SYSTEMPATH/Boot.php(442): CodeIgniter\CLI\Console->run()
 14 SYSTEMPATH/Boot.php(166): CodeIgniter\Boot::runCommand()
 15 ROOTPATH/spark(87): CodeIgniter\Boot::bootSpark()
+CRITICAL - 2026-07-20 13:45:18 --> CodeIgniter\Router\Exceptions\RouterException: The namespace delimiter is a backslash (\), not a slash (/). Route handler: "\App\Controllers\TypeOoperateur/situationFraisperation::delete/$1"
+[Method: CLI, Route: routes]
+in SYSTEMPATH/Router/Router.php on line 523.
+ 1 SYSTEMPATH/Router/Router.php(523): CodeIgniter\Router\Exceptions\RouterException::forInvalidControllerName()
+ 2 SYSTEMPATH/Router/Router.php(225): CodeIgniter\Router\Router->checkRoutes()
+ 3 SYSTEMPATH/Commands/Utilities/Routes/FilterFinder.php(41): CodeIgniter\Router\Router->handle()
+ 4 SYSTEMPATH/Commands/Utilities/Routes/FilterFinder.php(57): CodeIgniter\Commands\Utilities\Routes\FilterFinder->getRouteFilters()
+ 5 SYSTEMPATH/Commands/Utilities/Routes/FilterCollector.php(78): CodeIgniter\Commands\Utilities\Routes\FilterFinder->find()
+ 6 SYSTEMPATH/Commands/Utilities/Routes.php(110): CodeIgniter\Commands\Utilities\Routes\FilterCollector->get()
+ 7 SYSTEMPATH/CLI/Commands.php(74): CodeIgniter\Commands\Utilities\Routes->run()
+ 8 SYSTEMPATH/CLI/Console.php(47): CodeIgniter\CLI\Commands->run()
+ 9 SYSTEMPATH/Boot.php(442): CodeIgniter\CLI\Console->run()
+10 SYSTEMPATH/Boot.php(166): CodeIgniter\Boot::runCommand()
+11 ROOTPATH/spark(87): CodeIgniter\Boot::bootSpark()
+CRITICAL - 2026-07-20 14:16:19 --> CodeIgniter\Router\Exceptions\RouterException: The namespace delimiter is a backslash (\), not a slash (/). Route handler: "\App\Controllers\TypeOoperateur/situationFraisperation::delete/$1"
+[Method: CLI, Route: routes]
+in SYSTEMPATH/Router/Router.php on line 523.
+ 1 SYSTEMPATH/Router/Router.php(523): CodeIgniter\Router\Exceptions\RouterException::forInvalidControllerName()
+ 2 SYSTEMPATH/Router/Router.php(225): CodeIgniter\Router\Router->checkRoutes()
+ 3 SYSTEMPATH/Commands/Utilities/Routes/FilterFinder.php(41): CodeIgniter\Router\Router->handle()
+ 4 SYSTEMPATH/Commands/Utilities/Routes/FilterFinder.php(57): CodeIgniter\Commands\Utilities\Routes\FilterFinder->getRouteFilters()
+ 5 SYSTEMPATH/Commands/Utilities/Routes/FilterCollector.php(78): CodeIgniter\Commands\Utilities\Routes\FilterFinder->find()
+ 6 SYSTEMPATH/Commands/Utilities/Routes.php(110): CodeIgniter\Commands\Utilities\Routes\FilterCollector->get()
+ 7 SYSTEMPATH/CLI/Commands.php(74): CodeIgniter\Commands\Utilities\Routes->run()
+ 8 SYSTEMPATH/CLI/Console.php(47): CodeIgniter\CLI\Commands->run()
+ 9 SYSTEMPATH/Boot.php(442): CodeIgniter\CLI\Console->run()
+10 SYSTEMPATH/Boot.php(166): CodeIgniter\Boot::runCommand()
+11 ROOTPATH/spark(87): CodeIgniter\Boot::bootSpark()

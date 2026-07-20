@@ -22,6 +22,19 @@ class ClientModel extends Model {
         return $this->where('telephone', $telephone)->first();
     }
 
+    public function chercherClientsParTelephone(array $telephones): array
+    {
+        $telephones = array_values(array_unique(array_filter(array_map(static function ($telephone) {
+            return preg_replace('/[^0-9]/', '', (string) $telephone);
+        }, $telephones))));
+
+        if ($telephones === []) {
+            return [];
+        }
+
+        return $this->whereIn('telephone', $telephones)->findAll();
+    }
+
     public function telephoneExiste(string $telephone): bool
     {
         return $this->where('telephone', $telephone)->countAllResults(false) > 0;
