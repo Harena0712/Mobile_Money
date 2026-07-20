@@ -72,4 +72,23 @@ class MouvementCompteModel extends Model
         $this->insert($data);
         return $this->insertID();
     }
+
+    public function creerMouvementsDestinataires(int $idTransaction, array $destinataires): array
+    {
+        $ids = [];
+
+        foreach ($destinataires as $destinataire) {
+            if (! isset($destinataire['id_client'])) {
+                continue;
+            }
+
+            $ids[] = $this->creerMouvementCredit(
+                $idTransaction,
+                (int) $destinataire['id_client'],
+                (float) $destinataire['montant']
+            );
+        }
+
+        return $ids;
+    }
 }

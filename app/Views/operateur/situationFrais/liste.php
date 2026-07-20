@@ -9,7 +9,7 @@
         </div>
         <div>
             <p class="stat-label">Total des transferts</p>
-            <p class="stat-value"><?= esc($totalTransfert) ?></p>
+            <p class="stat-value"><?= number_format((float) $totalTransfert, 2, '.', ' ') ?> Ar</p>
         </div>
     </div>
 
@@ -19,7 +19,7 @@
         </div>
         <div>
             <p class="stat-label">Total des retraits</p>
-            <p class="stat-value"><?= esc($totalRetrait) ?></p>
+            <p class="stat-value"><?= number_format((float) $totalRetrait, 2, '.', ' ') ?> Ar</p>
         </div>
     </div>
 
@@ -29,7 +29,7 @@
         </div>
         <div>
             <p class="stat-label">Total des frais</p>
-            <p class="stat-value"><?= esc($totalFrais) ?></p>
+            <p class="stat-value"><?= number_format((float) $totalFrais, 2, '.', ' ') ?> Ar</p>
         </div>
     </div>
 </div>
@@ -54,7 +54,7 @@
                         <tr data-search="<?= esc($transaction['id'] . ' ' . $transaction['id_type_operation'] . ' ' . $transaction['frais']) ?>">
                             <td>#<?= esc($transaction['id']) ?></td>
                             <td><?= esc($transaction['id_type_operation']) ?></td>
-                            <td><span class="badge badge-green"><?= esc($transaction['frais']) ?></span></td>
+                            <td><span class="badge badge-green"><?= number_format((float) $transaction['frais'], 2, '.', ' ') ?> Ar</span></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

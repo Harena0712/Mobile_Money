@@ -1,3 +1,5 @@
+# VERSION 1
+----
 # Mobile Money
 ## Coté Operateur
 ### Configuration des préfixes valable de l’opérateur
@@ -19,7 +21,7 @@
 - [x] Route `operateur/operationTypes/inserer::inserer()` : permet d’insérer un nouveau type d'opération
 - [x] Route `operateur/operationTypes/modif/id::modif(id)` : permet de modifier un type d'opération
 - [x] Route `operateur/operationTypes/update::update()` : permet de mettre à jour un type d'opération
-- [ ] Route `operateur/operationTypes/delete/id::delete(id)` : permet de supprimer un type d'opération
+- [x] Route `operateur/operationTypes/delete/id::delete(id)` : permet de supprimer un type d'opération
 - [ ] Route `operateur/operationTypes/bareme/id::listeBareme(id)` : permet de liste les bareme de frais par tranche de montant pour un type d'opération 
 - [ ] Controller : `OperatorController` avec tout les fonctions de gestion des types d'opérations et de leurs barèmes
 - [x] Page : `operateur/operationTypes/liste` avec tout les fonctions de gestion des types d'opérations et de leurs barèmes
@@ -38,6 +40,393 @@
 
 
 
+# Côté opérateur V2
+
+# 1. Gestion des opérateurs
+
+## Base de données
+
+- Utiliser la table Operateur
+
+---
+
+## Model
+
+### OperateurModel
+
+Fonctions à ajouter :
+
+listerOperateurs()
+
+Pour :
+
+- récupérer tous les opérateurs
+
+---
+
+chercherOperateur($id)
+
+Pour :
+
+- récupérer un opérateur
+
+---
+
+ajouterOperateur($nom)
+
+Pour :
+
+- enregistrer un nouvel opérateur
+
+---
+
+modifierOperateur($id, $nom)
+
+Pour :
+
+- modifier un opérateur
+
+---
+
+activerOperateur($id)
+
+Pour :
+
+- activer un opérateur
+
+---
+
+desactiverOperateur($id)
+
+Pour :
+
+- désactiver un opérateur
+
+---
+
+## Controller
+
+Créer : OperateurController
+
+Pour :
+
+- index()
+
+=> afficher la liste des opérateurs
+
+---
+
+- ajouter()
+
+=> afficher le formulaire
+
+---
+
+- enregistrer()
+
+=> enregistrer un opérateur
+
+---
+
+- modifier()
+
+=> modifier un opérateur
+
+---
+
+- activer()
+
+=> activer un opérateur
+
+---
+
+- desactiver()
+
+=> désactiver un opérateur
+
+---
+
+## Routes
+
+- /operateur : GET
+
+=> liste
+
+---
+
+- /operateur/ajouter : GET
+
+=> formulaire
+
+---
+
+- /operateur/ajouter : POST
+
+=> enregistrement
+
+---
+
+- /operateur/modifier : POST
+
+=> modification
+
+---
+
+- /operateur/activer : POST
+
+=> activation
+
+---
+
+- /operateur/desactiver : POST
+
+=> désactivation
+
+---
+
+## View
+
+Créer :
+
+- Dnas operateur/operateurs/liste.php
+  - liste des opérateurs
+  - bouton Ajouter
+  - bouton Modifier
+  - bouton Activer
+  - bouton Désactiver
+
+
+----
+
+# Côté opérateur
+
+# 2. Configuration des commissions inter-opérateurs
+
+## Base de données
+
+- [x] Utiliser la table CommissionOperateur
+
+---
+
+## Model
+
+### CommissionOperateurModel
+
+Fonctions à ajouter :
+
+- [x] listerCommissions()
+
+---
+
+- [x] chercherCommission($id)
+
+---
+
+- [x] ajouterCommission()
+
+---
+
+- [x] modifierCommission()
+
+---
+
+## Controller
+
+Créer : CommissionOperateurController
+
+Pour :
+
+- [x] index()
+
+=> afficher les commissions
+
+---
+
+- [x] ajouter() 
+
+=> formulaire
+
+---
+
+- [x] enregistrer()
+
+=> enregistrer une commission
+
+---
+
+- [x] modifier()
+
+=> modifier une commission
+
+---
+
+## Routes
+
+- [x] /commission : GET
+
+=> liste
+
+---
+
+- [x] /commission/ajouter : GET
+
+=> formulaire
+
+---
+
+- [x] /commission/ajouter : POST
+
+=> enregistrement
+
+---
+
+- [x] /commission/modifier : POST
+
+=> modification
+
+---
+
+## View
+
+Créer :
+
+- [x] commission/index.php
+  - [x] liste des commissions
+
+- [x] commission/form.php
+  - [x] opérateur source
+  - [x] opérateur destination
+  - [x] pourcentage
+
+
+----
+
+
+# Côté opérateur
+
+# 3. Situation des gains
+
+## Base de données
+
+  - [x] Utiliser la table Transaction
+  - [x] Utiliser la table Client
+  - [x] Utiliser la table Prefixe
+  - [x] Utiliser la table Operateur
+  - [x] Utiliser la table CommissionOperateur
+
+---
+
+## Model
+
+### TransactionModel
+
+Fonction à ajouter :
+
+calculerGains()
+
+Pour :
+
+  - [x] calculer les frais des transactions internes
+  - [x] calculer les commissions inter-opérateurs
+  - [x] retourner les totaux
+
+---
+
+## Controller
+
+Créer : GainController
+
+Pour :
+
+  - [x] index()
+
+=> afficher la situation des gains
+
+---
+
+## Routes
+
+  - [x] /gain : GET
+
+=> afficher les gains
+
+---
+
+## View
+
+Créer :
+
+  - [x] gain/index.php
+
+Afficher :
+
+  - [x] gains internes
+  - [x] gains inter-opérateurs
+  - [x] gains par opérateur
+  - [x] total général
+
+
+----
+
+# Côté opérateur
+
+# 4. Situation des montants à envoyer aux autres opérateurs
+
+## Base de données
+
+  - [x] Utiliser la table Transaction
+  - [x] Utiliser la table TransactionDestination
+  - [x] Utiliser la table Client
+  - [x] Utiliser la table Prefixe
+  - [x] Utiliser la table Operateur
+
+---
+
+## Model
+
+### TransactionModel
+
+Fonction à ajouter :
+
+calculerMontantsParOperateur()
+
+Pour :
+
+  - [x] calculer les montants envoyés vers chaque opérateur
+  - [x] regrouper les résultats par opérateur
+
+---
+
+## Controller
+
+Créer : CompensationController
+
+Pour :
+
+  - [x] index()
+
+=> afficher les montants à envoyer
+
+---
+
+## Routes
+
+  - [x] /compensation : GET
+
+=> afficher les montants
+
+---
+
+## View
+
+Créer :
+
+  - [x] compensation/index.php
+
+Afficher :
+
+  - [x] opérateur
+  - [x] montant total à envoyer
 
 
 
@@ -881,3 +1270,279 @@ Pour :
 - [x] récupérer les transactions où le client est le destinataire
 - [x] trier les transactions par date décroissante
 - [x] retourner la liste des transactions
+
+
+----
+
+
+# VERSION 2
+
+
+# Côté client
+
+# 1. Inclure les frais de retrait lors du transfert
+
+## Base de données
+
+- [x] Utiliser la table Transaction
+- [x] Ajouter le champ inclure_frais_retrait
+- [x] Utiliser la table BaremeFrais
+- Utiliser la table CommissionOperateur
+
+---
+
+## Model
+
+### BaremeFraisModel
+
+Fonction à ajouter :
+
+chercherFraisRetrait($montant)
+
+Pour :
+
+- [x] rechercher le barème correspondant
+- [x] retourner les frais de retrait
+
+---
+
+### TransactionModel
+
+Fonction à ajouter :
+
+mettreAJourFraisRetrait($idTransaction, $inclureFraisRetrait)
+
+Pour :
+
+- [x] enregistrer le choix du client
+
+---
+
+## Controller
+
+Modifier : TransfertController
+
+Pour :
+
+- [x] index()
+
+Ajouter :
+
+- [x] une option "Inclure les frais de retrait"
+
+---
+
+- [x] enregistrer()
+
+Ajouter :
+
+- [x] récupérer le choix du client
+- [x] calculer les frais de retrait
+- [x] ajouter les frais au montant débité si l'option est cochée
+- [x] enregistrer le choix dans la transaction
+
+---
+
+## Routes
+
+Aucune modification.
+
+---
+
+## View
+
+Modifier :
+
+- [x] client/transfert.php
+
+Ajouter :
+
+- [x] case à cocher "Inclure les frais de retrait"
+- affichage du montant total à débiter (optionnel)
+
+---
+
+## Fonctions
+
+### Calculer les frais de retrait
+
+chercherFraisRetrait($montant)
+
+Pour :
+
+- [x] rechercher le barème correspondant
+- [x] retourner les frais
+
+---
+
+### Calculer le montant total
+
+calculerMontantTotal($montant, $fraisTransfert, $fraisRetrait, $inclure)
+
+Pour :
+
+- [x] calculer le montant total à débiter
+- [x] retourner le montant total
+
+----
+
+
+
+# 2. Envoyer vers plusieurs destinataires
+
+## Base de données
+
+- [x] Utiliser la table Transaction
+- [x] Utiliser la table TransactionDestination
+- [x] Utiliser la table MouvementCompte
+- [x] Utiliser la table Client
+- [x] Utiliser la table BaremeFrais
+- Utiliser la table CommissionOperateur
+
+---
+
+## Model
+
+### ClientModel
+
+Fonction à ajouter :
+
+chercherClientsParTelephone($telephones)
+
+Pour :
+
+- [x] rechercher tous les destinataires
+- [x] retourner la liste des clients
+
+---
+
+### TransactionDestinationModel
+
+Fonction à ajouter :
+
+ajouterDestination($idTransaction, $idClient, $montant)
+
+Pour :
+
+- [x] enregistrer un destinataire
+- [x] enregistrer le montant envoyé
+
+---
+
+### TransactionModel
+
+Fonction à ajouter :
+
+creerTransactionMultiple($idClientSource, $montantTotal, $frais)
+
+Pour :
+
+- [x] créer une transaction
+- [x] retourner l'id de la transaction
+
+---
+
+### MouvementCompteModel
+
+Fonction à ajouter :
+
+creerMouvementsDestinataires($idTransaction, $destinataires)
+
+Pour :
+
+- [x] créer un mouvement CREDIT pour chaque destinataire
+
+---
+
+## Controller
+
+Modifier : TransfertController
+
+Pour :
+
+- [x] index()
+
+Ajouter :
+
+- [x] possibilité d'ajouter plusieurs destinataires
+- [x] saisir un montant pour chaque destinataire
+
+---
+
+- [x] enregistrer()
+
+Ajouter :
+
+- [x] récupérer tous les destinataires
+- [x] vérifier que tous les destinataires Airtel existent
+- [x] vérifier que tous les destinataires Airtel sont actifs
+- [x] vérifier qu'il n'y a pas de doublons
+- [x] calculer le montant total
+- [x] calculer les frais
+- [x] vérifier le solde
+- [x] créer la transaction
+- [x] enregistrer les destinataires Airtel
+- [x] créer les mouvements DEBIT et CREDIT
+- [x] afficher un message de succès
+
+Sinon :
+
+- [x] afficher un message d'erreur
+
+---
+
+## Routes
+
+Aucune modification.
+
+---
+
+## View
+
+Modifier :
+
+- [x] client/transfert.php
+
+Ajouter :
+
+- [x] bouton "Ajouter un destinataire"
+- [x] plusieurs champs téléphone
+- [x] plusieurs champs montant
+- [x] bouton "Supprimer un destinataire" (optionnel)
+
+---
+
+## Fonctions
+
+### Vérifier les destinataires
+
+destinatairesValides($destinataires)
+
+Pour :
+
+- [x] vérifier que tous les destinataires Airtel existent
+- [x] vérifier qu'ils sont actifs
+- [x] vérifier qu'il n'y a pas de doublons
+
+---
+
+### Calculer le montant total
+
+calculerMontantTotal($destinataires)
+
+Pour :
+
+- [x] additionner tous les montants
+- [x] retourner le total
+
+---
+
+### Enregistrer les destinataires
+
+ajouterDestination($idTransaction, $idClient, $montant)
+
+Pour :
+
+- [x] enregistrer chaque destinataire Airtel
+- [x] enregistrer le montant correspondant
+

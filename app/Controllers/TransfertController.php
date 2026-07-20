@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Models\BaremeFraisModel;
 use App\Models\ClientModel;
 use App\Models\MouvementCompteModel;
+use App\Models\PrefixeModel;
+use App\Models\TransactionDestinationModel;
 use App\Models\TransactionModel;
 use Config\Database;
 
@@ -30,44 +32,95 @@ class TransfertController extends BaseController
             return redirect()->to('/login');
         }
 
-        $telephoneDestination = preg_replace('/[^0-9]/', '', (string) $this->request->getPost('telephone_destination'));
-        $montant = (float) ($this->request->getPost('montant') ?? 0);
+        $destinataires = $this->extraireDestinatairesDepuisPost();
+        $inclureFraisRetrait = $this->request->getPost('inclure_frais_retrait') !== null;
 
-        if ($telephoneDestination === '') {
-            return redirect()->to('/transfert')->with('error', 'Veuillez saisir le téléphone du destinataire.');
+        if ($destinataires === []) {
+            return redirect()->to('/transfert')->with('error', 'Veuillez saisir au moins un destinataire.');
         }
 
-        if (! $this->montantValide($montant)) {
-            return redirect()->to('/transfert')->with('error', 'Montant invalide. Le montant doit être supérieur à 0.');
+        foreach ($destinataires as $index => $destinataire) {
+            if ($destinataire['telephone'] === '') {
+                return redirect()->to('/transfert')->with('error', 'Veuillez saisir le téléphone du destinataire à la ligne ' . ($index + 1) . '.');
+            }
+
+            if (! $this->montantValide($destinataire['montant'])) {
+                return redirect()->to('/transfert')->with('error', 'Montant invalide à la ligne ' . ($index + 1) . '. Le montant doit être supérieur à 0.');
+            }
         }
 
         $idClientSource = (int) session()->get('id_client');
 
         try {
-            $destinataire = $this->destinataireExiste($telephoneDestination);
+            $destinataires = $this->identifierOperateursDestinataires($destinataires);
+            $telephones = array_column($destinataires, 'telephone');
 
-            if ($destinataire === null) {
-                return redirect()->to('/transfert')->with('error', 'Destinataire introuvable.');
+            if (count($telephones) !== count(array_unique($telephones))) {
+                return redirect()->to('/transfert')->with('error', 'Un même destinataire ne peut pas être renseigné plusieurs fois.');
             }
 
-            if (! $this->clientActif($destinataire)) {
-                return redirect()->to('/transfert')->with('error', 'Destinataire inactif.');
+            if ($inclureFraisRetrait && $this->contientDestinataireExterne($destinataires)) {
+                return redirect()->to('/transfert')->with('error', 'Les frais de retrait ne peuvent être inclus que pour des destinataires Airtel.');
             }
 
-            $idClientDestination = (int) $destinataire['id'];
+            $telephonesAirtel = array_column(array_filter($destinataires, static function ($destinataire) {
+                return (bool) $destinataire['est_airtel'];
+            }), 'telephone');
+            $clients = $this->chercherDestinataires($telephonesAirtel);
+            $clientsParTelephone = [];
 
-            if ($idClientDestination === $idClientSource) {
-                return redirect()->to('/transfert')->with('error', 'Vous ne pouvez pas transférer de l’argent à vous-même.');
+            foreach ($clients as $client) {
+                $clientsParTelephone[(string) $client['telephone']] = $client;
             }
 
+            foreach ($destinataires as $index => $destinataire) {
+                $telephone = $destinataire['telephone'];
+
+                if (! $destinataire['est_airtel']) {
+                    continue;
+                }
+
+                if (! isset($clientsParTelephone[$telephone])) {
+                    return redirect()->to('/transfert')->with('error', 'Destinataire introuvable à la ligne ' . ($index + 1) . '.');
+                }
+
+                $client = $clientsParTelephone[$telephone];
+
+                if (! $this->clientActif($client)) {
+                    return redirect()->to('/transfert')->with('error', 'Destinataire inactif à la ligne ' . ($index + 1) . '.');
+                }
+
+                if ((int) $client['id'] === $idClientSource) {
+                    return redirect()->to('/transfert')->with('error', 'Vous ne pouvez pas transférer de l’argent à vous-même.');
+                }
+
+                $destinataires[$index]['id_client'] = (int) $client['id'];
+            }
+
+            $montant = $this->calculerMontantDestinataires($destinataires);
             $baremeFraisModel = new BaremeFraisModel();
-            $frais = $baremeFraisModel->chercherFraisTransfert($montant);
+            $fraisTransfert = $baremeFraisModel->chercherFraisTransfert($montant);
 
-            if ($frais === null) {
-                return redirect()->to('/transfert')->with('error', 'Aucun barème de frais trouvé pour ce montant.');
+            if ($fraisTransfert === null) {
+                return redirect()->to('/transfert')->with('error', 'Aucun barème de frais trouvé pour le montant total.');
             }
 
-            $montantTotal = $montant + $frais;
+            $fraisRetrait = 0.0;
+
+            if ($inclureFraisRetrait) {
+                foreach ($destinataires as $index => $destinataire) {
+                    $fraisDestinataire = $baremeFraisModel->chercherFraisRetrait($destinataire['montant']);
+
+                    if ($fraisDestinataire === null) {
+                        return redirect()->to('/transfert')->with('error', 'Aucun barème de frais de retrait trouvé à la ligne ' . ($index + 1) . '.');
+                    }
+
+                    $fraisRetrait += $fraisDestinataire;
+                }
+            }
+
+            $montantTotal = $this->calculerMontantTotal($montant, $fraisTransfert, $fraisRetrait, $inclureFraisRetrait);
+            $fraisTransaction = $fraisTransfert + ($inclureFraisRetrait ? $fraisRetrait : 0);
 
             if (! $this->soldeSuffisant($idClientSource, $montantTotal)) {
                 return redirect()->to('/transfert')->with('error', 'Solde insuffisant pour effectuer ce transfert.');
@@ -77,16 +130,30 @@ class TransfertController extends BaseController
             $db->transStart();
 
             $transactionModel = new TransactionModel();
-            $idTransaction = $transactionModel->creerTransactionTransfert(
+            $idTransaction = $transactionModel->creerTransactionMultiple(
                 $idClientSource,
-                $idClientDestination,
                 $montant,
-                $frais
+                $fraisTransaction
             );
+
+            $transactionModel->mettreAJourFraisRetrait($idTransaction, $inclureFraisRetrait);
+
+            $transactionDestinationModel = new TransactionDestinationModel();
+            foreach ($destinataires as $destinataire) {
+                if (! isset($destinataire['id_client'])) {
+                    continue;
+                }
+
+                $transactionDestinationModel->ajouterDestination(
+                    $idTransaction,
+                    (int) $destinataire['id_client'],
+                    (float) $destinataire['montant']
+                );
+            }
 
             $mouvementModel = new MouvementCompteModel();
             $mouvementModel->creerMouvementDebit($idTransaction, $idClientSource, $montantTotal);
-            $mouvementModel->creerMouvementCredit($idTransaction, $idClientDestination, $montant);
+            $mouvementModel->creerMouvementsDestinataires($idTransaction, $destinataires);
 
             $db->transComplete();
 
@@ -94,12 +161,76 @@ class TransfertController extends BaseController
                 return redirect()->to('/transfert')->with('error', 'Une erreur est survenue lors du transfert.');
             }
 
-            $message = 'Transfert effectué avec succès. Frais : ' . number_format($frais, 2, '.', ' ') . ' AR.';
+            $message = 'Transfert effectué avec succès vers ' . count($destinataires) . ' destinataire(s). Frais de transfert : '
+                . number_format($fraisTransfert, 2, '.', ' ') . ' AR.';
+
+            if ($inclureFraisRetrait) {
+                $message .= ' Frais de retrait inclus : ' . number_format($fraisRetrait, 2, '.', ' ') . ' AR.';
+            }
 
             return redirect()->to('/transfert')->with('success', $message);
         } catch (\Exception $e) {
             return redirect()->to('/transfert')->with('error', 'Une erreur est survenue lors du transfert.');
         }
+    }
+
+    protected function extraireDestinatairesDepuisPost(): array
+    {
+        $telephones = $this->request->getPost('telephone_destinations');
+        $montants = $this->request->getPost('montants');
+
+        if (! is_array($telephones)) {
+            $telephones = [$this->request->getPost('telephone_destination')];
+        }
+
+        if (! is_array($montants)) {
+            $montants = [$this->request->getPost('montant')];
+        }
+
+        $destinataires = [];
+        $nombreLignes = max(count($telephones), count($montants));
+
+        for ($i = 0; $i < $nombreLignes; $i++) {
+            $telephoneBrut = trim((string) ($telephones[$i] ?? ''));
+            $montantBrut = trim((string) ($montants[$i] ?? ''));
+
+            if ($telephoneBrut === '' && $montantBrut === '') {
+                continue;
+            }
+
+            $destinataires[] = [
+                'telephone' => preg_replace('/[^0-9]/', '', $telephoneBrut),
+                'montant' => (float) str_replace(',', '.', $montantBrut),
+            ];
+        }
+
+        return $destinataires;
+    }
+
+    protected function identifierOperateursDestinataires(array $destinataires): array
+    {
+        $prefixeModel = new PrefixeModel();
+
+        foreach ($destinataires as $index => $destinataire) {
+            $operateur = $prefixeModel->chercherOperateurParTelephone($destinataire['telephone']);
+            $libelleOperateur = (string) ($operateur['operateur'] ?? '');
+
+            $destinataires[$index]['operateur'] = $libelleOperateur;
+            $destinataires[$index]['est_airtel'] = strtolower($libelleOperateur) === 'airtel';
+        }
+
+        return $destinataires;
+    }
+
+    protected function contientDestinataireExterne(array $destinataires): bool
+    {
+        foreach ($destinataires as $destinataire) {
+            if (! (bool) $destinataire['est_airtel']) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     protected function clientConnecte(): bool
@@ -112,11 +243,27 @@ class TransfertController extends BaseController
         return $montant > 0;
     }
 
-    protected function destinataireExiste(string $telephone): ?array
+    protected function calculerMontantTotal(float $montant, float $fraisTransfert, float $fraisRetrait, bool $inclure): float
+    {
+        return $montant + $fraisTransfert + ($inclure ? $fraisRetrait : 0);
+    }
+
+    protected function calculerMontantDestinataires(array $destinataires): float
+    {
+        $total = 0.0;
+
+        foreach ($destinataires as $destinataire) {
+            $total += (float) $destinataire['montant'];
+        }
+
+        return $total;
+    }
+
+    protected function chercherDestinataires(array $telephones): array
     {
         $clientModel = new ClientModel();
 
-        return $clientModel->chercherClientParTelephone($telephone);
+        return $clientModel->chercherClientsParTelephone($telephones);
     }
 
     protected function clientActif(array $client): bool

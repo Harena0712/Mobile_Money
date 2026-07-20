@@ -8,6 +8,9 @@ class ClientSeeder extends Seeder
 {
     public function run()
     {
+        $table = $this->db->table('Client');
+        $existing = array_column($table->select('telephone')->get()->getResultArray(), 'telephone');
+
         $data = [
             [
                 'telephone' => '0331234567',
@@ -27,6 +30,12 @@ class ClientSeeder extends Seeder
             ]
         ];
 
-        $this->db->table('Client')->insertBatch($data);
+        $insert = array_filter($data, function ($row) use ($existing) {
+            return ! in_array($row['telephone'], $existing, true);
+        });
+
+        if (! empty($insert)) {
+            $table->insertBatch($insert);
+        }
     }
 }

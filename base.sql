@@ -71,3 +71,46 @@ CREATE TABLE MouvementCompte (
     FOREIGN KEY (client_id)
         REFERENCES Client(id)
 );
+
+-- ===================
+-- V2
+-- ===================
+
+CREATE TABLE Operateur (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom TEXT NOT NULL UNIQUE,
+    actif INTEGER NOT NULL DEFAULT 1
+);
+
+ALTER TABLE Prefixe
+ADD COLUMN id_operateur INTEGER REFERENCES Operateur(id);
+
+ALTER TABLE "Transaction"
+ADD COLUMN inclure_frais_retrait INTEGER NOT NULL DEFAULT 0;
+
+CREATE TABLE TransactionDestination (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_transaction INTEGER NOT NULL,
+    id_client INTEGER NOT NULL,
+    montant DECIMAL(15,2) NOT NULL,
+
+    FOREIGN KEY (id_transaction)
+        REFERENCES "Transaction"(id),
+
+    FOREIGN KEY (id_client)
+        REFERENCES Client(id)
+);
+
+CREATE TABLE CommissionOperateur (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_operateur_source INTEGER NOT NULL,
+    id_operateur_destination INTEGER NOT NULL,
+    pourcentage DECIMAL(5,2) NOT NULL,
+
+    FOREIGN KEY (id_operateur_source)
+        REFERENCES Operateur(id),
+
+    FOREIGN KEY (id_operateur_destination)
+        REFERENCES Operateur(id)
+);
+
