@@ -69,3 +69,7 @@ $routes->post('/client/retrait', 'RetraitController::enregistrer');
 $routes->get('/client/transfert', 'TransfertController::index');
 $routes->post('/client/transfert', 'TransfertController::enregistrer');
 $routes->get('/client/historique', 'HistoriqueController::index');
+
+
+$routes->get('/client/epargne', 'EpargneController::index');
+$routes->post('/client/configurer-epargne', 'EpargneController::inserer');

@@ -6,6 +6,8 @@ use App\Models\BaremeFraisModel;
 use App\Models\ClientModel;
 use App\Models\MouvementCompteModel;
 use App\Models\PrefixeModel;
+use App\Models\EpargneModel;
+
 use App\Models\TransactionDestinationModel;
 use App\Models\TransactionModel;
 use App\Models\PromotionModel;
@@ -36,20 +38,27 @@ class TransfertController extends BaseController
         $destinataires = $this->extraireDestinatairesDepuisPost();
         $inclureFraisRetrait = $this->request->getPost('inclure_frais_retrait') !== null;
 
+
+
+        $EpargneModel = new EpargneModel();
+        
+
+        
+        
         if ($destinataires === []) {
             return redirect()->to('/transfert')->with('error', 'Veuillez saisir au moins un destinataire.');
-        }
-
-        foreach ($destinataires as $index => $destinataire) {
-            if ($destinataire['telephone'] === '') {
-                return redirect()->to('/transfert')->with('error', 'Veuillez saisir le téléphone du destinataire à la ligne ' . ($index + 1) . '.');
             }
-
-            if (! $this->montantValide($destinataire['montant'])) {
-                return redirect()->to('/transfert')->with('error', 'Montant invalide');
-            }
-        }
-
+            
+            foreach ($destinataires as $index => $destinataire) {
+                if ($destinataire['telephone'] === '') {
+                    return redirect()->to('/transfert')->with('error', 'Veuillez saisir le téléphone du destinataire à la ligne ' . ($index + 1) . '.');
+                    }
+                    
+                    if (! $this->montantValide($destinataire['montant'])) {
+                        return redirect()->to('/transfert')->with('error', 'Montant invalide');
+                        }
+                        }
+                        
         $idClientSource = (int) session()->get('id_client');
 
         try {
@@ -75,13 +84,13 @@ class TransfertController extends BaseController
 
             $telephonesAirtel = array_column(array_filter($destinataires, static function ($destinataire) {
                 return (bool) $destinataire['est_airtel'];
-            }), 'telephone');
+                }), 'telephone');
             $clients = $this->chercherDestinataires($telephonesAirtel);
             $clientsParTelephone = [];
-
+            
             foreach ($clients as $client) {
                 $clientsParTelephone[(string) $client['telephone']] = $client;
-            }
+                }
 
             foreach ($destinataires as $index => $destinataire) {
                 $telephone = $destinataire['telephone'];
@@ -89,28 +98,39 @@ class TransfertController extends BaseController
                 if (! $destinataire['est_airtel']) {
                     continue;
                 }
-
+                
                 if (! isset($clientsParTelephone[$telephone])) {
                     return redirect()->to('/transfert')->with('error', 'Destinataire introuvable à la ligne ' . ($index + 1) . '.');
                 }
 
                 $client = $clientsParTelephone[$telephone];
-
+                
                 if (! $this->clientActif($client)) {
                     return redirect()->to('/transfert')->with('error', 'Destinataire inactif à la ligne ' . ($index + 1) . '.');
-                }
+                    }
+                    
+                    if ((int) $client['id'] === $idClientSource) {
+                        return redirect()->to('/transfert')->with('error', 'Vous ne pouvez pas transférer de l’argent à vous-même.');
+                        }
+                        
+                        $destinataires[$index]['id_client'] = (int) $client['id'];
+                $epargne = $EpargneModel->find($destinataires[$index]['id_client'])['pourcentageEpargne'];
 
-                if ((int) $client['id'] === $idClientSource) {
-                    return redirect()->to('/transfert')->with('error', 'Vous ne pouvez pas transférer de l’argent à vous-même.');
-                }
-
-                $destinataires[$index]['id_client'] = (int) $client['id'];
+                $EpargneClientModel = new EpargneClientModel();
+                // $data = [
+                //     'idClient' => $
+                // ]
+                // $EpargneClientModel->insert(
+                //     []
+                // )
             }
 
             $promotionModel = new PromotionModel();
             $promotion = $promotionModel->findAll();
             echo $promotion[0]['prommotion'];
-            $montant = $destinataires[0]['montant'] - (((float)$promotion[0]['prommotion'] * $destinataires[0]['montant']) / 100);
+            // $montant = $destinataires[0]['montant'] - (((float)$promotion[0]['prommotion'] * $destinataires[0]['montant']) / 100);
+            $montant = $destinataires[0]['montant'] - (((float)epargne * $destinataires[0]['montant']) / 100);
+            
             $baremeFraisModel = new BaremeFraisModel();
             $fraisTransfert = $baremeFraisModel->chercherFraisTransfert($montant);
 
