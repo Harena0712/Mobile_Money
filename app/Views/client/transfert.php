@@ -118,17 +118,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // const telephones = Array.from(list.querySelectorAll('input[name="telephone_destinations[]"]'));
-        // const contientExterne = telephones.some(function (input) {
-        //     const telephone = input.value.replace(/\D/g, '');
-        //     return telephone !== '' && !telephone.startsWith('037');
-        // });
-
-        // if (contientExterne) {
-        //     inclureFraisRetrait.checked = false;
-        // }
-
-        // inclureFraisRetrait.disabled = contientExterne;
     }
 
     function createRow() {
