@@ -80,6 +80,6 @@ class CreateTransaction extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('Transaction');
+        $this->forge->dropTable('\"Transaction\"');
     }
 }

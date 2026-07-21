@@ -15,6 +15,6 @@ class AddFraisRetraitTransaction extends Migration
 
     public function down()
     {
-        $this->forge->dropColumn('Transaction', 'inclure_frais_retrait');
+        $this->forge->dropColumn('\"Transaction\"', 'inclure_frais_retrait');
     }
 }
