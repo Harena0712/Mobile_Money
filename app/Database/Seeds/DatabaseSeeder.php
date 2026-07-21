@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call('ClientSeeder');
         $this->call('MouvementCompteSeeder');
         $this->call('TransactionSeeder');
+        $this->call('PromotionSeeder');
+        
     }
 }

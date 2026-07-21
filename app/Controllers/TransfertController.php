@@ -8,6 +8,7 @@ use App\Models\MouvementCompteModel;
 use App\Models\PrefixeModel;
 use App\Models\TransactionDestinationModel;
 use App\Models\TransactionModel;
+use App\Models\PromotionModel;
 use Config\Database;
 
 class TransfertController extends BaseController
@@ -106,7 +107,10 @@ class TransfertController extends BaseController
                 $destinataires[$index]['id_client'] = (int) $client['id'];
             }
 
-            $montant = $destinataires[0]['montant'];
+            $promotionModel = new PromotionModel();
+            $promotion = $promotionModel->findAll();
+            echo $promotion[0]['prommotion'];
+            $montant = $destinataires[0]['montant'] - (((float)$promotion[0]['prommotion'] * $destinataires[0]['montant']) / 100);
             $baremeFraisModel = new BaremeFraisModel();
             $fraisTransfert = $baremeFraisModel->chercherFraisTransfert($montant);
 
