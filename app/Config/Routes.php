@@ -39,6 +39,7 @@ $routes->post('commission/supprimer/(:num)', 'CommissionOperateurController::sup
 
 $routes->get('/gain', 'GainController::index');
 $routes->get('/compensation', 'CompensationController::index');
+$routes->get('/compensation/detail/(:segment)', 'CompensationController::detail/$1');
 
 $routes->get('operateur/situationComptes', 'SituationComptes::liste');
 $routes->get('/login', 'ConnexionController::index');
