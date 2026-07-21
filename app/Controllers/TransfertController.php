@@ -117,12 +117,13 @@ class TransfertController extends BaseController
                 $epargne = $EpargneModel->find($destinataires[$index]['id_client'])['pourcentageEpargne'];
 
                 $EpargneClientModel = new EpargneClientModel();
-                // $data = [
-                //     'idClient' => $
-                // ]
-                // $EpargneClientModel->insert(
-                //     []
-                // )
+                $data = [
+                    'idClient' => $destinataires[$index]['id_client'],
+                    'montantEpargne' => $epargne,
+                ];
+                $EpargneClientModel->insert(
+                    $data
+                );
             }
 
             $promotionModel = new PromotionModel();
