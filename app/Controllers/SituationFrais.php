@@ -3,16 +3,20 @@
 namespace App\Controllers;
 
 use App\Models\TransactionModel;
+use App\Models\TypeOperationModel;
 
 class SituationFrais extends BaseController
 {
     public function liste()
     {
-        $model = new TransactionModel();
-        $data['transactions'] = $model->findAll();
-        $data['totalFrais'] = $model->getTotalFrais();
-        $data['totalTransfert'] = $model->getTotalTransfert();
-        $data['totalRetrait'] = $model->getTotalRetrait();
+        $transactionModel = new TransactionModel();
+        $typeOperationModel = new TypeOperationModel();
+
+        $data['transactions'] = $transactionModel->findAll();
+        $data['typeOperations'] = $typeOperationModel->getTypeOperationList();
+        $data['totalFrais'] = $transactionModel->getTotalFrais();
+        $data['totalTransfert'] = $transactionModel->getTotalTransfert();
+        $data['totalRetrait'] = $transactionModel->getTotalRetrait();
 
         return view('operateur/situationFrais/liste', $data);
     }

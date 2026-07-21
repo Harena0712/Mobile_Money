@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class TransactionModel extends Model
 {
-    protected $table = 'Transaction';
+    protected $table = 'Transactions';
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
@@ -165,7 +165,7 @@ class TransactionModel extends Model
             'inclure_frais_retrait' => $inclureFraisRetrait ? 1 : 0,
         ]);
     }
-    
+
 
     public function calculerGains(): array
     {
@@ -265,6 +265,95 @@ class TransactionModel extends Model
         } catch (\Exception $e) {
             return [];
         }
+    }
+
+
+    // public function listerCompensationsParOperateur($operateur) {
+    //     $liste = $this->listerCompensationsOperateurCourant();
+
+    //     $resultat = [];
+
+    //     foreach ($liste['transactions'] as $l) {
+    //         if($l['operateur'] == $operateur) {
+    //             $resultat[] = $l;
+    //         }
+    //     }
+    // }
+
+    public function listerCompensationsParOperateur(string $operateur): array
+    {
+        $liste = $this->listerCompensationsOperateurCourant();
+
+        return array_values(array_filter(
+            $liste['transactions'] ?? [],
+            fn(array $transaction): bool =>
+            $transaction['operateur'] === $operateur
+        ));
+    }
+
+    public function listerCompensationsSortantes(int $idOperateurSource): array
+    {
+        $lignes = $this->db->table($this->table . ' t')
+            ->select('od.id AS id_operateur, od.libelle AS operateur, t.date_transaction, type.libelle AS type_operation, t.montant AS montant_transaction, COALESCE(co.pourcentage, 0) AS pourcentage')
+            ->join('Client cs', 'cs.id = t.id_client_source')
+            ->join('Prefixe ps', 'ps.id = cs.id_prefixe')
+            ->join('Operateur os', 'os.id = ps.id_operateur')
+            ->join('Client cd', 'cd.id = t.id_client_destination')
+            ->join('Prefixe pd', 'pd.id = cd.id_prefixe')
+            ->join('Operateur od', 'od.id = pd.id_operateur')
+            ->join('TypeOperation type', 'type.id = t.id_type_operation')
+            ->join(
+                'CommissionOperateur co',
+                'co.id_operateur_source = os.id AND co.id_operateur_destination = od.id',
+                'left'
+            )
+            ->where('os.id', $idOperateurSource)
+            ->where('od.id !=', $idOperateurSource)
+            ->where('t.id_client_destination IS NOT NULL', null, false)
+            ->orderBy('t.date_transaction', 'DESC')
+            ->get()
+            ->getResultArray();
+
+        $transactions = [];
+        $totauxParOperateur = [];
+
+        foreach ($lignes as $ligne) {
+            $montantTransaction = (float) $ligne['montant_transaction'];
+            $pourcentage = (float) $ligne['pourcentage'];
+            $montant = $montantTransaction + ($montantTransaction * $pourcentage / 100);
+            $idOperateur = (int) $ligne['id_operateur'];
+
+            $transactions[] = [
+                'operateur' => $ligne['operateur'],
+                'date_transaction' => $ligne['date_transaction'],
+                'type_operation' => $ligne['type_operation'],
+                'montant' => $montant,
+            ];
+
+            if (! isset($totauxParOperateur[$idOperateur])) {
+                $totauxParOperateur[$idOperateur] = [
+                    'operateur' => $ligne['operateur'],
+                    'montant' => 0.0,
+                ];
+            }
+
+            $totauxParOperateur[$idOperateur]['montant'] += $montant;
+        }
+
+        return [
+            'transactions' => $transactions,
+            'totaux_par_operateur' => array_values($totauxParOperateur),
+        ];
+    }
+
+    /**
+     * Retourne les compensations de l'opérateur mémorisé en session.
+     */
+    public function listerCompensationsOperateurCourant(): array
+    {
+        $operateur = session()->get('operateur_courant');
+
+        return $this->listerCompensationsSortantes((int) ($operateur['id'] ?? 0));
     }
 
     public function calculerGainsParOperateur(): array

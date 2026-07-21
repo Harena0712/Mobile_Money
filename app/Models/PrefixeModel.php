@@ -17,6 +17,15 @@ class PrefixeModel extends Model {
         'id_operateur'
     ];
 
+    public function listePrefixe() {
+        return $this->db->table($this->table . ' p')
+            ->select('p.id, p.prefixe, p.actif, Operateur.libelle AS operateur')
+            ->join('Operateur', 'Operateur.id = p.id_operateur', 'left')
+            ->orderBy('p.id', 'ASC')
+            ->get()
+            ->getResultArray();
+    }
+
     public function modifier($data) {
         $id = $data['id'];
         unset($data['id']);

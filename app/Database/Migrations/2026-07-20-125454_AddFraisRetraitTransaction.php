@@ -8,13 +8,13 @@ class AddFraisRetraitTransaction extends Migration
 {
     public function up()
     {
-        $this->forge->addColumn('Transaction', [
+        $this->forge->addColumn('Transactions', [
             'inclure_frais_retrait' => ['type' => 'DECIMAL(10,2)'],
         ]);
     }
 
     public function down()
     {
-        $this->forge->dropColumn('Transaction', 'inclure_frais_retrait');
+        $this->forge->dropColumn('Transactions', 'inclure_frais_retrait');
     }
 }

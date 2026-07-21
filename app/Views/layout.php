@@ -53,6 +53,16 @@
                     Types d'opérations
                 </a>
 
+                <a href="<?= site_url('commission') ?>"
+                    class="nav-link <?= strpos(current_url(), 'commission') !== false ? 'active' : '' ?>">
+                    <span class="nav-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 3v18M16 7a4 4 0 00-8 0c0 5 8 2 8 7a4 4 0 01-8 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    Commissions
+                </a>
+
                 <p class="nav-group-title">Suivi &amp; contrôle</p>
 
                 <a href="<?= site_url('operateur/situationFrais') ?>"
@@ -147,6 +157,91 @@
         document.getElementById('menuToggle')?.addEventListener('click', openSidebar);
         document.getElementById('sidebarClose')?.addEventListener('click', closeSidebar);
         overlay?.addEventListener('click', closeSidebar);
+
+        document.querySelectorAll('.data-table').forEach(function (table) {
+            const rows = Array.from(table.querySelectorAll('tbody tr'));
+            const tableWrap = table.closest('.table-wrap');
+
+            if (rows.length === 0 || !tableWrap) {
+                return;
+            }
+
+            const panel = table.closest('.panel') || table.parentElement;
+            let searchInput = panel.querySelector('.table-toolbar input[type="text"]');
+
+            if (!searchInput) {
+                const toolbar = document.createElement('div');
+                toolbar.className = 'table-toolbar';
+
+                searchInput = document.createElement('input');
+                searchInput.type = 'text';
+                searchInput.className = 'form-control';
+                searchInput.placeholder = 'Filtrer la liste...';
+                toolbar.appendChild(searchInput);
+                tableWrap.parentNode.insertBefore(toolbar, tableWrap);
+            }
+
+            const pagination = document.createElement('nav');
+            pagination.className = 'table-pagination';
+            pagination.setAttribute('aria-label', 'Pagination du tableau');
+            tableWrap.insertAdjacentElement('afterend', pagination);
+
+            const lignesParPage = 10;
+            let pageCourante = 1;
+
+            function lignesFiltrees() {
+                const terme = searchInput.value.trim().toLowerCase();
+
+                return rows.filter(function (row) {
+                    return row.textContent.toLowerCase().includes(terme);
+                });
+            }
+
+            function ajouterBouton(label, page, desactive, actif) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'pagination-button' + (actif ? ' active' : '');
+                button.textContent = label;
+                button.disabled = desactive;
+
+                if (!desactive && !actif) {
+                    button.addEventListener('click', function () {
+                        pageCourante = page;
+                        afficherPage();
+                    });
+                }
+
+                pagination.appendChild(button);
+            }
+
+            function afficherPage() {
+                const filtrees = lignesFiltrees();
+                const totalPages = Math.max(1, Math.ceil(filtrees.length / lignesParPage));
+                pageCourante = Math.min(pageCourante, totalPages);
+                const debut = (pageCourante - 1) * lignesParPage;
+                const lignesVisibles = filtrees.slice(debut, debut + lignesParPage);
+
+                rows.forEach(function (row) {
+                    row.style.display = lignesVisibles.includes(row) ? '' : 'none';
+                });
+
+                pagination.replaceChildren();
+                ajouterBouton('Précédent', pageCourante - 1, pageCourante === 1, false);
+
+                for (let page = 1; page <= totalPages; page++) {
+                    ajouterBouton(String(page), page, false, page === pageCourante);
+                }
+
+                ajouterBouton('Suivant', pageCourante + 1, pageCourante === totalPages, false);
+            }
+
+            searchInput.addEventListener('input', function () {
+                pageCourante = 1;
+                afficherPage();
+            });
+
+            afficherPage();
+        });
     </script>
 
     <?= $this->renderSection('scripts') ?>

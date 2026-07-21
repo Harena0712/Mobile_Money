@@ -33,7 +33,7 @@ class CreateMouvementCompte extends Migration
 
         $this->forge->addForeignKey(
             'id_transaction',
-            'Transaction',
+            'Transactions',
             'id',
             'CASCADE',
             'CASCADE'

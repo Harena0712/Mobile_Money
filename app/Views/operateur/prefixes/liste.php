@@ -21,14 +21,16 @@
                     <tr>
                         <th>ID</th>
                         <th>Préfixe</th>
+                        <th>Opérateur</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($prefixes as $prefixe) : ?>
-                        <tr data-search="<?= esc($prefixe['id'] . ' ' . $prefixe['prefixe']) ?>">
+                        <tr data-search="<?= esc($prefixe['id'] . ' ' . $prefixe['prefixe'] . ' ' . ($prefixe['operateur'] ?? '')) ?>">
                             <td>#<?= esc($prefixe['id']) ?></td>
                             <td><span class="badge badge-navy"><?= esc($prefixe['prefixe']) ?></span></td>
+                            <td><?= esc($prefixe['operateur'] ?? '—') ?></td>
                             <td>
                                 <div class="row-actions">
                                     <a href="<?= site_url('operateur/prefixes/modif/' . $prefixe['id']) ?>" class="btn btn-secondary btn-sm">Modifier</a>

@@ -22,4 +22,16 @@ class TypeOperationModel extends Model
         unset($data['id']);
         return $this->update($id, $data);
     }
+
+    public function getTypeOperationList(): array
+    {
+        return array_column(
+            $this->select('id, libelle')
+                 ->where('actif', 1)
+                 ->orderBy('id')
+                 ->findAll(),
+            'libelle',
+            'id'
+        );
+    }
 }

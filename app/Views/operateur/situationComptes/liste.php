@@ -45,13 +45,15 @@
                 <thead>
                     <tr>
                         <th>ID Client</th>
+                        <th>Client</th>
                         <th>Solde</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($soldeClients as $compte) : ?>
-                        <tr data-search="<?= esc($compte['id_client'] . ' ' . $compte['solde']) ?>">
+                        <tr data-search="<?= esc($compte['id_client'] . ' ' . ($compte['client_name'] ?? '') . ' ' . $compte['solde']) ?>">
                             <td>#<?= esc($compte['id_client']) ?></td>
+                            <td><?= esc($compte['client_name'] ?? 'Inconnu') ?></td>
                             <td><span class="badge badge-navy"><?= number_format((float) $compte['solde'], 2, '.', ' ') ?> Ar</span></td>
                         </tr>
                     <?php endforeach; ?>

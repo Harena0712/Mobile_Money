@@ -43,6 +43,6 @@ class TransactionSeeder extends Seeder
 
         ];
 
-        $this->db->table('Transaction')->insertBatch($data);
+        $this->db->table('Transactions')->insertBatch($data);
     }
 }

@@ -51,9 +51,10 @@
                 </thead>
                 <tbody>
                     <?php foreach ($transactions as $transaction) : ?>
-                        <tr data-search="<?= esc($transaction['id'] . ' ' . $transaction['id_type_operation'] . ' ' . $transaction['frais']) ?>">
+                        <?php $typeLabel = $typeOperations[$transaction['id_type_operation']] ?? $transaction['id_type_operation']; ?>
+                        <tr data-search="<?= esc($transaction['id'] . ' ' . $typeLabel . ' ' . $transaction['frais']) ?>">
                             <td>#<?= esc($transaction['id']) ?></td>
-                            <td><?= esc($transaction['id_type_operation']) ?></td>
+                            <td><?= esc($typeLabel) ?></td>
                             <td><span class="badge badge-green"><?= number_format((float) $transaction['frais'], 2, '.', ' ') ?> Ar</span></td>
                         </tr>
                     <?php endforeach; ?>

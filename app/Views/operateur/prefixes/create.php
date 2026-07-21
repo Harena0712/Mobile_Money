@@ -12,6 +12,16 @@
             <p class="field-hint">Le préfixe identifie l'opérateur mobile money (ex : 034, 038...).</p>
         </div>
 
+        <div class="form-group">
+            <label for="id_operateur">Opérateur</label>
+            <select name="id_operateur" id="id_operateur" class="form-control" required>
+                <option value="">Sélectionnez un opérateur</option>
+                <?php foreach ($operateurs as $operateur) : ?>
+                    <option value="<?= esc($operateur['id']) ?>"><?= esc($operateur['libelle']) ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">Insérer</button>
             <a href="<?= site_url('operateur/prefixes') ?>" class="btn btn-secondary">Annuler</a>

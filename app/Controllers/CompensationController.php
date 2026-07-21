@@ -8,9 +8,15 @@ class CompensationController extends BaseController
 {
     public function index()
     {
-        $model = new TransactionModel();
-        $data['compensations'] = $model->calculerMontantsParOperateur();
+        return view('compensation/index', (new TransactionModel())->listerCompensationsOperateurCourant());
+    }
 
-        return view('compensation/index', $data);
+    public function detail($operateur)
+    {
+        $transactionModel = new TransactionModel();
+        $data['transactions'] = $transactionModel->listerCompensationsParOperateur($operateur);
+        $data['operateur'] = $operateur;
+
+        return view('compensation/detail', $data);
     }
 }
