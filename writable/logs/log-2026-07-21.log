@@ -382,3 +382,7 @@ in APPPATH/Controllers/TransfertController.php on line 47.
  6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
  7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
  8 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-21 06:16:05 --> ErrorException: Cannot use [] for reading
+[Method: GET, Route: compensation/detail/Yas]
+in APPPATH/Models/TransactionModel.php on line 277.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

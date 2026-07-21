@@ -165,7 +165,7 @@ class TransactionModel extends Model
             'inclure_frais_retrait' => $inclureFraisRetrait ? 1 : 0,
         ]);
     }
-    
+
 
     public function calculerGains(): array
     {
@@ -267,11 +267,30 @@ class TransactionModel extends Model
         }
     }
 
-    /**
-     * Liste les compensations à payer par l'opérateur courant aux autres opérateurs.
-     * Le montant d'une ligne est le montant de la transaction augmenté de la
-     * commission définie entre l'opérateur source et l'opérateur destination.
-     */
+
+    // public function listerCompensationsParOperateur($operateur) {
+    //     $liste = $this->listerCompensationsOperateurCourant();
+
+    //     $resultat = [];
+
+    //     foreach ($liste['transactions'] as $l) {
+    //         if($l['operateur'] == $operateur) {
+    //             $resultat[] = $l;
+    //         }
+    //     }
+    // }
+
+    public function listerCompensationsParOperateur(string $operateur): array
+    {
+        $liste = $this->listerCompensationsOperateurCourant();
+
+        return array_values(array_filter(
+            $liste['transactions'] ?? [],
+            fn(array $transaction): bool =>
+            $transaction['operateur'] === $operateur
+        ));
+    }
+
     public function listerCompensationsSortantes(int $idOperateurSource): array
     {
         $lignes = $this->db->table($this->table . ' t')
