@@ -75,11 +75,11 @@ class CreateTransaction extends Migration
             'CASCADE'
         );
 
-        $this->forge->createTable('Transaction');
+        $this->forge->createTable('Transactions');
     }
 
     public function down()
     {
-        $this->forge->dropTable('\"Transaction\"');
+        $this->forge->dropTable('Transactions');
     }
 }
