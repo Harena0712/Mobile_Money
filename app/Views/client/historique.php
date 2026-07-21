@@ -2,39 +2,6 @@
 
 <?= $this->section('content') ?>
 
-<style>
-    .client-content {
-        max-width: 1200px !important;
-        width: 100% !important;
-        padding: 0 24px !important;
-    }
-
-    .client-card {
-        max-width: none;
-        width: 100%;
-    }
-
-    .table-wrap {
-        min-width: 0;
-        overflow-x: auto;
-    }
-
-    .data-table {
-        min-width: 0;
-        width: 100%;
-    }
-
-    .table-toolbar {
-        flex-wrap: wrap;
-        gap: 14px;
-    }
-
-    .table-toolbar .form-control {
-        min-width: 180px;
-        max-width: 320px;
-    }
-</style>
-
 <div class="client-card">
     <h1>Historique des transactions</h1>
     <p class="client-subtitle">L'ensemble de vos opérations récentes.</p>
@@ -79,6 +46,9 @@
                 </tbody>
             </table>
         </div>
+
+        <div id="pagination" class="table-pagination"></div>
+
     <?php endif; ?>
 
     <a href="/solde" class="back-link">
@@ -89,29 +59,127 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+
     const searchInput = document.getElementById('searchInput');
     const typeFilter = document.getElementById('typeFilter');
     const rows = Array.from(document.querySelectorAll('.data-table tbody tr'));
+    const pagination = document.getElementById('pagination');
 
     if (!searchInput || !typeFilter || rows.length === 0) {
         return;
     }
 
+    const lignesParPage = 10;
+    let pageCourante = 1;
+
     function applyFilters() {
+
         const term = searchInput.value.trim().toLowerCase();
         const type = typeFilter.value;
 
-        rows.forEach(function (row) {
-            const haystack = (row.dataset.search || '').toLowerCase();
+        const filtrees = rows.filter(function(row){
+
+            const texte = (row.dataset.search || '').toLowerCase();
             const rowType = (row.dataset.type || '').toLowerCase();
-            const matchesText = haystack.includes(term);
-            const matchesType = type === 'all' || rowType === type;
-            row.style.display = matchesText && matchesType ? '' : 'none';
+
+            return texte.includes(term)
+                && (type === 'all' || rowType === type);
+
         });
+
+        afficherPage(filtrees);
     }
 
-    searchInput.addEventListener('input', applyFilters);
-    typeFilter.addEventListener('change', applyFilters);
+    function afficherPage(filtrees){
+
+        const totalPages = Math.max(
+            1,
+            Math.ceil(filtrees.length / lignesParPage)
+        );
+
+        if(pageCourante > totalPages){
+            pageCourante = totalPages;
+        }
+
+        const debut = (pageCourante - 1) * lignesParPage;
+
+        const visibles = filtrees.slice(
+            debut,
+            debut + lignesParPage
+        );
+
+        rows.forEach(function(row){
+            row.style.display = visibles.includes(row) ? '' : 'none';
+        });
+
+        pagination.innerHTML = '';
+
+        ajouterBouton('Précédent', pageCourante > 1, function(){
+            pageCourante--;
+            afficherPage(filtrees);
+        });
+
+        for(let i=1; i<=totalPages; i++){
+
+            ajouterBouton(
+                i,
+                true,
+                function(){
+
+                    pageCourante = i;
+                    afficherPage(filtrees);
+
+                },
+                i === pageCourante
+            );
+
+        }
+
+        ajouterBouton('Suivant', pageCourante < totalPages, function(){
+            pageCourante++;
+            afficherPage(filtrees);
+        });
+
+    }
+
+    function ajouterBouton(texte, actif, action, courant = false){
+
+        const btn = document.createElement('button');
+
+        btn.textContent = texte;
+
+        btn.className = 'pagination-button';
+
+        if(courant){
+            btn.classList.add('active');
+        }
+
+        btn.disabled = !actif;
+
+        if(actif){
+            btn.onclick = action;
+        }
+
+        pagination.appendChild(btn);
+
+    }
+
+    searchInput.addEventListener('input', function(){
+
+        pageCourante = 1;
+        applyFilters();
+
+    });
+
+    typeFilter.addEventListener('change', function(){
+
+        pageCourante = 1;
+        applyFilters();
+
+    });
+
+    applyFilters();
+
 });
 </script>
 
