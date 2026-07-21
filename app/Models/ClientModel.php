@@ -52,9 +52,9 @@ class ClientModel extends Model {
         }
 
         $prefixeModel = new PrefixeModel();
-        $prefixes = $prefixeModel->where('actif', 1)->findAll();
+        // $prefixes = $prefixeModel->where('actif', 1)->findAll();
 
-        foreach ($prefixes as $p) {
+        // foreach ($prefixes as $p) {
             // $pref = (string) ($p['prefixe'] ?? '');
             // if ($pref !== '' && strpos($tel, $pref) === 0) {
             //     return true;
@@ -63,7 +63,7 @@ class ClientModel extends Model {
             if ($operateur !== null && $operateur === 'Airtel') {
                 return true;
             }
-        }
+        // }
 
         return false;
     }

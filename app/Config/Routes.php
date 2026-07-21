@@ -51,6 +51,7 @@ $routes->get('/retrait', 'RetraitController::index');
 $routes->post('/retrait', 'RetraitController::enregistrer');
 $routes->get('/transfert', 'TransfertController::index');
 $routes->post('/transfert', 'TransfertController::enregistrer');
+$routes->post('/transfert/verifier-operateur', 'TransfertController::verifierOperateur');
 $routes->get('/historique', 'HistoriqueController::index');
 $routes->get('/produits', 'Produit::index');
 $routes->get('/produit/(:num)', 'Produit::show/$1');

@@ -210,6 +210,16 @@ class TransfertController extends BaseController
         return $destinataires;
     }
 
+    public function verifierOperateur()
+    {
+        $telephone = (string) $this->request->getPost('telephone');
+
+        $ClientModel = new ClientModel();
+        return $this->response->setJSON([
+            'airtel' => $ClientModel->telephonePrefixe($telephone),
+        ]);
+    }
+
     protected function identifierOperateursDestinataires(array $destinataires): array
     {
         $prefixeModel = new PrefixeModel();

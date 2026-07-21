@@ -118,17 +118,17 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const telephones = Array.from(list.querySelectorAll('input[name="telephone_destinations[]"]'));
-        const contientExterne = telephones.some(function (input) {
-            const telephone = input.value.replace(/\D/g, '');
-            return telephone !== '' && !telephone.startsWith('037');
-        });
+        // const telephones = Array.from(list.querySelectorAll('input[name="telephone_destinations[]"]'));
+        // const contientExterne = telephones.some(function (input) {
+        //     const telephone = input.value.replace(/\D/g, '');
+        //     return telephone !== '' && !telephone.startsWith('037');
+        // });
 
-        if (contientExterne) {
-            inclureFraisRetrait.checked = false;
-        }
+        // if (contientExterne) {
+        //     inclureFraisRetrait.checked = false;
+        // }
 
-        inclureFraisRetrait.disabled = contientExterne;
+        // inclureFraisRetrait.disabled = contientExterne;
     }
 
     function createRow() {
@@ -149,6 +149,49 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
 
         return row;
+    }
+
+    async function updateFraisRetraitOption() {
+        if (!inclureFraisRetrait) {
+            return;
+        }
+
+        const telephones = Array.from(
+            list.querySelectorAll('input[name="telephone_destinations[]"]')
+        );
+
+        let contientExterne = false;
+
+        for (const input of telephones) {
+            const telephone = input.value.replace(/\D/g, '');
+
+            if (telephone === '') {
+                continue;
+            }
+
+            const response = await fetch('/transfert/verifier-operateur', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    telephone: telephone
+                })
+            });
+
+            const data = await response.json();
+
+            if (!data.airtel) {
+                contientExterne = true;
+                break;
+            }
+        }
+
+        if (contientExterne) {
+            inclureFraisRetrait.checked = false;
+        }
+
+        inclureFraisRetrait.disabled = contientExterne;
     }
 
     addButton.addEventListener('click', function () {
