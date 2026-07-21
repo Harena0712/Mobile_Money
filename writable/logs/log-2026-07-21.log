@@ -330,3 +330,55 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
 13 SYSTEMPATH/Boot.php(442): CodeIgniter\CLI\Console->run()
 14 SYSTEMPATH/Boot.php(166): CodeIgniter\Boot::runCommand()
 15 ROOTPATH/spark(87): CodeIgniter\Boot::bootSpark()
+CRITICAL - 2026-07-21 04:23:43 --> ErrorException: Undefined variable $i
+[Method: GET, Route: transfert]
+in APPPATH/Views/client/transfert.php on line 51.
+ 1 APPPATH/Views/client/transfert.php(51): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/app/Views/client/transfert.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/TransfertController.php(26): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\TransfertController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-21 04:23:44 --> ErrorException: Undefined variable $i
+[Method: GET, Route: transfert]
+in APPPATH/Views/client/transfert.php on line 51.
+ 1 APPPATH/Views/client/transfert.php(51): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/app/Views/client/transfert.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/TransfertController.php(26): view()
+ 6 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\TransfertController->index()
+ 7 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 9 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+11 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+12 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-21 04:41:43 --> ErrorException: Trying to access array offset on value of type float
+[Method: POST, Route: transfert]
+in APPPATH/Controllers/TransfertController.php on line 47.
+ 1 APPPATH/Controllers/TransfertController.php(47): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\TransfertController->enregistrer()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')
+CRITICAL - 2026-07-21 04:43:04 --> ErrorException: Undefined array key 0
+[Method: POST, Route: transfert]
+in APPPATH/Controllers/TransfertController.php on line 47.
+ 1 APPPATH/Controllers/TransfertController.php(47): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\TransfertController->enregistrer()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/itu/Documents/Miantsa/S4/Mr Rojo/ProjetFinal/Mobile_Money/public/index.php')

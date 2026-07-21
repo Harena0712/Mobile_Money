@@ -46,6 +46,10 @@ $nombreDestinataires = max(count($oldTelephones), count($oldMontants), 1);
         </div>
 
         <div class="destinataires-list" id="destinationsList">
+            <div class="form-group">
+                <label>Montant (AR)</label>
+                <input type="number" name="montant" class="form-control" step="0.01" min="0.01" placeholder="0.00" value="<?= 0.0 ?>" required>
+            </div>
             <?php for ($i = 0; $i < $nombreDestinataires; $i++) : ?>
                 <div class="destinataire-row">
                     <div class="destinataire-fields">
@@ -54,10 +58,10 @@ $nombreDestinataires = max(count($oldTelephones), count($oldMontants), 1);
                             <input type="tel" name="telephone_destinations[]" class="form-control" placeholder="0340000000" value="<?= esc((string) ($oldTelephones[$i] ?? '')) ?>" required>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Montant (AR)</label>
-                            <input type="number" name="montants[]" class="form-control" step="0.01" min="0.01" placeholder="0.00" value="<?= esc((string) ($oldMontants[$i] ?? '')) ?>" required>
-                        </div>
+                            <input type="number" name="montant" class="form-control" step="0.01" min="0.01" placeholder="0.00" value="<?= esc((string) ($oldMontants[$i] ?? '')) ?>" required>
+                        </div> -->
                     </div>
 
                     <button type="button" class="icon-btn remove-destination" aria-label="Retirer ce destinataire">
@@ -137,10 +141,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     <input type="tel" name="telephone_destinations[]" class="form-control" placeholder="0340000000" required>
                 </div>
 
-                <div class="form-group">
-                    <label>Montant (AR)</label>
-                    <input type="number" name="montants[]" class="form-control" step="0.01" min="0.01" placeholder="0.00" required>
-                </div>
             </div>
 
             <button type="button" class="icon-btn remove-destination" aria-label="Retirer ce destinataire">

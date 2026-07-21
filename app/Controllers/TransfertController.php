@@ -45,7 +45,7 @@ class TransfertController extends BaseController
             }
 
             if (! $this->montantValide($destinataire['montant'])) {
-                return redirect()->to('/transfert')->with('error', 'Montant invalide à la ligne ' . ($index + 1) . '. Le montant doit être supérieur à 0.');
+                return redirect()->to('/transfert')->with('error', 'Montant invalide');
             }
         }
 
@@ -54,6 +54,15 @@ class TransfertController extends BaseController
         try {
             $destinataires = $this->identifierOperateursDestinataires($destinataires);
             $telephones = array_column($destinataires, 'telephone');
+
+            $operateur = $destinataires[0]['operateur'];
+
+            foreach ($destinataires as $destinataire) {
+                if ($destinataire['operateur'] !== $operateur) {
+                    return redirect()->to('/transfert')
+                        ->with('error', 'Tous les destinataires doivent appartenir au même opérateur.');
+                }
+            }
 
             if (count($telephones) !== count(array_unique($telephones))) {
                 return redirect()->to('/transfert')->with('error', 'Un même destinataire ne peut pas être renseigné plusieurs fois.');
@@ -97,7 +106,7 @@ class TransfertController extends BaseController
                 $destinataires[$index]['id_client'] = (int) $client['id'];
             }
 
-            $montant = $this->calculerMontantDestinataires($destinataires);
+            $montant = $destinataires[0]['montant'];
             $baremeFraisModel = new BaremeFraisModel();
             $fraisTransfert = $baremeFraisModel->chercherFraisTransfert($montant);
 
@@ -147,7 +156,7 @@ class TransfertController extends BaseController
                 $transactionDestinationModel->ajouterDestination(
                     $idTransaction,
                     (int) $destinataire['id_client'],
-                    (float) $destinataire['montant']
+                    (float) ($destinataire['montant'] / count($destinataires))
                 );
             }
 
@@ -177,30 +186,24 @@ class TransfertController extends BaseController
     protected function extraireDestinatairesDepuisPost(): array
     {
         $telephones = $this->request->getPost('telephone_destinations');
-        $montants = $this->request->getPost('montants');
+        $montantBrut = trim((string) $this->request->getPost('montant'));
 
         if (! is_array($telephones)) {
             $telephones = [$this->request->getPost('telephone_destination')];
         }
 
-        if (! is_array($montants)) {
-            $montants = [$this->request->getPost('montant')];
-        }
-
         $destinataires = [];
-        $nombreLignes = max(count($telephones), count($montants));
 
-        for ($i = 0; $i < $nombreLignes; $i++) {
-            $telephoneBrut = trim((string) ($telephones[$i] ?? ''));
-            $montantBrut = trim((string) ($montants[$i] ?? ''));
+        foreach ($telephones as $telephone) {
+            $telephone = trim((string) $telephone);
 
-            if ($telephoneBrut === '' && $montantBrut === '') {
+            if ($telephone === '') {
                 continue;
             }
 
             $destinataires[] = [
-                'telephone' => preg_replace('/[^0-9]/', '', $telephoneBrut),
-                'montant' => (float) str_replace(',', '.', $montantBrut),
+                'telephone' => preg_replace('/[^0-9]/', '', $telephone),
+                'montant'   => (float) str_replace(',', '.', $montantBrut),
             ];
         }
 

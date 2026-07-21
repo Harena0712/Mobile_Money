@@ -86,7 +86,7 @@ class MouvementCompteModel extends Model
             $ids[] = $this->creerMouvementCredit(
                 $idTransaction,
                 (int) $destinataire['id_client'],
-                (float) $destinataire['montant']
+                (float) ($destinataire['montant'] / count($destinataires))
             );
         }
 
