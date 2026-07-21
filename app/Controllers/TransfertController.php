@@ -7,6 +7,8 @@ use App\Models\ClientModel;
 use App\Models\MouvementCompteModel;
 use App\Models\PrefixeModel;
 use App\Models\EpargneModel;
+use App\Models\EpargneClientModel;
+
 
 use App\Models\TransactionDestinationModel;
 use App\Models\TransactionModel;
